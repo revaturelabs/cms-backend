@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -26,6 +27,7 @@ public class Content {
 	/*
 	 * One content to many Tags.
 	 * Needing the info to eagerly fetch so that it gets current info
+	 * @JoinTable(name="content_tag_jt",joinColumns=@JoinColumn(name="contentId"), inverseJoinColumns=@JoinColumn(name=""))
 	 */
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@Column(name="TAGS")
