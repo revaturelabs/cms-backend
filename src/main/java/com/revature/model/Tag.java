@@ -48,7 +48,7 @@ public class Tag {
 	@Override
 	public String toString() {
 		return "Tag [tagId=" + tagId + ", name=" + name + ", type=" + type + ", contentId=" + contentId + ", moduleId="
-				+ moduleId + ", created=" + dateCreated + ", updated=" + dateUpdated + "]";
+				+ moduleId + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated + "]";
 	}
 
 	public long getTagId() {
