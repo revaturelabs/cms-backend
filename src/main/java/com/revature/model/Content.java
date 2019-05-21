@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import com.revature.model.Tag;
 
 
 
@@ -36,9 +36,9 @@ public class Content {
 	 */
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinTable(name="content_tag_jt", joinColumns=@JoinColumn(name="contentId"), inverseJoinColumns=@JoinColumn(name="tagId"))
+	private List<Tag> tags;
 	@Column(name="DESCRIPTION")
 	private String description;
-	private List<Tag> tags;
 	@Column(name="CATEGORY")
 	private String category;
 	@Column(name="NAME")
@@ -46,18 +46,18 @@ public class Content {
 	@Column(name="URL")
 	private String url;
 	@Column(name="DATE_CREATED")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateCreated; 
+	@Temporal(TemporalType.DATE)
+	private String dateCreated; 
 	@Column(name="DATE_UPDATED")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateUpdated; 
+	@Temporal(TemporalType.DATE)
+	private String dateUpdated; 
 	
 	public Content() {
 		
 	}
 
 	public Content(long contentId, String description, List<Tag> tags, String category, String name, String url,
-			Date dateCreated, Date dateUpdated) {
+			String dateCreated, String dateUpdated) {
 		super();
 		this.contentId = contentId;
 		this.description = description;
@@ -117,20 +117,20 @@ public class Content {
 		this.url = url;
 	}
 
-	public Date getDateCreated() {
+	public String getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(String dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public Date getDateUpdated() {
+	public String getDateUpdated() {
 		return dateUpdated;
 	}
 
-	public void setDateUpdated(Date dateUpdated) {
-		this.dateUpdated = dateUpdated;
+	public void setDateUpdated(String dateUpdated2) {
+		this.dateUpdated = dateUpdated2;
 	}
 
 	@Override
