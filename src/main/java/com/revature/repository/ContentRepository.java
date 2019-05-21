@@ -1,9 +1,9 @@
-package com.revature.service;
+package com.revature.repository;
 
 import com.revature.model.Content;
 import com.revature.model.Tag;
 
-public interface ContentService {
+public interface ContentRepository {
 
 	public Content newContent(Content content);
 	public Content findByURL(String url);
