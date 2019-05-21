@@ -44,11 +44,6 @@ public class Content {
 	@Column(name="NAME")
 	private String name;
 	@Column(name="URL")
-	@Column(name="CATEGORY")
-	private String category;
-	@Column(name="CREATOR")
-	private String creator;
-	@Column(name="url")
 	private String url;
 	@Column(name="DATE_CREATED")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -63,15 +58,12 @@ public class Content {
 
 	public Content(long contentId, String description, List<Tag> tags, String category, String name, String url,
 			Date dateCreated, Date dateUpdated) {
-	public Content(long contentId, List<Tag> tags, String description, String category, String creator, String url) {
 		super();
 		this.contentId = contentId;
 		this.description = description;
 		this.tags = tags;
 		this.category = category;
 		this.name = name;
-		this.category = category;
-		this.creator = creator;
 		this.url = url;
 		this.dateCreated = dateCreated;
 		this.dateUpdated = dateUpdated;
@@ -152,7 +144,6 @@ public class Content {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
 	}
@@ -197,10 +188,6 @@ public class Content {
 			if (other.tags != null)
 				return false;
 		} else if (!tags.equals(other.tags))
-		if (category == null) {
-			if (other.category != null)
-				return false;
-		} else if (!category.equals(other.category))
 			return false;
 		if (url == null) {
 			if (other.url != null)
@@ -215,8 +202,6 @@ public class Content {
 		return "Content [contentId=" + contentId + ", description=" + description + ", tags=" + tags + ", category="
 				+ category + ", name=" + name + ", url=" + url + ", dateCreated=" + dateCreated + ", dateUpdated="
 				+ dateUpdated + "]";
-		return "Content [contentId=" + contentId + ", description=" + description + ", category=" + category + ", creator="
-				+ creator + ", url=" + url + "]";
 	}
 
 	
