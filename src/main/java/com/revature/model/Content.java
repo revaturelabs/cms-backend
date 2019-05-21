@@ -51,10 +51,10 @@ public class Content {
 	@Column(name="url")
 	private String url;
 	@Column(name="DATE_CREATED")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreated; 
 	@Column(name="DATE_UPDATED")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateUpdated; 
 	
 	public Content() {
