@@ -17,7 +17,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	@Override
 	public Content newContent(Content content) {
-		Content addedContent = new Content(content.getContentId(), content.getTags(), content.getDescription(), content.getCategory(), content.getCreator(), content.getUrl());
+		Content addedContent = new Content(content.getContentId(), content.getDescription(), content.getTags(), content.getDescription(), content.getCategory(), content.getUrl(), null, null);
 		return contentRepository.newContent(addedContent);
 	}
 
