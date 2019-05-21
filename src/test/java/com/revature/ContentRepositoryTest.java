@@ -1,8 +1,10 @@
 package com.revature;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThat;
 
 import java.sql.Date;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Temporal;
@@ -21,7 +23,7 @@ import com.revature.service.ContentService;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class ContentManagementTest {
+public class ContentRepositoryTest {
 	
 	@Autowired
 	private ContentRepository contentRepository;
@@ -34,12 +36,14 @@ public class ContentManagementTest {
 	public void create_createTest() {
 		Content content = null;
 		content = newContent(content);
-		entityManager.persistAndFlush(content);
+		Content entry =entityManager.persistAndFlush(content);
 		
-		contentRepository.findById(content.getContentId());
-		
+		Optional<Content> result = contentRepository.findById(content.getContentId());
+		assertThat(result).isEqualTo(entry);
 	} 
 	
+
+
 	private Content newContent(Content content) {
 		 content = new Content();
 		 content.setContentId(1);
