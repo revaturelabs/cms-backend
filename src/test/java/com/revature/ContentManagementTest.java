@@ -24,7 +24,7 @@ public class ContentManagementTest {
 	private ContentService contentService;
 	
 	@Test
-	public void findByTag_findByTest() {
+	public void findByCategory_findByCategoryTest() {
 		
 	}
 	
