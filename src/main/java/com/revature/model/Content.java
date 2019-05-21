@@ -32,8 +32,8 @@ public class Content {
 	private List<Tag> tags;
 	@Column(name="DESCRIPTION")
 	private String description;
-	@Column(name="LABEL")
-	private String label;
+	@Column(name="CATEGORY")
+	private String category;
 	@Column(name="CREATOR")
 	private String creator;
 	@Column(name="url")
@@ -43,12 +43,12 @@ public class Content {
 		
 	}
 
-	public Content(long contentId, List<Tag> tags, String description, String label, String creator, String url) {
+	public Content(long contentId, List<Tag> tags, String description, String category, String creator, String url) {
 		super();
 		this.contentId = contentId;
 		this.tags = tags;
 		this.description = description;
-		this.label = label;
+		this.category = category;
 		this.creator = creator;
 		this.url = url;
 	}
@@ -77,12 +77,12 @@ public class Content {
 		this.description = description;
 	}
 
-	public String getLabel() {
-		return label;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getCreator() {
@@ -108,7 +108,7 @@ public class Content {
 		result = prime * result + (int) (contentId ^ (contentId >>> 32));
 		result = prime * result + ((creator == null) ? 0 : creator.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((label == null) ? 0 : label.hashCode());
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
 	}
@@ -134,10 +134,10 @@ public class Content {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (label == null) {
-			if (other.label != null)
+		if (category == null) {
+			if (other.category != null)
 				return false;
-		} else if (!label.equals(other.label))
+		} else if (!category.equals(other.category))
 			return false;
 		if (url == null) {
 			if (other.url != null)
@@ -149,7 +149,7 @@ public class Content {
 
 	@Override
 	public String toString() {
-		return "Content [contentId=" + contentId + ", description=" + description + ", label=" + label + ", creator="
+		return "Content [contentId=" + contentId + ", description=" + description + ", category=" + category + ", creator="
 				+ creator + ", url=" + url + "]";
 	}
 	
