@@ -33,7 +33,7 @@ public class Tag {
 	
 	public Tag() {}
 	
-	public Tag(int tagId, String name, String type, long contentId, long moduleId, String created, String updated) {
+	public Tag(long tagId, String name, String type, long contentId, long moduleId, String created, String updated) {
 		super();
 		this.tagId = tagId;
 		this.name = name;
