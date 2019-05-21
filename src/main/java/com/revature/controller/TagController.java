@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Tag;
+import com.revature.service.TagService;
 
 @RestController
 public class TagController {

@@ -26,9 +26,9 @@ public class Tag {
 	@Column(name = "MODULE_ID")
 	private long moduleId;
 	@Column(name = "DATE_CREATED")
-	private String created;
+	private String dateCreated;
 	@Column(name = "DATE_UPDATED")
-	private String updated;
+	private String dateUpdated;
 
 	
 	public Tag() {}
@@ -40,15 +40,15 @@ public class Tag {
 		this.type = type;
 		this.contentId = contentId;
 		this.moduleId = moduleId;
-		this.created = created;
-		this.updated = updated;
+		this.dateCreated = created;
+		this.dateUpdated = updated;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "Tag [tagId=" + tagId + ", name=" + name + ", type=" + type + ", contentId=" + contentId + ", moduleId="
-				+ moduleId + ", created=" + created + ", updated=" + updated + "]";
+				+ moduleId + ", created=" + dateCreated + ", updated=" + dateUpdated + "]";
 	}
 
 	public long getTagId() {
@@ -92,19 +92,19 @@ public class Tag {
 	}
 
 	public String getCreated() {
-		return created;
+		return dateCreated;
 	}
 
 	public void setCreated(String created) {
-		this.created = created;
+		this.dateCreated = created;
 	}
 
 	public String getUpdated() {
-		return updated;
+		return dateUpdated;
 	}
 
 	public void setUpdated(String updated) {
-		this.updated = updated;
+		this.dateUpdated = updated;
 	}
 
 }
