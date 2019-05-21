@@ -2,6 +2,12 @@ package com.revature;
 
 import static org.junit.Assert.assertThat;
 
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,47 +29,64 @@ public class ContentManagementTest {
 	@Autowired
     private TestEntityManager entityManager;
 	
-	@Autowired 
-	private ContentService contentService;
 	
 	@Test
 	public void create_createTest() {
+		Content content = null;
+		content = newContent(content);
+		entityManager.persistAndFlush(content);
 		
+		contentRepository.findById(content.getContentId());
+		
+	} 
+	
+	private Content newContent(Content content) {
+		 content = new Content();
+		 content.setContentId(1);
+		 content.setTags(null);
+		 content.setDescription("notes about Java");
+		 content.setCategory("notes");
+		 content.setName("Java Notes");
+		 content.setUrl("www.nowhere.com");
+		 content.setDateCreated("2019-05-04");
+		 content.setDateUpdated("2019-05-04");
+		 
+		 return content;
 	}
 	
-	@Test
-	public void findByCategory_findByCategoryTest() {
-		
-	}
-	
-	@Test
-	public void findByTag_findByTagTest() {
-		
-	}
-	
-	@Test
-	public void findByTagAndCategory_findByTagAndCategoryTest() {
-		
-	}
-	
-	@Test
-	public void findByUrl_findByUrlTest() {
-//		Content url = new Content();
-//		entityManager.persist(url);
-//		entityManager.flush();
+//	@Test
+//	public void findByCategory_findByCategoryTest() {
 //		
-//		Content found = contentRepository.findByURL(url.getUrl());
-//		    assertThat(found.getName(), is(equalTo()));
-	}
-	
-	@Test 
-	public void delete_deleteTest() {
-		
-	}
-	
-	@Test
-	public void update_updateTest() {
-		
-	}
+//	}
+//	
+//	@Test
+//	public void findByTag_findByTagTest() {
+//		
+//	}
+//	
+//	@Test
+//	public void findByTagAndCategory_findByTagAndCategoryTest() {
+//		
+//	}
+//	
+//	@Test
+//	public void findByUrl_findByUrlTest() {
+////		Content url = new Content();
+////		entityManager.persist(url);
+////		entityManager.flush();
+////		
+////		Content found = contentRepository.findByURL(url.getUrl());
+////		    assertThat(found.getName(), is(equalTo()));
+//	}
+//	
+//	@Test 
+//	public void delete_deleteTest() {
+//		
+//	}
+//	
+//	@Test
+//	public void update_updateTest() {
+//		
+//	}
 	
 }
