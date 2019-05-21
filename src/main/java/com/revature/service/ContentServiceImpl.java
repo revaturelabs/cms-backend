@@ -1,11 +1,15 @@
 package com.revature.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.model.Content;
 import com.revature.model.Tag;
 import com.revature.repository.ContentRepository;
 
+@Service("contentService")
 public class ContentServiceImpl implements ContentService {
 
 	@Autowired
@@ -13,18 +17,18 @@ public class ContentServiceImpl implements ContentService {
 	
 	@Override
 	public Content newContent(Content content) {
-		Content addedContent = new Content(content.getContentId(), content.getTags(), content.getDescription(), content.getLabel(), content.getCreator(), content.getUrl());
+		Content addedContent = new Content(content.getContentId(), content.getTags(), content.getDescription(), content.getCategory(), content.getCreator(), content.getUrl());
 		return contentRepository.newContent(addedContent);
 	}
 
 	@Override
 	public Content findByURL(String url) {
-		return contentRepository.findByURL(url);
+		return contentRepository.findByUrl(url);
 	}
 
 	@Override
-	public Content findByTag(Tag tag) {
-		return contentRepository.findByTag(tag);
+	public List<Content> findByTag(Tag tag) {
+		return contentRepository.findByTags(tag);
 	}
 
 	@Override
@@ -33,9 +37,7 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	@Override
-	public void deleteContent() {
-		contentRepository.deleteContent();
+	public void delete() {
+		contentRepository.delete();
 	}
-
-	
 }

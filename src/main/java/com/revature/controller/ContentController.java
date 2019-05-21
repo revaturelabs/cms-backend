@@ -7,12 +7,12 @@ import com.revature.model.Tag;
 
 public interface ContentController {
 	
-	ResponseEntity<ClientMessage> createContent(Content content);
-	ResponseEntity<ContentList> findByTags(Tag[] tags);
-	ResponseEntity<ContentList> findByLabel(String url);
-	ResponseEntity<ContentList> findByTagsAndLabel(Tag[] tags, String url);
-	ResponseEntity<ClientMessage> updateContent();
-	ResponseEntity<ClientMessage> deleteContent();
+	ResponseEntity<Content> createContent(Content content);
+	ResponseEntity<Content> findByURL(String url);
+	ResponseEntity<Content> findByTag(Tag tags);
+	ResponseEntity<Content> findByTagsAndLabel(Tag tags, String url);
+	ResponseEntity<String> updateContent(Content content);
+	public void deleteContent();
 
 
 }
