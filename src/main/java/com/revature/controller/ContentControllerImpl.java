@@ -22,7 +22,7 @@ import com.revature.service.ContentService;
 @RestController("contentController")
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/content", produces = {MediaType.APPLICATION_JSON_VALUE})
-public class ContentControllerAlpha implements ContentController {
+public class ContentControllerImpl implements ContentController {
 	
 	@Autowired
 	private ContentService contentService;
