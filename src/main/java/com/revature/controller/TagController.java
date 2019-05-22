@@ -9,5 +9,6 @@ public interface TagController {
 	List<Tag> getAllTags();
 	Tag getTag(long id);
 	void deleteTag(long id);
-	long saveTag(Tag tag);
+	long createTag(Tag tag);
+	long updateTag(Tag tag);
 }

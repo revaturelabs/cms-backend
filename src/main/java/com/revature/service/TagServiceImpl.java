@@ -30,7 +30,7 @@ public class TagServiceImpl implements TagService {
         return tagRepository.findById(id).get();
     }
 
-    public void saveOrUpdate(Tag tag) {
+    public void save(Tag tag) {
     	tag.setUpdated(new Date());
         tagRepository.save(tag);
     }
@@ -38,5 +38,11 @@ public class TagServiceImpl implements TagService {
     public void delete(long id) {
         tagRepository.deleteById(id);
     }
+    
+    public void update(Tag tag) {
+        tagRepository.save(tag);
+    }
+
+
 
 }
