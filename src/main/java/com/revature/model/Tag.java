@@ -18,8 +18,6 @@ public class Tag {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	//@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="tagSequence")
-	//@SequenceGenerator(name="tagSequence",sequenceName="TAG_SEQ", allocationSize=1)
 	@Column(name="TAG_ID")
 	private long tagId;
 	@Column(name = "TAG_NAME")
