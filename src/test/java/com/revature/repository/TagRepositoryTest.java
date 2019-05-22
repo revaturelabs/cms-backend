@@ -31,7 +31,6 @@ public class TagRepositoryTest {
 		tag.setModuleId(1);
 		tag.setType("belongsTo");
 		tag.setName("Java");
-		
 		tagRepository.save(tag);
 		
 		assertThat(tagRepository.findAll().size()).isOne();
