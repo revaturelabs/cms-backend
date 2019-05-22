@@ -57,8 +57,7 @@ public class ContentRepositoryTest {
 		 content.setCategory("notes");
 		 content.setName("Java Notes");
 		 content.setUrl("www.nowhere.com");
-		 content.setDateCreated(System.currentTimeMillis());
-		 content.setDateUpdated(System.currentTimeMillis());
+		 
 		 
 		 return content;
 	}
@@ -71,8 +70,7 @@ public class ContentRepositoryTest {
 		 content.setCategory("notes");
 		 content.setName("Java Notes");
 		 content.setUrl("www.nowhere.com");
-		 content.setDateCreated(System.currentTimeMillis());
-		 content.setDateUpdated(System.currentTimeMillis());
+		
 		 
 		 return content;
 	}
@@ -85,8 +83,7 @@ public class ContentRepositoryTest {
 		 content.setCategory("notes");
 		 content.setName("Java Notes");
 		 content.setUrl("www.nowhere.com");
-		 content.setDateCreated(System.currentTimeMillis());
-		 content.setDateUpdated(System.currentTimeMillis());
+		 
 		 
 		 return content;
 	}
@@ -99,8 +96,7 @@ public class ContentRepositoryTest {
 		 content.setCategory("notes");
 		 content.setName("Java Notes");
 		 content.setUrl("www.nowhere.com");
-		 content.setDateCreated(System.currentTimeMillis());
-		 content.setDateUpdated(System.currentTimeMillis());
+		
 		 
 		 return content;
 	}

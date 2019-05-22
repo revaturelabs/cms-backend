@@ -43,12 +43,12 @@ public class ContentServiceImpl implements ContentService {
 	}
 	@Override
 	public Content updateContent(Content content) {
-		content.setDateUpdated(System.currentTimeMillis());
+		
 		return contentRepository.save(content);
 	}
 	@Override
 	public Content newContent(Content content) {
-		content.setDateCreated(System.currentTimeMillis());
+		
 		return contentRepository.save(content);
 	}
 	
