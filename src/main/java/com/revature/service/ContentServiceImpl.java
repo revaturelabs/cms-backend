@@ -55,7 +55,7 @@ public class ContentServiceImpl implements ContentService {
 	@Override
 	public Content findByURL(String url) {
 		try {
-			throw new RuntimeException("url: ssssssss");
+			throw new UrlNotRecognizedException("url: ssssssss");
 		} catch(UrlNotRecognizedException e) {
 			e.printStackTrace();
 		}
