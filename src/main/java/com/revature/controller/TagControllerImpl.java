@@ -11,31 +11,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Tag;
-import com.revature.service.TagService;
+import com.revature.service.TagServiceImpl;
 
 @RestController
-public class TagControllerImpl {
+public class TagControllerImpl implements TagController {
 	
 	@Autowired
-	TagService tagService;
+	TagServiceImpl tagService;
 	
 	@GetMapping("/tags")
-    private List<Tag> getAllTags() {
+    public List<Tag> getAllTags() {
         return tagService.getAllTags();
     }
 
     @GetMapping("/tags/{id}")
-    private Tag getTag(@PathVariable("tagId") int id) {
+    public Tag getTag(@PathVariable("tagId") int id) {
         return tagService.getTagById(id);
     }
 
     @DeleteMapping("/tags/{id}")
-    private void deleteTag(@PathVariable("tagId") int id) {
+    public void deleteTag(@PathVariable("tagId") int id) {
         tagService.delete(id);
     }
 
     @PostMapping("/tags")
-    private long saveTag(@RequestBody Tag tag) {
+    public long saveTag(@RequestBody Tag tag) {
         tagService.saveOrUpdate(tag);
         return tag.getTagId();
     }
