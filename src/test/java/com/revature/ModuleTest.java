@@ -4,34 +4,43 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Module;
 import com.revature.repository.ModuleRepository;
 
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 public class ModuleTest {
 
 	@Autowired
 	private ModuleRepository moduleRepo;
+	
+	@Autowired
+	TestEntityManager entityManager;
 
 	@Test
 	@Rollback(true)
 	public void testCreateModule() throws SQLException {
-		Module module = new Module(0, "module1", false, new Date(), new Date());
-		moduleRepo.save(module);
-		assertEquals("module1", module.getModuleName());
+		//Module module = new Module(0, "module1", false, new Date(), new Date());
+		Module module = new Module();
+		module.setModuleId(0);
+		module.setModuleName("module1");
+		module.setActive(false);
+		module.setCreated(new Date());
+		module.setUpdated(new Date());
+		Module entry = entityManager.persist(module);
+		Module result = moduleRepo.findModuleByName("module1");
+		//moduleRepo.save(module);
+		assertEquals(result, entry.getModuleName());
 	}
 
 	/*
