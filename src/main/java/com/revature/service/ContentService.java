@@ -12,4 +12,5 @@ public interface ContentService {
 	public List<Content> findByTag(Tag tag);
 	public Content findByTagsAndCategory(Tag tag, String category);
 	public void delete();
+	public Content updateContent(Content content);
 }
