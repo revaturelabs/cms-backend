@@ -1,11 +1,15 @@
 package com.revature.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+//import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -13,42 +17,50 @@ import javax.persistence.Table;
 public class Tag {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="ailmentSequence")
-	@SequenceGenerator(name="ailmentSequence",sequenceName="AILMENT_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="tagSequence")
+	//@SequenceGenerator(name="tagSequence",sequenceName="TAG_SEQ", allocationSize=1)
 	@Column(name="TAG_ID")
 	private long tagId;
 	@Column(name = "TAG_NAME")
 	private String name;
 	@Column(name = "TYPE")
 	private String type;
+	
+	@ManyToOne
+	@JoinColumn
 	@Column(name = "CONTENT_ID")
 	private long contentId;
+	
+	@ManyToOne
+	@JoinColumn
 	@Column(name = "MODULE_ID")
 	private long moduleId;
+	
 	@Column(name = "DATE_CREATED")
-	private String created;
+	private Date dateCreated;
 	@Column(name = "DATE_UPDATED")
-	private String updated;
+	private Date dateUpdated;
 
 	
 	public Tag() {}
 	
-	public Tag(long tagId, String name, String type, long contentId, long moduleId, String created, String updated) {
+	public Tag(long tagId, String name, String type, long contentId, long moduleId, Date created, Date updated) {
 		super();
 		this.tagId = tagId;
 		this.name = name;
 		this.type = type;
 		this.contentId = contentId;
 		this.moduleId = moduleId;
-		this.created = created;
-		this.updated = updated;
+		this.dateCreated = created;
+		this.dateUpdated = updated;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "Tag [tagId=" + tagId + ", name=" + name + ", type=" + type + ", contentId=" + contentId + ", moduleId="
-				+ moduleId + ", created=" + created + ", updated=" + updated + "]";
+				+ moduleId + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated + "]";
 	}
 
 	public long getTagId() {
@@ -91,20 +103,20 @@ public class Tag {
 		this.moduleId = moduleId;
 	}
 
-	public String getCreated() {
-		return created;
+	public Date getCreated() {
+		return dateCreated;
 	}
 
-	public void setCreated(String created) {
-		this.created = created;
+	public void setCreated(Date created) {
+		this.dateCreated = created;
 	}
 
-	public String getUpdated() {
-		return updated;
+	public Date getUpdated() {
+		return dateUpdated;
 	}
 
-	public void setUpdated(String updated) {
-		this.updated = updated;
+	public void setUpdated(Date updated) {
+		this.dateUpdated = updated;
 	}
 
 }
