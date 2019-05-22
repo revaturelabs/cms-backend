@@ -33,12 +33,15 @@ public class Content {
 	/*
 	 * One content to many Tags.
 	 * Needing the info to eagerly fetch so that it gets current info
+	 * From what I am reading about JPA a join table will not work. 
+	 * @JoinTable(name="content_tag_jt", joinColumns=@JoinColumn(name="contentId"), inverseJoinColumns=@JoinColumn(name="contentId"))
+	 * mappedBy="content"
 	 */
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name="content_tag_jt", joinColumns=@JoinColumn(name="contentId"), inverseJoinColumns=@JoinColumn(name="tagId"))
+	private List<Tag> tags;
 	@Column(name="DESCRIPTION")
 	private String description;
-	private List<Tag> tags;
 	@Column(name="CATEGORY")
 	private String category;
 	@Column(name="NAME")
@@ -46,18 +49,21 @@ public class Content {
 	@Column(name="URL")
 	private String url;
 	@Column(name="DATE_CREATED")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateCreated; 
+	private long dateCreated;
 	@Column(name="DATE_UPDATED")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateUpdated; 
+	private long dateUpdated;
+//	@Temporal(TemporalType.DATE)
+//	private java.util.Date dateCreated; 
+//	@Column(name="DATE_UPDATED")
+//	@Temporal(TemporalType.DATE)
+//	private java.util.Date dateUpdated; 
 	
 	public Content() {
 		
 	}
 
 	public Content(long contentId, String description, List<Tag> tags, String category, String name, String url,
-			Date dateCreated, Date dateUpdated) {
+			long dateCreated, long dateUpdated) {
 		super();
 		this.contentId = contentId;
 		this.description = description;
@@ -117,20 +123,20 @@ public class Content {
 		this.url = url;
 	}
 
-	public Date getDateCreated() {
+	public long getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(long dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public Date getDateUpdated() {
+	public long getDateUpdated() {
 		return dateUpdated;
 	}
 
-	public void setDateUpdated(Date dateUpdated) {
-		this.dateUpdated = dateUpdated;
+	public void setDateUpdated(long dateUpdated2) {
+		this.dateUpdated = dateUpdated2;
 	}
 
 	@Override
@@ -139,8 +145,8 @@ public class Content {
 		int result = 1;
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + (int) (contentId ^ (contentId >>> 32));
-		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
-		result = prime * result + ((dateUpdated == null) ? 0 : dateUpdated.hashCode());
+		result = prime * result + (int) (dateCreated ^ (dateCreated >>> 32));
+		result = prime * result + (int) (dateUpdated ^ (dateUpdated >>> 32));
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
@@ -164,15 +170,9 @@ public class Content {
 			return false;
 		if (contentId != other.contentId)
 			return false;
-		if (dateCreated == null) {
-			if (other.dateCreated != null)
-				return false;
-		} else if (!dateCreated.equals(other.dateCreated))
+		if (dateCreated != other.dateCreated)
 			return false;
-		if (dateUpdated == null) {
-			if (other.dateUpdated != null)
-				return false;
-		} else if (!dateUpdated.equals(other.dateUpdated))
+		if (dateUpdated != other.dateUpdated)
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -199,11 +199,12 @@ public class Content {
 
 	@Override
 	public String toString() {
-		return "Content [contentId=" + contentId + ", description=" + description + ", tags=" + tags + ", category="
+		return "Content [contentId=" + contentId + ", tags=" + tags + ", description=" + description + ", category="
 				+ category + ", name=" + name + ", url=" + url + ", dateCreated=" + dateCreated + ", dateUpdated="
 				+ dateUpdated + "]";
 	}
 
+	
 	
 	
 	
