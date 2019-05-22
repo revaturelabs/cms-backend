@@ -1,10 +1,13 @@
 package com.revature.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -24,22 +27,24 @@ public class Tag {
 	private String type;
 	
 	@ManyToOne
+	@JoinColumn
 	@Column(name = "CONTENT_ID")
 	private long contentId;
 	
 	@ManyToOne
+	@JoinColumn
 	@Column(name = "MODULE_ID")
 	private long moduleId;
 	
 	@Column(name = "DATE_CREATED")
-	private String dateCreated;
+	private Date dateCreated;
 	@Column(name = "DATE_UPDATED")
-	private String dateUpdated;
+	private Date dateUpdated;
 
 	
 	public Tag() {}
 	
-	public Tag(long tagId, String name, String type, long contentId, long moduleId, String created, String updated) {
+	public Tag(long tagId, String name, String type, long contentId, long moduleId, Date created, Date updated) {
 		super();
 		this.tagId = tagId;
 		this.name = name;
@@ -97,19 +102,19 @@ public class Tag {
 		this.moduleId = moduleId;
 	}
 
-	public String getCreated() {
+	public Date getCreated() {
 		return dateCreated;
 	}
 
-	public void setCreated(String created) {
+	public void setCreated(Date created) {
 		this.dateCreated = created;
 	}
 
-	public String getUpdated() {
+	public Date getUpdated() {
 		return dateUpdated;
 	}
 
-	public void setUpdated(String updated) {
+	public void setUpdated(Date updated) {
 		this.dateUpdated = updated;
 	}
 
