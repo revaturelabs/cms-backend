@@ -30,5 +30,11 @@ public class TracingAspect {
 				+ " with parameter: " + jp.getArgs()[0]);
 	}
 	
+	@After("execution(* update* (..))")
+	public void update(JoinPoint jp) {
+		logger.trace("Attempting update: " + jp.getStaticPart().getSignature().toString() 
+				+ " with parameter: " + jp.getArgs()[0]);
+	}
+	
 
 }
