@@ -24,13 +24,13 @@ public class TagControllerImpl implements TagController {
         return tagService.getAllTags();
     }
 
-    @GetMapping("/tags/{id}")
-    public Tag getTag(@PathVariable("tagId") int id) {
+    @GetMapping("/tags/{tagId}")
+    public Tag getTag(@PathVariable("tagId") long id) {
         return tagService.getTagById(id);
     }
 
-    @DeleteMapping("/tags/{id}")
-    public void deleteTag(@PathVariable("tagId") int id) {
+    @DeleteMapping("/tags/{tagId}")
+    public void deleteTag(@PathVariable("tagId") long id) {
         tagService.delete(id);
     }
 
