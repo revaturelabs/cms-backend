@@ -31,7 +31,7 @@ public class TestService {
 		List<Tag> tags = new ArrayList<>();
 		//long str = System.currentTimeMillis();
 		//Date date = new Date(str);
-		tags.add(new Tag(1, "Java", "type", 1, 1, "4-2-19", "4-3-19"));
+		//tags.add(new Tag(1, "Java", "type", 1, 1, "4-2-19", "4-3-19"));
 		Content contentToCheck = new Content();
 		assertEquals(contentService.newContent(contentToCheck), contentToCheck);
 	}

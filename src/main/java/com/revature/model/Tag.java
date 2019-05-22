@@ -7,14 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-<<<<<<< HEAD
 //import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-=======
+//import javax.persistence.SequenceGenerator;
 import javax.persistence.JoinColumn;
 //import javax.persistence.SequenceGenerator;
->>>>>>> 2cc564b8d93a3d83537f6acb996a5bf71acaab9c
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -32,11 +29,7 @@ public class Tag {
 	private String name;
 	@Column(name = "TYPE")
 	private String type;
-<<<<<<< HEAD
-=======
-	
 	@JoinColumn
->>>>>>> 2cc564b8d93a3d83537f6acb996a5bf71acaab9c
 	@Column(name = "CONTENT_ID")
 	private long contentId;
 	
@@ -45,18 +38,14 @@ public class Tag {
 	private long moduleId;
 	
 	@Column(name = "DATE_CREATED")
-<<<<<<< HEAD
-	private String created;
-	@Column(name = "DATE_UPDATED")
-	private String updated;
-=======
+
 	@CreationTimestamp
 	private Date dateCreated;
 	@Column(name = "DATE_UPDATED")
 	@UpdateTimestamp
 	private Date dateUpdated;
 
->>>>>>> 2cc564b8d93a3d83537f6acb996a5bf71acaab9c
+
 	
 	public Tag() {}
 	
@@ -67,23 +56,18 @@ public class Tag {
 		this.type = type;
 		this.contentId = contentId;
 		this.moduleId = moduleId;
-<<<<<<< HEAD
-		this.created = created;
-		this.updated = updated;
-=======
+
 		this.dateCreated = created;
 		this.dateUpdated = updated;
->>>>>>> 2cc564b8d93a3d83537f6acb996a5bf71acaab9c
+
 	}
 	
 	@Override
 	public String toString() {
 		return "Tag [tagId=" + tagId + ", name=" + name + ", type=" + type + ", contentId=" + contentId + ", moduleId="
-<<<<<<< HEAD
-				+ moduleId + ", created=" + created + ", updated=" + updated + "]";
-=======
+
 				+ moduleId + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated + "]";
->>>>>>> 2cc564b8d93a3d83537f6acb996a5bf71acaab9c
+
 	}
 
 	public long getTagId() {
@@ -126,24 +110,7 @@ public class Tag {
 		this.moduleId = moduleId;
 	}
 
-<<<<<<< HEAD
-	public String getCreated() {
-		return created;
-	}
 
-	public void setCreated(String created) {
-		this.created = created;
-	}
-
-	public String getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(String updated) {
-		this.updated = updated;
-	}
-}
-=======
 	public Date getCreated() {
 		return dateCreated;
 	}
@@ -161,4 +128,4 @@ public class Tag {
 	}
 
 }
->>>>>>> 2cc564b8d93a3d83537f6acb996a5bf71acaab9c
+
