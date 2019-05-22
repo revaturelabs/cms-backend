@@ -69,7 +69,7 @@
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
+
 		
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -77,14 +77,12 @@
 			<scope>runtime</scope>
 		</dependency>
 
-=======
->>>>>>> moduleBranch.Alex
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.2.2.Final</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
-<<<<<<< HEAD
+
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -95,8 +93,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
-=======
->>>>>>> moduleBranch.Alex
+
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
