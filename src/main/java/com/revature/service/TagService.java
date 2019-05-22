@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class TagService {
     }
 
     public void saveOrUpdate(Tag tag) {
+    	tag.setUpdated(new Date());
         tagRepository.save(tag);
     }
 

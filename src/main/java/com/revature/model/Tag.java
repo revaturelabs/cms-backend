@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+//import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +17,9 @@ import javax.persistence.Table;
 public class Tag {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="tagSequence")
-	@SequenceGenerator(name="tagSequence",sequenceName="TAG_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="tagSequence")
+	//@SequenceGenerator(name="tagSequence",sequenceName="TAG_SEQ", allocationSize=1)
 	@Column(name="TAG_ID")
 	private long tagId;
 	@Column(name = "TAG_NAME")
