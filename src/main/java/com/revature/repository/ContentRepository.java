@@ -12,8 +12,10 @@ import com.revature.model.Tag;
 public interface ContentRepository extends JpaRepository<Content, Long> {
 
 	//public Content newContent(Content content);
+	  public Content findByContentId(long contentId);
 	  public Content findByUrl(String url);
 	  public List<Content> findByTags(Tag tag);
 	  public Content findByTagsAndCategory(Tag tag, String category);
+	  public Content findByCategory(String category);
 	//public void deleteContent();
 }
