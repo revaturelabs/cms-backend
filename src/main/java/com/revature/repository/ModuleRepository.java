@@ -8,6 +8,6 @@ import com.revature.model.Module;
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Long> {
     
-    Module findModuleByName(String name);
+    //public Module findModuleByName(String name);
 
 }

@@ -48,15 +48,14 @@ public class ModuleController {
         }
     }
     
-    @GetMapping(value = "/Modules/{ModuleName}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> findModuleByName(@PathVariable("ModuleName") String moduleName) {
-        try {
-            Module module = ModuleService.findModuleByName(moduleName);
-            return ResponseEntity.ok(module);
-        } catch (RuntimeException e) {
-            return (ResponseEntity<?>) ResponseEntity.badRequest();
-        }
-    }
+	/*
+	 * @GetMapping(value = "/Modules/{ModuleName}", produces =
+	 * MediaType.APPLICATION_JSON_VALUE) public ResponseEntity<?>
+	 * findModuleByName(@PathVariable("ModuleName") String moduleName) { try {
+	 * Module module = ModuleService.findModuleByName(moduleName); return
+	 * ResponseEntity.ok(module); } catch (RuntimeException e) { return
+	 * (ResponseEntity<?>) ResponseEntity.badRequest(); } }
+	 */
 
     //Module updateModule(Module module);
     @PutMapping(value = "/Modules/{ModuleUpdate}", produces = MediaType.APPLICATION_JSON_VALUE)

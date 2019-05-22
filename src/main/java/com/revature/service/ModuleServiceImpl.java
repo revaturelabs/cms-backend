@@ -27,17 +27,15 @@ public class ModuleServiceImpl implements ModuleService {
     
     @Override
     public Module findModuleById(long id) {
-        return ModuleRepository.findById(id).orElseThrow(()-> new ModuleNotFoundExceptions(id));
+      //  return ModuleRepository.findById(id).orElseThrow(()-> new ModuleNotFoundExceptions(id));
+    	return ModuleRepository.getOne(id);
     }
     
-    @Override
-    public Module findModuleByName(String name) {
-       try { 
-    	  return ModuleRepository.findModuleByName(name);
-       } catch (ModuleNotFoundExceptions e) {
-    	    throw new ModuleNotFoundExceptions(name);
-       }
-    }
+	/*
+	 * @Override public Module findModuleByName(String name) { try { return
+	 * ModuleRepository.findModuleByName(name); } catch (ModuleNotFoundExceptions e)
+	 * { throw new ModuleNotFoundExceptions(name); } }
+	 */
     
     @Override
     public Module updateModule(Module module) {

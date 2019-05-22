@@ -7,7 +7,7 @@ public interface ModuleService {
 
 	Module createModule(Module Module);
 	Module findModuleById(long id);
-	Module findModuleByName(String name);
+	//Module findModuleByName(String name);
 	Module updateModule(Module module);
 	void deleteModule(Module module);
 	
