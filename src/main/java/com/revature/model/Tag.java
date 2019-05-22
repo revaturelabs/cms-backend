@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -13,18 +14,23 @@ import javax.persistence.Table;
 public class Tag {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="ailmentSequence")
-	@SequenceGenerator(name="ailmentSequence",sequenceName="AILMENT_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="tagSequence")
+	@SequenceGenerator(name="tagSequence",sequenceName="TAG_SEQ", allocationSize=1)
 	@Column(name="TAG_ID")
 	private long tagId;
 	@Column(name = "TAG_NAME")
 	private String name;
 	@Column(name = "TYPE")
 	private String type;
+	
+	@ManyToOne
 	@Column(name = "CONTENT_ID")
 	private long contentId;
+	
+	@ManyToOne
 	@Column(name = "MODULE_ID")
 	private long moduleId;
+	
 	@Column(name = "DATE_CREATED")
 	private String dateCreated;
 	@Column(name = "DATE_UPDATED")
