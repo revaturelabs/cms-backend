@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 //import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "TAG")
@@ -25,19 +27,19 @@ public class Tag {
 	@Column(name = "TYPE")
 	private String type;
 	
-	@ManyToOne
 	@JoinColumn
 	@Column(name = "CONTENT_ID")
 	private long contentId;
 	
-	@ManyToOne
 	@JoinColumn
 	@Column(name = "MODULE_ID")
 	private long moduleId;
 	
 	@Column(name = "DATE_CREATED")
+	@CreationTimestamp
 	private Date dateCreated;
 	@Column(name = "DATE_UPDATED")
+	@UpdateTimestamp
 	private Date dateUpdated;
 
 	

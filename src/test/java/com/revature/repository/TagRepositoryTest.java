@@ -2,8 +2,6 @@ package com.revature.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.sql.Date;
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,17 +21,16 @@ public class TagRepositoryTest {
 	private TagRepository tagRepository;
 	
 	@Test
-	@Ignore
-	public void testCreate() {
+	public void testCreate() {				
 		Tag tag = new Tag();
 		tag.setContentId(1L);
-		tag.setCreated(new Date(System.currentTimeMillis()));
-		tag.setUpdated(new Date(System.currentTimeMillis()));
 		tag.setTagId(1);
 		tag.setModuleId(1);
 		tag.setType("belongsTo");
 		tag.setName("Java");
 		tagRepository.save(tag);
+		
+		System.err.println(tagRepository.findAll().get(0).toString());
 		
 		assertThat(tagRepository.findAll().size()).isOne();
 	}
@@ -43,8 +40,6 @@ public class TagRepositoryTest {
 	public void testUpdate() {
 		Tag tag = new Tag();
 		tag.setContentId(1L);
-		tag.setCreated(new Date(System.currentTimeMillis()));
-		tag.setUpdated(new Date(System.currentTimeMillis()));
 		tag.setTagId(1);
 		tag.setModuleId(1);
 		tag.setType("belongsTo");
@@ -58,11 +53,10 @@ public class TagRepositoryTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testDelete() {
 		Tag tag = new Tag();
 		tag.setContentId(1L);
-		tag.setCreated(new Date(System.currentTimeMillis()));
-		tag.setUpdated(new Date(System.currentTimeMillis()));
 		tag.setTagId(1);
 		tag.setModuleId(1);
 		tag.setType("belongsTo");
