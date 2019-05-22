@@ -39,7 +39,6 @@ public class ContentServiceImpl implements ContentService {
 	@Override
 	public void delete() {
 		
-		
 	}
 	@Override
 	public Content updateContent(Content content) {
@@ -74,6 +73,4 @@ public class ContentServiceImpl implements ContentService {
 	public Content findByContentId(long contentId) {
 		return contentRepository.findByContentId(contentId);
 	}
-
-
 }
