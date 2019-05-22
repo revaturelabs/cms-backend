@@ -13,8 +13,7 @@ import javax.persistence.Table;
 public class Tag {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="ailmentSequence")
-	@SequenceGenerator(name="ailmentSequence",sequenceName="AILMENT_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="TAG_ID")
 	private long tagId;
 	@Column(name = "TAG_NAME")
