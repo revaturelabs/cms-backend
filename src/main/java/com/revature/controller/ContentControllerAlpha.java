@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,6 +62,14 @@ public class ContentControllerAlpha implements ContentController {
 	@DeleteMapping("delete")
 	public void deleteContent() {
 		contentService.delete();
+	}
+
+	@PutMapping("update")
+	public ResponseEntity<Content> updateContent(Content content) {
+		Content validContent = contentService.updateContent(content);
+		return (validContent != null) ?
+				new ResponseEntity<>(validContent,HttpStatus.OK) :
+			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 
