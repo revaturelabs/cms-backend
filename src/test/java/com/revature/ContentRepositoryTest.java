@@ -1,16 +1,8 @@
 package com.revature;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThat;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Optional;
-
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Content;
 import com.revature.repository.ContentRepository;
-import com.revature.service.ContentService;
 @Transactional
 @RunWith(SpringRunner.class)
 @DataJpaTest

@@ -51,7 +51,7 @@ public class ContentControllerAlpha implements ContentController {
 	}
 	
 	@GetMapping("findbytagandlabel")
-	public ResponseEntity<Content> findByTagsAndLabel(@RequestBody Tag tags, String category) {
+	public ResponseEntity<Content> findByTagsAndCategories(@RequestBody Tag tags, String category) {
 		Content validContent = contentService.findByTagsAndCategory(tags, category);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
