@@ -1,6 +1,9 @@
 package com.revature.model;
 
+<<<<<<< HEAD
 //import java.sql.Date;
+=======
+>>>>>>> 2cc564b8d93a3d83537f6acb996a5bf71acaab9c
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,9 +18,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+<<<<<<< HEAD
 //import javax.persistence.Temporal;
 //import javax.persistence.TemporalType;
 import com.revature.model.Tag;
+=======
+>>>>>>> 2cc564b8d93a3d83537f6acb996a5bf71acaab9c
 
 @Entity
 @Table
