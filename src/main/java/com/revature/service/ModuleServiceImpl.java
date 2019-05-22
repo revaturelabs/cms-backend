@@ -1,10 +1,10 @@
 package com.revature.service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.revature.exception.ModuleNotFoundExceptions;
 import com.revature.model.Module;
 import com.revature.repository.ModuleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class ModuleServiceImpl implements ModuleService {
@@ -25,15 +25,19 @@ public class ModuleServiceImpl implements ModuleService {
         return ModuleRepository.save(Module);
     }
     
+    public List<Module> findAllModules() {
+    	return ModuleRepository.findAll();
+    }
+    
     @Override
     public Module findModuleById(long id) {
         return ModuleRepository.findById(id).orElseThrow(()-> new ModuleNotFoundExceptions(id));
     }
     
     @Override
-    public Module findModuleByName(String name) {
+    public Module findByModuleName(String name) {
        try { 
-    	  return ModuleRepository.findModuleByName(name);
+    	  return ModuleRepository.findByModuleName(name);
        } catch (ModuleNotFoundExceptions e) {
     	    throw new ModuleNotFoundExceptions(name);
        }
