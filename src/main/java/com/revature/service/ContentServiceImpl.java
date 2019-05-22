@@ -66,6 +66,14 @@ public class ContentServiceImpl implements ContentService {
 	public Content findByTagsAndCategory(Tag tag, String category) {
 		return contentRepository.findByTagsAndCategory(tag, category);
 	}
+	@Override
+	public Content findByCategory(String category) {
+		return contentRepository.findByCategory(category);
+	}
+	@Override
+	public Content findByContentId(long contentId) {
+		return contentRepository.findByContentId(contentId);
+	}
 
 
 }
