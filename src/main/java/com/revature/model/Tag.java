@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+//import javax.persistence.JoinColumn;
+//import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,7 +23,6 @@ public class Tag {
 	private String name;
 	@Column(name = "TYPE")
 	private String type;
-	
 	@Column(name = "CONTENT_ID")
 	private long contentId;
 	@Column(name = "MODULE_ID")
@@ -32,9 +31,6 @@ public class Tag {
 	private String created;
 	@Column(name = "DATE_UPDATED")
 	private String updated;
-	
-	
-	
 	
 	public Tag() {}
 	
@@ -48,7 +44,6 @@ public class Tag {
 		this.created = created;
 		this.updated = updated;
 	}
-	
 	
 	@Override
 	public String toString() {
@@ -111,5 +106,4 @@ public class Tag {
 	public void setUpdated(String updated) {
 		this.updated = updated;
 	}
-
 }
