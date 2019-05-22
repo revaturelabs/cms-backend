@@ -30,7 +30,8 @@
 	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.h2.Driver" />
 		<!-- Remember to try to pull these from environment variables -->
-		<property name="url" value="jdbc:h2:~/test" />
+		<!-- <property name="url" value="jdbc:h2:~/test" /> -->
+		<property name="url" value="jdbc:h2:mem:testdb" />
 		<property name="username" value="sa" />
 		<property name="password" value="" />
 	</bean>

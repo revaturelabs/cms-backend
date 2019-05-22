@@ -1,8 +1,8 @@
 package com.revature.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
-
+import com.revature.model.Tag;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,9 +36,11 @@ public class Content {
 	 */
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinTable(name="content_tag_jt", joinColumns=@JoinColumn(name="contentId"), inverseJoinColumns=@JoinColumn(name="tagId"))
+	private List<Tag> tags;
 	@Column(name="DESCRIPTION")
 	private String description;
-	private List<Tag> tags;
+	
+	
 	@Column(name="CATEGORY")
 	private String category;
 	@Column(name="NAME")
