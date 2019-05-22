@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,15 +23,18 @@ public class Tag {
 	private String name;
 	@Column(name = "TYPE")
 	private String type;
+	
 	@Column(name = "CONTENT_ID")
 	private long contentId;
 	@Column(name = "MODULE_ID")
 	private long moduleId;
 	@Column(name = "DATE_CREATED")
-	private String dateCreated;
+	private String created;
 	@Column(name = "DATE_UPDATED")
-	private String dateUpdated;
-
+	private String updated;
+	
+	
+	
 	
 	public Tag() {}
 	
@@ -40,15 +45,15 @@ public class Tag {
 		this.type = type;
 		this.contentId = contentId;
 		this.moduleId = moduleId;
-		this.dateCreated = created;
-		this.dateUpdated = updated;
+		this.created = created;
+		this.updated = updated;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "Tag [tagId=" + tagId + ", name=" + name + ", type=" + type + ", contentId=" + contentId + ", moduleId="
-				+ moduleId + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated + "]";
+				+ moduleId + ", created=" + created + ", updated=" + updated + "]";
 	}
 
 	public long getTagId() {
@@ -92,19 +97,19 @@ public class Tag {
 	}
 
 	public String getCreated() {
-		return dateCreated;
+		return created;
 	}
 
 	public void setCreated(String created) {
-		this.dateCreated = created;
+		this.created = created;
 	}
 
 	public String getUpdated() {
-		return dateUpdated;
+		return updated;
 	}
 
 	public void setUpdated(String updated) {
-		this.dateUpdated = updated;
+		this.updated = updated;
 	}
 
 }

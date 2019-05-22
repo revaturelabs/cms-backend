@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThat;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 import javax.persistence.Column;
@@ -33,7 +35,7 @@ public class ContentRepositoryTest {
 	
 	
 	@Test
-	public void create_createTest() {
+	public void create_createTest()  {
 		Content content = null;
 		content = newContent(content);
 		Content entry =entityManager.persistAndFlush(content);
@@ -47,13 +49,13 @@ public class ContentRepositoryTest {
 	private Content newContent(Content content) {
 		 content = new Content();
 		 content.setContentId(1);
-		 content.setTags(null);
+		 
 		 content.setDescription("notes about Java");
 		 content.setCategory("notes");
 		 content.setName("Java Notes");
 		 content.setUrl("www.nowhere.com");
-		 content.setDateCreated("2019-05-04");
-		 content.setDateUpdated("2019-05-04");
+		 content.setDateCreated(System.currentTimeMillis());
+		 content.setDateUpdated(System.currentTimeMillis());
 		 
 		 return content;
 	}
