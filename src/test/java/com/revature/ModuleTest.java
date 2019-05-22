@@ -62,6 +62,15 @@ public class ModuleTest {
 		assertThat(entry).isEqualTo(newModule);
 	
 	}
+	
+	@Test
+	public void testFindByModuleName() {
+		Module module = null;
+		module = newModule(module);
+		Module entry = moduleRepo.save(module);
+		Module newModule = moduleRepo.findByModuleName("Module 1");
+		assertThat(entry).isEqualTo(newModule);
+	}
 
 	@Test
 	public void testUpdateModule() {
