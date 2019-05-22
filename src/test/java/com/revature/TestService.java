@@ -2,7 +2,7 @@ package com.revature;
 
 import static org.junit.Assert.assertEquals;
 
-//import java.sql.Date;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +33,10 @@ public class TestService {
 		//Date date = new Date(str);
 		//tags.add(new Tag(1, "Java", "type", 1, 1, "4-2-19", "4-3-19"));
 		Content contentToCheck = new Content();
+		long str = System.currentTimeMillis();
+		Date date = new Date(str);
+		tags.add(new Tag(1, "Java", "type", 1, 1, "4-2-19", "4-3-19"));
+		Content contentToCheck = new Content(1, "description", tags, "code", "william", "http://www.google.com", date, date);
 		assertEquals(contentService.newContent(contentToCheck), contentToCheck);
 	}
 }
