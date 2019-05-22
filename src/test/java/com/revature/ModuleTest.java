@@ -1,48 +1,45 @@
 package com.revature;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import java.sql.SQLException;
 import java.util.Date;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Module;
 import com.revature.repository.ModuleRepository;
 
 
-//@RunWith(SpringRunner.class)
-@SpringBootTest
+@RunWith(SpringRunner.class)
 @Transactional
+@DataJpaTest
 public class ModuleTest {
 
 	@Autowired
 	private ModuleRepository moduleRepo;
-	
-	@Autowired
-	TestEntityManager entityManager;
 
 	@Test
-	@Rollback(true)
-	public void testCreateModule() throws SQLException {
-		//Module module = new Module(0, "module1", false, new Date(), new Date());
-		Module module = new Module();
-		module.setModuleId(0);
-		module.setModuleName("module1");
+	public void testCreateModule() {
+		Module module = null;
+		module = newModule(module);
+		Module entry = moduleRepo.save(module);
+		assertThat(module).isEqualTo(entry);
+	}
+
+	private Module newModule(Module module) {
+		module = new Module();
+		module.setModuleId(1);
+		module.setModuleName("Module 1");
 		module.setActive(false);
 		module.setCreated(new Date());
 		module.setUpdated(new Date());
-		Module entry = entityManager.persist(module);
-		Module result = moduleRepo.findModuleByName("module1");
-		//moduleRepo.save(module);
-		assertEquals(result, entry.getModuleName());
+		return module;
 	}
-
 	/*
 	 * @Test public void testFindAllModulesShouldReturnAll() { List<Module> modules
 	 * = moduleRepo.findAll(); assertEquals(1, modules.size()); }
