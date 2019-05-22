@@ -1,16 +1,16 @@
 package com.revature;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThat;
+//import static org.junit.Assert.assertThat;
 
-import java.sql.Date;
+/*import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.TemporalType;*/
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Content;
 import com.revature.repository.ContentRepository;
-import com.revature.service.ContentService;
+//import com.revature.service.ContentService;
 @Transactional
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -47,8 +47,6 @@ public class ContentRepositoryTest {
 		assertThat(content).isEqualTo(entry);
 	} 
 	
-
-
 	private Content newContent(Content content) {
 		 content = new Content();
 		 content.setContentId(1);
@@ -146,5 +144,4 @@ public class ContentRepositoryTest {
 //	public void update_updateTest() {
 //		
 //	}
-	
 }

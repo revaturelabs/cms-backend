@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.exception.UrlNotRecognizedException;
 import com.revature.model.Content;
 import com.revature.model.Tag;
 import com.revature.repository.ContentRepository;
@@ -39,7 +40,6 @@ public class ContentServiceImpl implements ContentService {
 	@Override
 	public void delete() {
 		
-		
 	}
 	@Override
 	public Content updateContent(Content content) {
@@ -54,6 +54,12 @@ public class ContentServiceImpl implements ContentService {
 	
 	@Override
 	public Content findByURL(String url) {
+		//only used for testing
+//		try {
+//			throw new RuntimeException("url: ssssssss");
+//		} catch(UrlNotRecognizedException e) {
+//			e.printStackTrace();
+//		}
 		return contentRepository.findByUrl(url);
 	}
 	
@@ -74,6 +80,4 @@ public class ContentServiceImpl implements ContentService {
 	public Content findByContentId(long contentId) {
 		return contentRepository.findByContentId(contentId);
 	}
-
-
 }

@@ -1,5 +1,6 @@
 package com.revature.model;
 
+//import java.sql.Date;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+//import javax.persistence.Temporal;
+//import javax.persistence.TemporalType;
+import com.revature.model.Tag;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -211,10 +215,4 @@ public class Content {
 				+ category + ", name=" + name + ", url=" + url + ", dateCreated=" + dateCreated + ", dateUpdated="
 				+ dateUpdated + "]";
 	}
-
-	
-	
-	
-	
-	
 }
