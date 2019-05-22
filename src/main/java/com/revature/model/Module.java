@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 
 
 @Entity
@@ -29,9 +32,11 @@ public class Module {
 	private boolean active;
 	
 	@Column(name="created")
+	@CreationTimestamp
 	private Date created;
 	
 	@Column(name="updated")
+	@UpdateTimestamp
 	private Date updated;
 	
 	//@Transient
