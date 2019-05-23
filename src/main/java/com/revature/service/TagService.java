@@ -10,4 +10,5 @@ public interface TagService {
 	Tag getTagById(long id);
 	void saveOrUpdate(Tag tag);
 	void delete(long id);
+	void createTagWithContentId(long contentId, String[] tags);
 }
