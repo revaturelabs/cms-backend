@@ -44,11 +44,11 @@ public class Tag {
 	private Date dateUpdated;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "content_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "contentId"))
+	@JoinTable(name = "content_tag_jt", joinColumns = @JoinColumn(name = "contentId"), inverseJoinColumns = @JoinColumn(name = "contentId"))
 	private Content content;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
+	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "moduleId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
 	private Module modules;
 
 	public Tag() {}
