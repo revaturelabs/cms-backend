@@ -31,7 +31,7 @@ public class Tag {
 
 
 	@Column(name = "contentId")
-	private long contentId;
+	private Long contentId;
 
 
 	@Column(name = "moduleId")
@@ -46,7 +46,7 @@ public class Tag {
 	private Date dateUpdated;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="moduleId", insertable=false, updatable=false)
+	@JoinColumn(name="contentId", insertable=false, updatable=false)
 	private Content content;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -68,7 +68,7 @@ public class Tag {
 	 * @param created Date object
 	 * @param updated Date object
 	 */
-	public Tag(long tagId, String name, String type, long contentId, long moduleId, Date created, Date updated) {
+	public Tag(long tagId, String name, String type, Long contentId, long moduleId, Date created, Date updated) {
 		super();
 		this.tagId = tagId;
 		this.name = name;
