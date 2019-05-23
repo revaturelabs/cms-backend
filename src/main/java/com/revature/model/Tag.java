@@ -1,6 +1,6 @@
 package com.revature.model;
-
 import java.util.Date;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,10 +13,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 //import javax.persistence.SequenceGenerator;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "TAG")
@@ -31,6 +37,7 @@ public class Tag {
 	@Column(name = "TYPE")
 	private String type;
 
+
 	@JoinColumn
 	@Column(name = "CONTENT_ID")
 	private long contentId;
@@ -39,12 +46,18 @@ public class Tag {
 	@Column(name = "MODULE_ID")
 	private long moduleId;
 
+
 	@Column(name = "DATE_CREATED")
+
+
 	@CreationTimestamp
 	private Date dateCreated;
 	@Column(name = "DATE_UPDATED")
 	@UpdateTimestamp
 	private Date dateUpdated;
+	
+
+
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "content_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "contentId"))
@@ -53,10 +66,11 @@ public class Tag {
 	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
 	private Module modules;
 
-	public Tag() {
-	}
-
-	public Tag(long tagId, String name, String type, long contentId, long moduleId, Date created, Date updated) {
+	
+	
+	public Tag() {}
+	
+	public Tag(long tagId, String name, String type, long contentId, long moduleId, String created, String updated) {
 		super();
 		this.tagId = tagId;
 		this.name = name;
@@ -65,12 +79,14 @@ public class Tag {
 		this.moduleId = moduleId;
 		this.dateCreated = created;
 		this.dateUpdated = updated;
-	}
 
+	}
 	@Override
 	public String toString() {
 		return "Tag [tagId=" + tagId + ", name=" + name + ", type=" + type + ", contentId=" + contentId + ", moduleId="
+
 				+ moduleId + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated + "]";
+
 	}
 
 	public long getTagId() {
@@ -113,20 +129,21 @@ public class Tag {
 		this.moduleId = moduleId;
 	}
 
-	public Date getCreated() {
+	public String getCreated() {
 		return dateCreated;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(String created) {
 		this.dateCreated = created;
 	}
 
-	public Date getUpdated() {
+	public String getUpdated() {
 		return dateUpdated;
 	}
 
-	public void setUpdated(Date updated) {
+	public void setUpdated(String updated) {
 		this.dateUpdated = updated;
 	}
 
 }
+

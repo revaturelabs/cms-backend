@@ -3,39 +3,44 @@ package com.revature.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Tag;
-import com.revature.service.TagService;
+import com.revature.service.TagServiceImpl;
 
 @RestController
-public class TagControllerImpl {
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
+public class TagControllerImpl implements TagController {
 	
 	@Autowired
-	TagService tagService;
+	TagServiceImpl tagService;
 	
 	@GetMapping("/tags")
-    private List<Tag> getAllTags() {
+    public List<Tag> getAllTags() {
         return tagService.getAllTags();
     }
 
-    @GetMapping("/tags/{id}")
-    private Tag getTag(@PathVariable("tagId") int id) {
+    @GetMapping("/tags/{tagId}")
+    public Tag getTag(@PathVariable("tagId") long id) {
         return tagService.getTagById(id);
     }
 
-    @DeleteMapping("/tags/{id}")
-    private void deleteTag(@PathVariable("tagId") int id) {
+    @DeleteMapping("/tags/{tagId}")
+    public void deleteTag(@PathVariable("tagId") long id) {
         tagService.delete(id);
     }
 
     @PostMapping("/tags")
-    private long saveTag(@RequestBody Tag tag) {
+    public long saveTag(@RequestBody Tag tag) {
         tagService.saveOrUpdate(tag);
         return tag.getTagId();
     }
