@@ -9,7 +9,7 @@ import com.revature.model.Tag;
 
 public interface TagRepository extends JpaRepository<Tag,Long>{
 	
-	@Query(value="SELECT moduleId FROM MODULE INNER JOIN TAG WHERE Tag.name=:tag", nativeQuery=true)
-	Set<Long> findModuleIdsByTag(String tag);
+	//@Query(value="SELECT moduleId FROM TAG WHERE Tag.name=:tag", nativeQuery=true)
+	Set<Long> findModuleIdsByName(String tag);
 
 }

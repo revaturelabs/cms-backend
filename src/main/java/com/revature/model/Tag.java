@@ -35,7 +35,7 @@ public class Tag {
 
 
 	@Column(name = "moduleId")
-	private long moduleId;
+	private Long moduleId;
 
 	@Column(name = "DATE_CREATED")
 	@CreationTimestamp

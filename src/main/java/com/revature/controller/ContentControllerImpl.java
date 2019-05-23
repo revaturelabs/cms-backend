@@ -63,7 +63,7 @@ public class ContentControllerImpl implements ContentController {
 			
 			tagService.createTagWithContentId(content.getContentId(), contentDto.getTags());
 			return (validContent != null) ?
-					new ResponseEntity<>(validContent,HttpStatus.OK) :
+					new ResponseEntity<>(contentService.findByContentId(content.getContentId()),HttpStatus.OK) :
 				    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
