@@ -44,10 +44,10 @@ public class TagServiceImpl implements TagService {
 		}
 	}
 
-    public void saveOrUpdate(Tag tag) {
+   /* public void saveOrUpdate(Tag tag) {
     	tag.setUpdated(new Date());
-        //tagRepository.save(tag);
-    }
+        tagRepository.save(tag);
+    }*/
 
     @Override
     public void deleteTag(Tag tag) {

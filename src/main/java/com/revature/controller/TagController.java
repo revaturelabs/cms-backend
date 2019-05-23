@@ -12,6 +12,6 @@ public interface TagController {
 	List<Tag> findAllTags();
 	ResponseEntity<Tag> findTagById(long tagId);
 	ResponseEntity<Tag> deleteTag(Tag tag);
-	ResponseEntity<Tag> findTagByName(String tagName);
-	long saveTag(Tag tag);
+	ResponseEntity<Tag> findTagByName(String name);
+	//long saveTag(Tag tag);
 }

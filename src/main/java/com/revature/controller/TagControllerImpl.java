@@ -46,9 +46,9 @@ public class TagControllerImpl implements TagController {
     		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     
-    @GetMapping(value = "/get/{tagName}")
-    public ResponseEntity<Tag> findTagByName(@PathVariable("tagName") String tagName) {
-    	Tag tagFound = tagService.findByTagName(tagName);
+    @GetMapping(value = "/get/{name}")
+    public ResponseEntity<Tag> findTagByName(@PathVariable("name") String name) {
+    	Tag tagFound = tagService.findByTagName(name);
     	if (tagFound != null)
     		return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
     	else
@@ -69,11 +69,11 @@ public class TagControllerImpl implements TagController {
     }
     
 
-    @PostMapping("/create")
+   /* @PostMapping("/create")
     public long saveTag(@RequestBody Tag tag) {
         tagService.saveOrUpdate(tag);
         return tag.getTagId();
-    }
+    }*/
     
 
 

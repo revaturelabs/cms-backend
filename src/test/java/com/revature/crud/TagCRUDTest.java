@@ -22,7 +22,7 @@ public class TagCRUDTest {
 	
 	@Test
 	public void testInputIntoRepository() {
-		//contains: long tagId, String name, String type, long contentId, long moduleId, 
+		/*//contains: long tagId, String name, String type, long contentId, long moduleId, 
 		//String dateCreated, String dateUpdated
 		Tag tag = new Tag(1, "Beginning with Java", "Java", 1, 1, "5/20/2019", "5/21/2019");
 		tagRepository.save(tag);
@@ -32,7 +32,7 @@ public class TagCRUDTest {
 
 		Tag tag3 = new Tag(3, "Beginning with Angular", "Angular", 3, 3, "5/20/2019", "5/21/2019");
 		tagRepository.save(tag3);
-
+*/
 	}
 	
 	@Test
