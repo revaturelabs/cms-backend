@@ -10,11 +10,9 @@ import com.revature.model.Module;
 
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Long> {
-    
-    public Module findByModuleName(String name);
-    
-    //@Query()
-    //List<tag>
-    
- 
+
+	public Module findByModuleName(String name);
+
+	@Query(value="SELECT t.TAG_NAME FROM TAG t INNER JOIN MODULE", nativeQuery=true)
+	public List<String> findAllTags();
 }

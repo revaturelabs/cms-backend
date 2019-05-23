@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,7 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "TAG")
+@Table(name ="TAG")
 public class Tag {
 
 	@Id
@@ -30,9 +29,12 @@ public class Tag {
 	@Column(name = "TYPE")
 	private String type;
 
-	@Column(name = "CONTENT_ID")
+
+	@Column(name = "contentId")
 	private long contentId;
-	@Column(name = "MODULE_ID")
+
+
+	@Column(name = "moduleId")
 	private long moduleId;
 
 	@Column(name = "DATE_CREATED")
@@ -43,12 +45,12 @@ public class Tag {
 	@UpdateTimestamp
 	private Date dateUpdated;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "content_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "contentId"))
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="moduleId", insertable=false, updatable=false)
 	private Content content;
-
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="moduleId", insertable=false, updatable=false)
 	private Module modules;
 
 	public Tag() {}

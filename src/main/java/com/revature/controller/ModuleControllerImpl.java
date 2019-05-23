@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Module;
-import com.revature.model.Tag;
 import com.revature.service.ModuleService;
 
 @RestController("moduleController")
@@ -33,7 +32,7 @@ public class ModuleControllerImpl {
 	}
 
 	@GetMapping(value = "/alltags")
-	public List<Tag> findAllTags() {
+	public List<String> findAllTags() {
 		return ModuleService.findAllTags();
 	}
 

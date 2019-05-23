@@ -21,7 +21,7 @@ import com.revature.service.ContentService;
 
 @RestController("contentController")
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "/content/", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "content", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class ContentControllerImpl implements ContentController {
 	
 	@Autowired
@@ -32,7 +32,7 @@ public class ContentControllerImpl implements ContentController {
 		Content validContent = contentService.newContent(content);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
-			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			    new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
 	@GetMapping("findbyurl")
