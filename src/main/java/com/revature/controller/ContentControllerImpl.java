@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.Content;
-import com.revature.model.Tag;
 import com.revature.service.ContentService;
 
 @RestController("contentController")
@@ -34,10 +33,6 @@ public class ContentControllerImpl implements ContentController {
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<Content> createContent(@RequestBody Content content, @RequestBody String[] tags) {
-//		Content validContent = contentService.newContent(content);
-//		return (validContent != null) ?
-//				new ResponseEntity<>(validContent,HttpStatus.OK) :
-//			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		Content checkContent = contentService.findByUrl(content.getUrl());
 		if(checkContent != null) {
 			Content validContent = contentService.updateContent(checkContent);
