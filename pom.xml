@@ -75,6 +75,10 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
+<<<<<<< HEAD
+=======
+			<version>5.2.2.Final</version>
+>>>>>>> a3130d5df4e9722a3c048c328bacca920cc7f7c4
 		</dependency>
 
 		<dependency>
