@@ -16,27 +16,6 @@ public class ContentServiceImpl implements ContentService {
 	@Autowired
 	private ContentRepository contentRepository;
 	
-//	@Override
-//	public Content newContent(Content content) {
-//		Content addedContent = new Content(content.getContentId(), content.getDescription(), content.getTags(), content.getDescription(), content.getCategory(), content.getUrl(), null, null);
-//		return contentRepository.newContent(addedContent);
-//	}
-//
-//	@Override
-//	public Content findByURL(String url) {
-//		return contentRepository.findByUrl(url);
-//	}
-//
-//	@Override
-//	public List<Content> findByTag(Tag tag) {
-//		return contentRepository.findByTags(tag);
-//	}
-//
-//	@Override
-//	public Content findByTagsAndCategory(Tag tag, String category) {
-//		return contentRepository.findByTagsAndCategory(tag, category);
-//	}
-
 	@Override
 	public void delete() {
 		
