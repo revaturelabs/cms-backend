@@ -14,7 +14,7 @@ public interface ModuleRepository extends JpaRepository<Module, Long> {
     
     public Module findByModuleName(String name);
     
-    @Query("SELECT TAG_NAME FROM Tag RIGHT JOIN Module on Tag.MODULE_ID = Module.moduleId")
+    @Query("SELECT TAG_NAME FROM TAG WHERE TAG.MODULE_ID = MODULE.moduleId")
     List<Tag> findAllTags();
     
  
