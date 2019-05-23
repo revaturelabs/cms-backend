@@ -1,7 +1,6 @@
 package com.revature.model;
 import java.util.Date;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,20 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-//import javax.persistence.SequenceGenerator;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
 @Entity
-@Table(name = "TAG")
+@Table(name ="TAG")
 public class Tag {
 
 	@Id
@@ -38,12 +32,11 @@ public class Tag {
 	private String type;
 
 
-	@JoinColumn
 	@Column(name = "CONTENT_ID")
 	private long contentId;
 
-	@JoinColumn
-	@Column(name = "MODULE_ID")
+
+	@Column(name = "moduleId")
 	private long moduleId;
 
 
@@ -59,8 +52,10 @@ public class Tag {
 	@JoinTable(name = "content_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "contentId"))
 	private Content content;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="moduleId", insertable=false, updatable=false)
+	//@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "moduleId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
+	//@Fetch(FetchMode.JOIN)
 	private Module modules;
 
 	public Tag() {}

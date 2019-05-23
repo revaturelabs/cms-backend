@@ -7,15 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Module;
-import com.revature.model.Tag;
 
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Long> {
-    
-    public Module findByModuleName(String name);
-    
-    @Query("SELECT TAG_NAME FROM TAG WHERE TAG.MODULE_ID = MODULE.moduleId")
-    List<Tag> findAllTags();
-    
- 
+
+	public Module findByModuleName(String name);
+
+	@Query(value="SELECT t.TAG_NAME FROM TAG t INNER JOIN MODULE", nativeQuery=true)
+	public List<String> findAllTags();
 }

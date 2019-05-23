@@ -7,23 +7,19 @@ import org.springframework.stereotype.Service;
 
 import com.revature.exception.ModuleNotFoundExceptions;
 import com.revature.model.Module;
-import com.revature.model.Tag;
 import com.revature.repository.ModuleRepository;
-import com.revature.repository.TagRepository;
 
 @Service
 public class ModuleServiceImpl implements ModuleService {
 	@Autowired
 	private final ModuleRepository ModuleRepository;
-	
+
 	public ModuleServiceImpl(ModuleRepository ModuleRepository) {
-		this.ModuleRepository = ModuleRepository;	
+		this.ModuleRepository = ModuleRepository;
 	}
-	
 
 	@Override
-	public
-	List<Tag> findAllTags() {
+	public List<String> findAllTags() {
 		return ModuleRepository.findAllTags();
 	}
 
