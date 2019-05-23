@@ -31,7 +31,7 @@ public class Tag {
 
 
 	@Column(name = "contentId")
-	private long contentId;
+	private Long contentId;
 
 
 	@Column(name = "moduleId")
@@ -46,7 +46,7 @@ public class Tag {
 	private Date dateUpdated;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="moduleId", insertable=false, updatable=false)
+	@JoinColumn(name="contentId", insertable=false, updatable=false)
 	private Content content;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

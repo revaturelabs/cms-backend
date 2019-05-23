@@ -19,6 +19,10 @@ public class ContentServiceImpl implements ContentService {
 	 * Delete Content Method:
 	 * 1. Receives contentId as a long to specify content to be deleted.
 	 * 2. Deletes all content with contentId given in the arguments.
+	 * 
+	 * @param contentId
+	 * @return
+	 * 
 	 */
 	@Override
 	public void deleteContent(long contentId) {
@@ -52,6 +56,9 @@ public class ContentServiceImpl implements ContentService {
 	 * 1. Receives url as a string.
 	 * 2. If Content url is equal to the String url, returns the Content object.
 	 * 3. If Content url does not equal String url, returns UrlNotRecognizedException.
+	 * 
+	 * @param url
+	 * @return Content
 	 */
 	@Override
 	public Content findByUrl(String url) {
