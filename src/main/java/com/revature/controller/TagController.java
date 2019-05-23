@@ -2,13 +2,16 @@ package com.revature.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.revature.model.Tag;
+
 
 public interface TagController {
 
-	List<Tag> getAllTags();
-	Tag getTag(long id);
-	void deleteTag(long id);
-	long createTag(Tag tag);
-	long updateTag(Tag tag);
+	List<Tag> findAllTags();
+	ResponseEntity<Tag> findTagById(long tagId);
+	ResponseEntity<Tag> deleteTag(Tag tag);
+	ResponseEntity<Tag> findTagByName(String name);
+	//long saveTag(Tag tag);
 }

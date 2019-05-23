@@ -6,9 +6,10 @@ import com.revature.model.Tag;
 
 public interface TagService {
 
-	List<Tag> getAllTags();
-	Tag getTagById(long id);
+	List<Tag> findAllTags();
+	Tag findTagById(long id);
 	void save(Tag tag);
 	void update(Tag tag);
-	void delete(long id);
+	void deleteTag(Tag tag);
+	Tag findByTagName(String name);
 }

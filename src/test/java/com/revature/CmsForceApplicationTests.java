@@ -12,5 +12,4 @@ public class CmsForceApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }
