@@ -12,10 +12,7 @@ import com.revature.exception.TagNotFoundExceptions;
 import com.revature.model.Module;
 import com.revature.model.Tag;
 import com.revature.repository.TagRepository;
-<<<<<<< HEAD
-=======
-//import com.revature.repository.TagRepository;
->>>>>>> d18c85ee9e6e38405dbf324bd5980e217d0b4d3a
+
 
 @Service
 public class TagServiceImpl implements TagService {
@@ -33,15 +30,9 @@ public class TagServiceImpl implements TagService {
 		return tags;
 	}
 		
-<<<<<<< HEAD
-	public Tag getTagById(long id) {
-        return tagRepository.findById(id).get();
-		
-=======
 	public Tag findTagById(long id) {
         //return tagRepository.findById(id).get();
 		return null;
->>>>>>> d18c85ee9e6e38405dbf324bd5980e217d0b4d3a
     }
 	
 	@Override
@@ -54,20 +45,13 @@ public class TagServiceImpl implements TagService {
 	}
 
     public void save(Tag tag) {
-    	tag.setUpdated(new Date());
+    	tag.setDateCreated(new Date());
         tagRepository.save(tag);
-<<<<<<< HEAD
     }
-
-    public void delete(long id) {
-        tagRepository.deleteById(id);
-=======
-    }*/
 
     @Override
     public void deleteTag(Tag tag) {
         tagRepository.delete(tag);
->>>>>>> d18c85ee9e6e38405dbf324bd5980e217d0b4d3a
     }
     
     public void update(Tag tag) {
