@@ -3,6 +3,7 @@ package com.revature.exception;
 
 import static com.revature.util.ClientMessageUtil.SOMETHING_WENT_WRONG;
 import static com.revature.util.ClientMessageUtil.URL_NOT_RECOGNIZED;
+import static com.revature.util.ClientMessageUtil.CONTENT_NOT_FOUND;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,14 @@ public class GlobalHandler {
 	}
 
 	@ExceptionHandler(UrlNotRecognizedException.class)
-	public ResponseEntity<ClientMessage> handleInvalidHeroException(UrlNotRecognizedException e) {
+	public ResponseEntity<ClientMessage> handleUrlNotRecognizedException(UrlNotRecognizedException e) {
 		logger.error("Invalid url data detected", e);
 		return new ResponseEntity<>(URL_NOT_RECOGNIZED, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(ContentNotFoundException.class)
+	public ResponseEntity<ClientMessage> handleContentNotFoundException(ContentNotFoundException e) {
+		logger.error("Content not found", e);
+		return new ResponseEntity<>(CONTENT_NOT_FOUND, HttpStatus.BAD_REQUEST);
 	}
 }

@@ -16,27 +16,6 @@ public class ContentServiceImpl implements ContentService {
 	@Autowired
 	private ContentRepository contentRepository;
 	
-//	@Override
-//	public Content newContent(Content content) {
-//		Content addedContent = new Content(content.getContentId(), content.getDescription(), content.getTags(), content.getDescription(), content.getCategory(), content.getUrl(), null, null);
-//		return contentRepository.newContent(addedContent);
-//	}
-//
-//	@Override
-//	public Content findByURL(String url) {
-//		return contentRepository.findByUrl(url);
-//	}
-//
-//	@Override
-//	public List<Content> findByTag(Tag tag) {
-//		return contentRepository.findByTags(tag);
-//	}
-//
-//	@Override
-//	public Content findByTagsAndCategory(Tag tag, String category) {
-//		return contentRepository.findByTagsAndCategory(tag, category);
-//	}
-
 	/**
 	 * Delete Content Method:
 	 * 1. Receives contentId as a long to specify content to be deleted.
@@ -100,16 +79,31 @@ public class ContentServiceImpl implements ContentService {
 	/**
 	 * Find Content By Tags And Category Method:
 	 * 1. Receives Tag object and String category.
-	 * 2. If Content has 
+	 * 2. If Content has requested tags and category, returns matching Content object.
+	 * 3. If Content does not have requested tags or category, returns a ContentNotFoundException.
 	 */
 	@Override
 	public Content findByTagsAndCategory(Tag tag, String category) {
 		return contentRepository.findByTagsAndCategory(tag, category);
 	}
+	
+	/**
+	 * Find Content By Category Method:
+	 * 1. Receives category as a string.
+	 * 2. If Content has requested category, returns the Content object.
+	 * 3. If Content does not have requested category, returns a ContentNotFoundException.
+	 */
 	@Override
 	public Content findByCategory(String category) {
 		return contentRepository.findByCategory(category);
 	}
+	
+	/**
+	 * Find Content By Content ID Method:
+	 * 1. Receives contentId as a long.
+	 * 2. If Content has requested contentId, returns the Content object.
+	 * 3. If Content does not have requested contentId, returns a ContentNotFoundException.
+	 */
 	@Override
 	public Content findByContentId(long contentId) {
 		return contentRepository.findByContentId(contentId);
