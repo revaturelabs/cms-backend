@@ -70,13 +70,13 @@ public class TagControllerImpl implements TagController {
     }
     
 
-    @PostMapping("/tags")
+    @PostMapping("/create")
     public long createTag(@RequestBody Tag tag) {
         tagService.save(tag);
         return tag.getTagId();
     }
     
-    @PutMapping("/tags")
+    @PutMapping("/update")
     public long updateTag(@RequestBody Tag tag) {
     	tagService.save(tag);
     	return tag.getTagId();
