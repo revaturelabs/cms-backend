@@ -38,7 +38,7 @@ public class ContentServiceImpl implements ContentService {
 //	}
 
 	@Override
-	public void delete() {
+	public void deleteContent() {
 		
 	}
 	@Override
@@ -53,10 +53,10 @@ public class ContentServiceImpl implements ContentService {
 	}
 	
 	@Override
-	public Content findByURL(String url) {
+	public Content findByUrl(String url) {
 		//only used for testing
 //		try {
-//			throw new RuntimeException("url: ssssssss");
+//			throw new UrlNotRecognizedException("url: ssssssss");
 //		} catch(UrlNotRecognizedException e) {
 //			e.printStackTrace();
 //		}

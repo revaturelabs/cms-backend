@@ -21,13 +21,13 @@ import com.revature.service.ContentService;
 
 @RestController("contentController")
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "/content/", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/content", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class ContentControllerImpl implements ContentController {
 	
 	@Autowired
 	private ContentService contentService;
 
-	@PostMapping("register")
+	@PostMapping("/register")
 	public ResponseEntity<Content> createContent(@RequestBody Content content) {
 		Content validContent = contentService.newContent(content);
 		return (validContent != null) ?
@@ -35,15 +35,15 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	@GetMapping("findbyurl")
-	public ResponseEntity<Content> findByURL(@RequestBody String url) {
-		Content validContent = contentService.findByURL(url);
+	@GetMapping("/findbyurl")
+	public ResponseEntity<Content> findByUrl(@RequestBody String url) {
+		Content validContent = contentService.findByUrl(url);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@GetMapping("findbytag")
+	@GetMapping("/findbytag")
 	public ResponseEntity<List<Content>> findByTag(@RequestBody Tag tags) {
 		List<Content> validContent = contentService.findByTag(tags);
 		return (validContent != null) ?
@@ -51,7 +51,7 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	@GetMapping("findbytagsandcategory")
+	@GetMapping("/findbytagsandcategory")
 	public ResponseEntity<Content> findByTagsAndCategory(@RequestBody Tag tags, String category) {
 		Content validContent = contentService.findByTagsAndCategory(tags, category);
 		return (validContent != null) ?
@@ -59,18 +59,16 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@DeleteMapping("delete")
+	@DeleteMapping("/delete")
 	public void deleteContent() {
-		contentService.delete();
+		contentService.deleteContent();
 	}
 
-	@PutMapping("update")
+	@PutMapping("/update")
 	public ResponseEntity<Content> updateContent(Content content) {
 		Content validContent = contentService.updateContent(content);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-	
-
 }

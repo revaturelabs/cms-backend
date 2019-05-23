@@ -9,10 +9,10 @@ public interface ContentService {
 
 	public Content newContent(Content content);
 	public Content findByContentId(long contentId);
-	public Content findByURL(String url);
+	public Content findByUrl(String url);
 	public List<Content> findByTag(Tag tag);
 	public Content findByTagsAndCategory(Tag tag, String category);
-	public void delete();
+	public void deleteContent();
 	public Content updateContent(Content content);
 	public Content findByCategory(String category);
 }
