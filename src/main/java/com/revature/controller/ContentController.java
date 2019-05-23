@@ -13,6 +13,6 @@ public interface ContentController {
 	ResponseEntity<Content> findByUrl(String url);
 	ResponseEntity<List<Content>> findByTag(Tag tags);
 	ResponseEntity<Content> findByTagsAndCategory(Tag tags, String category);
-	public void deleteContent();
+	public void deleteContent(long contentId);
 	ResponseEntity<Content> updateContent(Content content);
 }

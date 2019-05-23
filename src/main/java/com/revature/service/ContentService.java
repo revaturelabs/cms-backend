@@ -12,7 +12,7 @@ public interface ContentService {
 	public Content findByUrl(String url);
 	public List<Content> findByTag(Tag tag);
 	public Content findByTagsAndCategory(Tag tag, String category);
-	public void deleteContent();
+	public void deleteContent(long contentId);
 	public Content updateContent(Content content);
 	public Content findByCategory(String category);
 }

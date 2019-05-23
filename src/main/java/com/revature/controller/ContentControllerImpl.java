@@ -60,12 +60,12 @@ public class ContentControllerImpl implements ContentController {
 	}
 
 	@DeleteMapping("/delete")
-	public void deleteContent() {
-		contentService.deleteContent();
+	public void deleteContent(@RequestBody long contentId) {
+		contentService.deleteContent(contentId);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Content> updateContent(Content content) {
+	public ResponseEntity<Content> updateContent(@RequestBody Content content) {
 		Content validContent = contentService.updateContent(content);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
