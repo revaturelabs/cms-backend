@@ -55,6 +55,7 @@ public class TagServiceImpl implements TagService {
     }
     
     public void update(Tag tag) {
+    	tag.setDateUpdated(new Date());
         tagRepository.save(tag);
     }
 
