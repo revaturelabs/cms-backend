@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 //import com.revature.exception.UrlNotRecognizedException;
 import com.revature.model.Content;
-import com.revature.model.Tag;
 import com.revature.repository.ContentRepository;
 
 @Service("contentService")

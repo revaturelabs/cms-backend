@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.revature.model.Content;
-import com.revature.model.Tag;
 
 @Repository
 public interface ContentRepository extends JpaRepository<Content, Long> {
@@ -18,10 +17,10 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 	public Content findByUrl(String url);
 
 	@Query(value="SELECT new Content() FROM Content INNER JOIN Tag", nativeQuery = true)
-	public List<Content> findByTags(Tag tag);
+	public List<Content> findByTags(String[] tags);
 
 	@Query(value="SELECT new Content() FROM Content INNER JOIN Tag WHERE Tag.name = :tag.getName() AND Content.category = :category", nativeQuery=true)
-	public Content findByTagsAndCategory(Tag tag, String category);
+	public Content findByTagsAndCategory(String[] tag, String category);
 
 	public Content findByCategory(String category);
 	// public void deleteContent();
