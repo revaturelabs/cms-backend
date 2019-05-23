@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.dto.CreateContentDto;
 import com.revature.model.Content;
 import com.revature.service.ContentService;
 
@@ -32,7 +33,8 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@PostMapping("/register")
-	public ResponseEntity<Content> createContent(@RequestBody Content content, @RequestBody String[] tags) {
+	public ResponseEntity<Content> createContent(@RequestBody CreateContentDto contentDto) {
+		Content content = contentDto.getContent();
 		Content checkContent = contentService.findByUrl(content.getUrl());
 		if(checkContent != null) {
 			Content validContent = contentService.updateContent(checkContent);
