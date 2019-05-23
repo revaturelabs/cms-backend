@@ -16,19 +16,15 @@ public class ModuleServiceImpl implements ModuleService {
 	@Autowired
 	private final ModuleRepository ModuleRepository;
 	
-	@Autowired
-	private final TagRepository TagRepository;
-
-	public ModuleServiceImpl(ModuleRepository ModuleRepository, TagRepository TagRepository) {
-		this.ModuleRepository = ModuleRepository;
-		this.TagRepository = TagRepository;
+	public ModuleServiceImpl(ModuleRepository ModuleRepository) {
+		this.ModuleRepository = ModuleRepository;	
 	}
 	
 
 	@Override
 	public
 	List<Tag> findAllTags() {
-		return TagRepository.findAll();
+		return ModuleRepository.findAllTags();
 	}
 
 	@Override
