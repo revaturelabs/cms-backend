@@ -1,6 +1,7 @@
 package com.revature.model;
 import java.util.Date;
 
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,6 +25,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 @Table(name = "TAG")
 public class Tag {
@@ -46,11 +50,10 @@ public class Tag {
 	@Column(name = "MODULE_ID")
 	private long moduleId;
 
-
 	@Column(name = "DATE_CREATED")
 	@CreationTimestamp
 	private Date dateCreated;
-	
+
 	@Column(name = "DATE_UPDATED")
 	@UpdateTimestamp
 	private Date dateUpdated;
@@ -58,7 +61,7 @@ public class Tag {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "content_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "contentId"))
 	private Content content;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
 	private Module modules;
