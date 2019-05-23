@@ -1,5 +1,7 @@
 package com.revature.model;
 
+//import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,8 +16,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+//import javax.persistence.Temporal;
+//import javax.persistence.TemporalType;
+import com.revature.model.Tag;
 
-
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table
@@ -45,9 +51,11 @@ public class Content {
 	@Column(name="URL")
 	private String url;
 	@Column(name="DATE_CREATED")
-	private long dateCreated;
+	@CreationTimestamp
+	private Date dateCreated;
 	@Column(name="DATE_UPDATED")
-	private long dateUpdated;
+	@UpdateTimestamp
+	private Date dateUpdated;
 //	@Temporal(TemporalType.DATE)
 //	private java.util.Date dateCreated; 
 //	@Column(name="DATE_UPDATED")
@@ -59,7 +67,7 @@ public class Content {
 	}
 
 	public Content(long contentId, String description, List<Tag> tags, String category, String name, String url,
-			long dateCreated, long dateUpdated) {
+			Date dateCreated, Date dateUpdated) {
 		super();
 		this.contentId = contentId;
 		this.description = description;
@@ -119,19 +127,19 @@ public class Content {
 		this.url = url;
 	}
 
-	public long getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(long dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public long getDateUpdated() {
+	public Date getDateUpdated() {
 		return dateUpdated;
 	}
 
-	public void setDateUpdated(long dateUpdated2) {
+	public void setDateUpdated(Date dateUpdated2) {
 		this.dateUpdated = dateUpdated2;
 	}
 
@@ -141,8 +149,8 @@ public class Content {
 		int result = 1;
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + (int) (contentId ^ (contentId >>> 32));
-		result = prime * result + (int) (dateCreated ^ (dateCreated >>> 32));
-		result = prime * result + (int) (dateUpdated ^ (dateUpdated >>> 32));
+		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
+		result = prime * result + ((dateUpdated == null) ? 0 : dateUpdated.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
@@ -166,9 +174,15 @@ public class Content {
 			return false;
 		if (contentId != other.contentId)
 			return false;
-		if (dateCreated != other.dateCreated)
+		if (dateCreated == null) {
+			if (other.dateCreated != null)
+				return false;
+		} else if (!dateCreated.equals(other.dateCreated))
 			return false;
-		if (dateUpdated != other.dateUpdated)
+		if (dateUpdated == null) {
+			if (other.dateUpdated != null)
+				return false;
+		} else if (!dateUpdated.equals(other.dateUpdated))
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -199,10 +213,4 @@ public class Content {
 				+ category + ", name=" + name + ", url=" + url + ", dateCreated=" + dateCreated + ", dateUpdated="
 				+ dateUpdated + "]";
 	}
-
-	
-	
-	
-	
-	
 }
