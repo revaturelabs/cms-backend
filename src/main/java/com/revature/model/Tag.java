@@ -1,6 +1,6 @@
 package com.revature.model;
-import java.util.Date;
 
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,17 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-//import javax.persistence.SequenceGenerator;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "TAG")
@@ -37,18 +30,16 @@ public class Tag {
 	@Column(name = "TYPE")
 	private String type;
 
-	@JoinColumn
+	//@JoinColumn
 	@Column(name = "CONTENT_ID")
 	private long contentId;
-
-	@JoinColumn
 	@Column(name = "MODULE_ID")
 	private long moduleId;
 
 	@Column(name = "DATE_CREATED")
 	@CreationTimestamp
 	private Date dateCreated;
-	
+
 	@Column(name = "DATE_UPDATED")
 	@UpdateTimestamp
 	private Date dateUpdated;
@@ -56,7 +47,7 @@ public class Tag {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "content_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "contentId"))
 	private Content content;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
 	private Module modules;
@@ -232,4 +223,3 @@ public class Tag {
 		this.dateUpdated = updated;
 	}
 }
-
