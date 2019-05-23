@@ -35,7 +35,7 @@ public class TestService {
 		//Content contentToCheck = new Content();
 		long str = System.currentTimeMillis();
 		Date date = new Date(str);
-		tags.add(new Tag(1, "Java", "type", 1, 1,date, date));
+		//tags.add(new Tag(1, "Java", "type", 1, 1,date, date));
 		Content contentToCheck = new Content(1, "description", tags, "code", "william", "http://www.google.com", date, date);
 		assertEquals(contentService.newContent(contentToCheck), contentToCheck);
 	}

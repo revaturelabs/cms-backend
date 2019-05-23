@@ -68,7 +68,7 @@ public class Tag {
 	 * @param created Date object
 	 * @param updated Date object
 	 */
-	public Tag(long tagId, String name, String type, long contentId, long moduleId, Date created, Date updated) {
+	public Tag(long tagId, String name, String type, Long contentId, long moduleId, Date created, Date updated) {
 		super();
 		this.tagId = tagId;
 		this.name = name;

@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,16 +39,28 @@ public class ContentControllerImpl implements ContentController {
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<Content> createContent(@RequestBody CreateContentDto contentDto) {
+		System.out.println("entering create content");
+		
 		Content content = contentDto.getContent();
+		System.out.println("content is : "+content);
+		System.out.println("contentDTO is : "+Arrays.toString(contentDto.getTags()));
+		
 		Content checkContent = contentService.findByUrl(content.getUrl());
+		System.out.println("checkContent : " +checkContent);
+		
 		if(checkContent != null) {
+			System.out.println("enter if statement");
+			
 			Content validContent = contentService.updateContent(checkContent);
 			return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		else {
-			Content validContent = contentService.newContent(checkContent);
+			Content validContent = contentService.newContent(content);
+			
+			System.out.println("The valid content is : " + validContent);
+			
 			tagService.createTagWithContentId(content.getContentId(), contentDto.getTags());
 			return (validContent != null) ?
 					new ResponseEntity<>(validContent,HttpStatus.OK) :
