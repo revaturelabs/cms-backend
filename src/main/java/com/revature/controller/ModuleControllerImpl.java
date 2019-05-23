@@ -32,7 +32,7 @@ public class ModuleControllerImpl {
 		this.ModuleService = ModuleService;
 	}
 
-	@GetMapping(value = "/allTags", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/alltags")
 	public List<Tag> findAllTags() {
 		return ModuleService.findAllTags();
 	}
