@@ -20,9 +20,9 @@ import com.revature.model.Module;
 import com.revature.model.Tag;
 import com.revature.service.ModuleService;
 
-@RestController(value = "/Modules")
+@RestController("moduleController")
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "/module", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/module")
 public class ModuleControllerImpl {
 
 	@Autowired
@@ -45,12 +45,12 @@ public class ModuleControllerImpl {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(value = "/allModules")
+	@GetMapping(value = "/allmodules")
 	public List<Module> findAllModules() {
 		return ModuleService.findAllModules();
 	}
 
-	@GetMapping(value = "/id/{moduleId}")
+	@GetMapping(value = "/getid/{moduleId}")
 	public ResponseEntity<Module> findModuleById(@PathVariable("moduleId") long moduleId) {
 		Module moduleFound = ModuleService.findModuleById(moduleId);
 		if (moduleFound != null)
@@ -59,7 +59,7 @@ public class ModuleControllerImpl {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@GetMapping(value = "/name/{moduleName}")
+	@GetMapping(value = "/getname/{moduleName}")
 	public ResponseEntity<Module> findModuleByName(@PathVariable("moduleName") String moduleName) {
 		Module moduleFound = ModuleService.findByModuleName(moduleName);
 		if (moduleFound != null)

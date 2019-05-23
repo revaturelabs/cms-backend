@@ -48,10 +48,9 @@ public class Tag {
 
 
 	@Column(name = "DATE_CREATED")
-
-
 	@CreationTimestamp
 	private Date dateCreated;
+	
 	@Column(name = "DATE_UPDATED")
 	@UpdateTimestamp
 	private Date dateUpdated;
@@ -62,6 +61,7 @@ public class Tag {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "content_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "contentId"))
 	private Content content;
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
 	private Module modules;
@@ -70,7 +70,7 @@ public class Tag {
 	
 	public Tag() {}
 	
-	public Tag(long tagId, String name, String type, long contentId, long moduleId, String created, String updated) {
+	public Tag(long tagId, String name, String type, long contentId, long moduleId, Date created, Date updated) {
 		super();
 		this.tagId = tagId;
 		this.name = name;
@@ -129,19 +129,19 @@ public class Tag {
 		this.moduleId = moduleId;
 	}
 
-	public String getCreated() {
+	public Date getCreated() {
 		return dateCreated;
 	}
 
-	public void setCreated(String created) {
+	public void setCreated(Date created) {
 		this.dateCreated = created;
 	}
 
-	public String getUpdated() {
+	public Date getUpdated() {
 		return dateUpdated;
 	}
 
-	public void setUpdated(String updated) {
+	public void setUpdated(Date updated) {
 		this.dateUpdated = updated;
 	}
 
