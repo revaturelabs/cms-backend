@@ -27,7 +27,7 @@ public class ContentControllerAlpha implements ContentController {
 	@Autowired
 	private ContentService contentService;
 
-	@PostMapping("register")
+	@PostMapping("/register")
 	public ResponseEntity<Content> createContent(@RequestBody Content content) {
 		Content validContent = contentService.newContent(content);
 		return (validContent != null) ?
