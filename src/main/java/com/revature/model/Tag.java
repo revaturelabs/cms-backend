@@ -51,9 +51,8 @@ public class Tag {
 	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "tagId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
 	private Module modules;
 
-	public Tag() {
-	}
-
+	public Tag() {}
+	
 	public Tag(long tagId, String name, String type, long contentId, long moduleId, Date created, Date updated) {
 		super();
 		this.tagId = tagId;
@@ -129,5 +128,4 @@ public class Tag {
 	public void setUpdated(Date updated) {
 		this.dateUpdated = updated;
 	}
-
 }
