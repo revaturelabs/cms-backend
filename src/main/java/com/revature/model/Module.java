@@ -2,21 +2,31 @@ package com.revature.model;
 
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 
 @Entity
 @Table(name="MODULE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Module {
 	
 	@Id
@@ -24,7 +34,6 @@ public class Module {
 	@Column(name="moduleId")
 	private long moduleId;
 	
-	//@ManyToOne
 	@Column(name="modulename")
 	private String moduleName;
 	
@@ -39,8 +48,9 @@ public class Module {
 	@UpdateTimestamp
 	private Date updated;
 	
-	//@Transient
-	//private List<Tag> tags;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "moduleId"), inverseJoinColumns = @JoinColumn(name = "tagId"))
+	private List<Tag> tags;
 	
 	public Module() {
 		super();
