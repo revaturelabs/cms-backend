@@ -47,8 +47,8 @@ public class Module {
 	@UpdateTimestamp
 	private Date updated;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "moduleId"), inverseJoinColumns = @JoinColumn(name = "tagId"))
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "moduleId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
 	private List<Tag> tags;
 	
 	public Module() {

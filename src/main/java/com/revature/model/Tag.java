@@ -15,10 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "TAG")
+@Table(name ="TAG")
 public class Tag {
 
 	@Id
@@ -30,9 +32,12 @@ public class Tag {
 	@Column(name = "TYPE")
 	private String type;
 
+
 	@Column(name = "CONTENT_ID")
 	private long contentId;
-	@Column(name = "MODULE_ID")
+
+
+	@Column(name = "moduleId")
 	private long moduleId;
 
 	@Column(name = "DATE_CREATED")
@@ -46,9 +51,11 @@ public class Tag {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "content_tag_jt", joinColumns = @JoinColumn(name = "contentId"), inverseJoinColumns = @JoinColumn(name = "contentId"))
 	private Content content;
-
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "moduleId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="moduleId", insertable=false, updatable=false)
+	//@JoinTable(name = "module_tag_jt", joinColumns = @JoinColumn(name = "moduleId"), inverseJoinColumns = @JoinColumn(name = "moduleId"))
+	//@Fetch(FetchMode.JOIN)
 	private Module modules;
 
 	public Tag() {}
