@@ -3,6 +3,7 @@ package com.revature.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,4 +60,19 @@ public class TagServiceImpl implements TagService {
     public void delete(long id) {
         tagRepository.deleteById(id);
     }
+
+	@Override
+	public void createTagWithContentId(long contentId, String[] tags) {
+		Tag tag = new Tag();
+		tag.setContentId(contentId);
+		tag.setType("belongsTo");
+		for(String t: tags) {
+			tag.setName(t);
+			for(Long l: tagRepository.findModuleIdsByTag(t)) {
+				tag.setModuleId(l);
+				tagRepository.save(tag);
+			}	
+		}
+		
+	}
 }

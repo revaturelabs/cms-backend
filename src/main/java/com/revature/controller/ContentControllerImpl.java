@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.dto.CreateContentDto;
 import com.revature.model.Content;
 import com.revature.service.ContentService;
+import com.revature.service.TagService;
 
 @RestController("contentController")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -26,9 +27,12 @@ public class ContentControllerImpl implements ContentController {
 	@Autowired
 	private ContentService contentService;
 
+	@Autowired 
+	private TagService tagService;
+	
 	/**
 	 * Receives a content object and checks if the URL exists. If the URL does not exist the method places it 
-	 * in the database. If it does exist it will update the existing content
+	 * in the database as well as creating tags associated with that content ID. If it does exist it will update the existing content
 	 * Returns a response entity with a 200 HTTP status if the content is valid.
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
@@ -44,6 +48,7 @@ public class ContentControllerImpl implements ContentController {
 		}
 		else {
 			Content validContent = contentService.newContent(checkContent);
+			tagService.createTagWithContentId(content.getContentId(), contentDto.getTags());
 			return (validContent != null) ?
 					new ResponseEntity<>(validContent,HttpStatus.OK) :
 				    new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -97,6 +102,19 @@ public class ContentControllerImpl implements ContentController {
 	@DeleteMapping("/delete")
 	public void deleteContent(@RequestParam long contentId) {
 		contentService.deleteContent(contentId);
+	}
+
+	/**
+	 * Finds content with the given parameter category
+	 * Returns a response entity with a 200 HTTP status if the content is valid.
+	 * Returns a response entity with a 400 HTTP status if the content object returns null
+	 */
+	@GetMapping("/findbycategory")
+	public ResponseEntity<Content> findByCategory(@RequestParam("category") String category) {
+		Content validContent = contentService.findByCategory(category);
+		return (validContent != null) ?
+				new ResponseEntity<>(validContent,HttpStatus.OK) :
+			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	/**
