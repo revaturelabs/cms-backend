@@ -72,7 +72,7 @@ public class ContentServiceImpl implements ContentService {
 	 * 3. If Content does not have requested tags, returns a ContentNotFoundException.
 	 */
 	@Override
-	public List<Content> findByTag(Tag tag) {
+	public List<Content> findByTag(String[] tag) {
 		return contentRepository.findByTags(tag);
 	}
 	
@@ -83,7 +83,7 @@ public class ContentServiceImpl implements ContentService {
 	 * 3. If Content does not have requested tags or category, returns a ContentNotFoundException.
 	 */
 	@Override
-	public Content findByTagsAndCategory(Tag tag, String category) {
+	public Content findByTagsAndCategory(String[] tag, String category) {
 		return contentRepository.findByTagsAndCategory(tag, category);
 	}
 	

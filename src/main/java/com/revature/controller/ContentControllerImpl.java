@@ -33,7 +33,7 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@PostMapping("/register")
-	public ResponseEntity<Content> createContent(@RequestBody Content content) {
+	public ResponseEntity<Content> createContent(@RequestBody Content content, @RequestBody String[] tags) {
 //		Content validContent = contentService.newContent(content);
 //		return (validContent != null) ?
 //				new ResponseEntity<>(validContent,HttpStatus.OK) :
@@ -60,7 +60,7 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null 
 	 */
 	@GetMapping("/findbyurl")
-	public ResponseEntity<Content> findByUrl(@RequestParam String url) {
+	public ResponseEntity<Content> findByUrl(@RequestParam("url") String url) {
 		Content validContent = contentService.findByUrl(url);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
@@ -73,7 +73,7 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@GetMapping("/findbytag")
-	public ResponseEntity<List<Content>> findByTag(@RequestBody Tag tags) {
+	public ResponseEntity<List<Content>> findByTag(@RequestParam("tag") String[] tags) {
 		List<Content> validContent = contentService.findByTag(tags);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
@@ -86,7 +86,7 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@GetMapping("/findbytagsandcategory")
-	public ResponseEntity<Content> findByTagsAndCategory(@RequestBody Tag tags, String category) {
+	public ResponseEntity<Content> findByTagsAndCategory(@RequestParam("tags") String[] tags, @RequestParam("category") String category) {
 		Content validContent = contentService.findByTagsAndCategory(tags, category);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :

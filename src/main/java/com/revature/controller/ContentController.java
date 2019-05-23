@@ -9,10 +9,10 @@ import com.revature.model.Tag;
 
 public interface ContentController {
 	
-	ResponseEntity<Content> createContent(Content content);
+	ResponseEntity<Content> createContent(Content content, String[] tags);
 	ResponseEntity<Content> findByUrl(String url);
-	ResponseEntity<List<Content>> findByTag(Tag tags);
-	ResponseEntity<Content> findByTagsAndCategory(Tag tags, String category);
+	ResponseEntity<List<Content>> findByTag(String[] tags);
+	ResponseEntity<Content> findByTagsAndCategory(String[] tags, String category);
 	public void deleteContent(long contentId);
 	//ResponseEntity<Content> updateContent(Content content);
 }
