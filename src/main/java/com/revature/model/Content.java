@@ -11,14 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-//import javax.persistence.Temporal;
-//import javax.persistence.TemporalType;
-import com.revature.model.Tag;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -39,8 +34,7 @@ public class Content {
 	 * @JoinTable(name="content_tag_jt", joinColumns=@JoinColumn(name="contentId"), inverseJoinColumns=@JoinColumn(name="contentId"))
 	 * mappedBy="content"
 	 */
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name="content_tag_jt", joinColumns=@JoinColumn(name="contentId"), inverseJoinColumns=@JoinColumn(name="tagId"))
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Tag> tags;
 	@Column(name="DESCRIPTION")
 	private String description;
