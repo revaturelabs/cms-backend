@@ -32,7 +32,7 @@ public class TagControllerImpl implements TagController {
 		return tagService.findAllTags();
 	}
 
-	@GetMapping("/get/{tagId}")
+	@GetMapping("/getid/{tagId}")
 	public ResponseEntity<Tag> findTagById(@PathVariable("tagId") long tagId) {
 		Tag tagFound = tagService.findTagById(tagId);
 		if (tagFound != null)
@@ -41,8 +41,8 @@ public class TagControllerImpl implements TagController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@GetMapping(value = "/get/{name}")
-	public ResponseEntity<Tag> findTagByName(@PathVariable("name") String name) {
+	@GetMapping(value = "/getname/{tagName}")
+	public ResponseEntity<Tag> findTagByName(@PathVariable("tagName") String name) {
 		Tag tagFound = tagService.findByTagName(name);
 		if (tagFound != null)
 			return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
