@@ -1,8 +1,6 @@
 package com.revature.model;
 import java.util.Date;
 
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,16 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-//import javax.persistence.SequenceGenerator;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -37,8 +25,14 @@ public class Tag {
 	private long tagId;
 	@Column(name = "TAG_NAME")
 	private String tagName;
-	@Column(name = "CATEGORY")
-	private String category;
+	/**
+	 *  Describes the type of relationship between the tag and module
+	 *  1. Either "belongs" to signify the tag is a member of the module
+	 *  2. Or "pre-requisite" to signify the module must be learned prior
+	 *     to this tag
+	 */
+	@Column(name = "TYPE")
+	private String type;
 
 	@JoinColumn
 	@Column(name = "CONTENT_ID")
@@ -57,7 +51,7 @@ public class Tag {
 	private Date dateUpdated;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="moduleId", insertable=false, updatable=false)
+	@JoinColumn(name="contentId", insertable=false, updatable=false)
 	private Content content;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -73,7 +67,7 @@ public class Tag {
 		super();
 		this.tagId = tagId;
 		this.tagName = tagName;
-		this.category = type;
+		this.type = type;
 		this.contentId = contentId;
 		this.moduleId = moduleId;
 		this.dateCreated = dateCreated;
@@ -86,7 +80,7 @@ public class Tag {
 
 	@Override
 	public String toString() {
-		return "Tag [tagId=" + tagId + ", tagName=" + tagName + ", type=" + category + ", contentId=" + contentId
+		return "Tag [tagId=" + tagId + ", tagName=" + tagName + ", type=" + type + ", contentId=" + contentId
 				+ ", moduleId=" + moduleId + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
 				+ ", content=" + content + ", modules=" + modules + "]";
 	}
@@ -118,13 +112,13 @@ public class Tag {
 
 
 	public String getType() {
-		return category;
+		return type;
 	}
 
 
 
 	public void setType(String type) {
-		this.category = type;
+		this.type = type;
 	}
 
 
@@ -213,7 +207,7 @@ public class Tag {
 		result = prime * result + ((modules == null) ? 0 : modules.hashCode());
 		result = prime * result + (int) (tagId ^ (tagId >>> 32));
 		result = prime * result + ((tagName == null) ? 0 : tagName.hashCode());
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -257,10 +251,10 @@ public class Tag {
 				return false;
 		} else if (!tagName.equals(other.tagName))
 			return false;
-		if (category == null) {
-			if (other.category != null)
+		if (type == null) {
+			if (other.type != null)
 				return false;
-		} else if (!category.equals(other.category))
+		} else if (!type.equals(other.type))
 			return false;
 		return true;
 	}

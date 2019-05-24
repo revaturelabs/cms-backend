@@ -61,6 +61,15 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public void createTagWithContentId(long contentId, String[] tags) {
-		// TODO Auto-generated method stub
+		Tag tag = new Tag();
+		tag.setContentId(contentId);
+		tag.setType("belongsTo");
+		for(String t : tags) {
+			tag.setTagName(t);
+			for(Long l: tagRepository.findDistinctModuleIdByName(t)) {
+				tag.setModuleId(l);
+				tagRepository.save(tag);
+			}
+		}
 	}
 }
