@@ -7,8 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.exception.ModuleNotFoundExceptions;
+import com.revature.exception.TagNotFoundExceptions;
+import com.revature.model.Module;
 import com.revature.model.Tag;
 import com.revature.repository.TagRepository;
+
 
 @Service
 public class TagServiceImpl implements TagService {
@@ -20,24 +24,41 @@ public class TagServiceImpl implements TagService {
 		
 	//private static Logger logger= Logger.getLogger();
 	
-	public List<Tag> getAllTags() {
+	public List<Tag> findAllTags() {
 		List<Tag> tags = new ArrayList<Tag>();
 		tagRepository.findAll().forEach(tag -> tags.add(tag));
 		return tags;
 	}
 		
-	public Tag getTagById(long id) {
-        return tagRepository.findById(id).get();
-		
+	public Tag findTagById(long id) {
+        //return tagRepository.findById(id).get();
+		return null;
     }
+	
+	@Override
+	public Tag findByTagName(String name) {
+		try {
+			return tagRepository.findByTagName(name);
+		} catch (TagNotFoundExceptions e) {
+			throw new TagNotFoundExceptions(name);
+		}
+	}
 
-    public void saveOrUpdate(Tag tag) {
-    	tag.setUpdated(new Date());
+    public void save(Tag tag) {
+    	tag.setDateCreated(new Date());
         tagRepository.save(tag);
     }
 
-    public void delete(long id) {
-        tagRepository.deleteById(id);
+    @Override
+    public void deleteTag(Tag tag) {
+        tagRepository.delete(tag);
     }
+    
+    public void update(Tag tag) {
+    	tag.setDateUpdated(new Date());
+        tagRepository.save(tag);
+    }
+
+
 
 }
