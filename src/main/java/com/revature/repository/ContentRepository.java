@@ -22,11 +22,11 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 
 	public Content findByUrl(String url);
 
-	@Query(value="SELECT new Content() FROM Content INNER JOIN Tag", nativeQuery = true)
-	public List<Content> findByTags(Tag[] tag);
+	@Query(value="SELECT new Content() FROM Content INNER JOIN Tag WHERE TAG.TAG_NAME = :name", nativeQuery = true)
+	public List<Content> findByTags(String name);
 
-	@Query(value="SELECT new Content() FROM Content INNER JOIN Tag WHERE Tag.name = :tag.getName() AND Content.category = :category", nativeQuery=true)
-	public Content findByTagsAndCategory(Tag[] tag, String category);
+	@Query(value="SELECT new Content() FROM Content INNER JOIN Tag WHERE Tag.TAG_NAME = :tag.getTagName() AND Content.category = :category", nativeQuery=true)
+	public List<Content> findByTagsAndCategory(Tag tag, String category);
 
 	public Content findByCategory(String category);
 }

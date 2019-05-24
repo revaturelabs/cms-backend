@@ -20,7 +20,7 @@ import com.revature.model.Module;
 import com.revature.service.ModuleService;
 
 @RestController("moduleController")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping(path = "/module")
 public class ModuleControllerImpl {
 
