@@ -34,7 +34,7 @@ public class Content {
 	 * @JoinTable(name="content_tag_jt", joinColumns=@JoinColumn(name="contentId"), inverseJoinColumns=@JoinColumn(name="contentId"))
 	 * mappedBy="content"
 	 */
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Tag> tags;
 	@Column(name="DESCRIPTION")
 	private String description;
