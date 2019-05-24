@@ -34,12 +34,12 @@ public class Tag {
 	@Column(name = "TYPE")
 	private String type;
 
-	@JoinColumn
-	@Column(name = "CONTENT_ID")
-	private long contentId;
 
-	@JoinColumn
-	@Column(name = "MODULE_ID")
+	@Column(name = "contentId")
+	private Long contentId;
+
+
+	@Column(name = "moduleId")
 	private long moduleId;
 
 	@Column(name = "DATE_CREATED")
@@ -62,7 +62,7 @@ public class Tag {
 	
 
 
-	public Tag(long tagId, String tagName, String type, long contentId, long moduleId, Date dateCreated,
+	public Tag(long tagId, String tagName, String type, Long contentId, long moduleId, Date dateCreated,
 			Date dateUpdated, Content content, Module modules) {
 		super();
 		this.tagId = tagId;
@@ -123,13 +123,13 @@ public class Tag {
 
 
 
-	public long getContentId() {
+	public Long getContentId() {
 		return contentId;
 	}
 
 
 
-	public void setContentId(long contentId) {
+	public void setContentId(Long contentId) {
 		this.contentId = contentId;
 	}
 

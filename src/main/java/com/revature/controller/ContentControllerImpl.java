@@ -103,8 +103,8 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@PostMapping("/findbytagsandcategory")
-	public ResponseEntity<Content> findByTagsAndCategory(@RequestBody Tag[] tags, @RequestParam("category") String category) {
-		Content validContent = contentService.findByTagsAndCategory(tags, category);
+	public ResponseEntity<List<Content>> findByTagsAndCategory(@RequestBody Tag[] tags, @RequestParam("category") String category) {
+		List<Content> validContent = contentService.findByTagsAndCategory(tags, category);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
