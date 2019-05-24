@@ -12,6 +12,6 @@ import com.revature.model.Tag;
 public interface TagRepository extends JpaRepository<Tag,Long>{
 	
 	Tag findByTagName(String name);
-	List<Long> findDistinctModuleIdByName(String tag);
+	List<Long> findDistinctModuleIdByTagName(String tag);
 
 }

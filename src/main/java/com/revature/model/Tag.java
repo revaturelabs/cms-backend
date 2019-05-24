@@ -34,12 +34,10 @@ public class Tag {
 	@Column(name = "TYPE")
 	private String type;
 
-	@JoinColumn
-	@Column(name = "CONTENT_ID")
+	@Column(name = "contentId")
 	private long contentId;
 
-	@JoinColumn
-	@Column(name = "MODULE_ID")
+	@Column(name = "moduleId")
 	private long moduleId;
 
 	@Column(name = "DATE_CREATED")

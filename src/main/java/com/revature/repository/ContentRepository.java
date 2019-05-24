@@ -12,7 +12,12 @@ import com.revature.model.Tag;
 @Repository
 public interface ContentRepository extends JpaRepository<Content, Long> {
 
-	// public Content newContent(Content content);
+	/**
+	 * Returns content 
+	 * 
+	 * @param contentId
+	 * @return Content
+	 */
 	public Content findByContentId(long contentId);
 
 	public Content findByUrl(String url);
@@ -24,5 +29,4 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 	public Content findByTagsAndCategory(Tag[] tag, String category);
 
 	public Content findByCategory(String category);
-	// public void deleteContent();
 }
