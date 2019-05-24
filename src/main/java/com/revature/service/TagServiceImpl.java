@@ -67,6 +67,8 @@ public class TagServiceImpl implements TagService {
 		for(String t : tags) {
 			tag.setTagName(t);
 			for(Long l: tagRepository.findDistinctModuleIdByTagName(t)) {
+				
+				
 				tag.setModuleId(l);
 				tagRepository.save(tag);
 			}
