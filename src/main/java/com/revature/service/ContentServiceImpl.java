@@ -54,7 +54,7 @@ public class ContentServiceImpl implements ContentService {
 		for(Tag t : tag) {
 			contentList.addAll(contentRepository.findByTagsAndCategory(t, category));
 		}
-		return new ArrayList<Content>();
+		return contentList;
 	}
 	
 	@Override

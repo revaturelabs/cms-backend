@@ -34,8 +34,10 @@ public class Tag {
 	@Column(name = "TYPE")
 	private String type;
 
+
 	@Column(name = "contentId")
 	private Long contentId;
+
 
 	@Column(name = "moduleId")
 	private long moduleId;
@@ -126,7 +128,7 @@ public class Tag {
 
 
 
-	public void setContentId(long contentId) {
+	public void setContentId(Long contentId) {
 		this.contentId = contentId;
 	}
 

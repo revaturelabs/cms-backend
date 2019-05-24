@@ -41,7 +41,7 @@ public class TagControllerImpl implements TagController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@GetMapping(value = "/getname/{tagName}")
+	@GetMapping(value = "/getname/{name}")
 	public ResponseEntity<Tag> findTagByName(@PathVariable("tagName") String tagName) {
 		Tag tagFound = tagService.findByTagName(tagName);
 		if (tagFound != null)
