@@ -32,6 +32,6 @@ public interface ContentService {
 	public Content updateContent(Content content);
 	public Content findByCategory(String category);
 	List<Content> findByTags(Tag[] tag);
-	Content findByTagsAndCategory(Tag[] tag, String category);
+	List<Content> findByTagsAndCategory(Tag[] tag, String category);
 	void delete();
 }

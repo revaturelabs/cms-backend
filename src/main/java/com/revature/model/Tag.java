@@ -35,7 +35,7 @@ public class Tag {
 	private String type;
 
 	@Column(name = "contentId")
-	private long contentId;
+	private Long contentId;
 
 	@Column(name = "moduleId")
 	private long moduleId;

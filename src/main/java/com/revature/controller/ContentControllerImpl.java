@@ -22,7 +22,7 @@ import com.revature.service.ContentService;
 import com.revature.service.TagService;
 
 @RestController("contentController")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping(path = "/content")
 public class ContentControllerImpl implements ContentController {
 	
@@ -103,8 +103,8 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@PostMapping("/findbytagsandcategory")
-	public ResponseEntity<Content> findByTagsAndCategory(@RequestBody Tag[] tags, @RequestParam("category") String category) {
-		Content validContent = contentService.findByTagsAndCategory(tags, category);
+	public ResponseEntity<List<Content>> findByTagsAndCategory(@RequestBody Tag[] tags, @RequestParam("category") String category) {
+		List<Content> validContent = contentService.findByTagsAndCategory(tags, category);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);

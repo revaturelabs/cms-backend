@@ -1,12 +1,12 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.stereotype.Service;
 
-import com.revature.exception.UrlNotRecognizedException;
 import com.revature.model.Content;
 import com.revature.model.Tag;
 import com.revature.repository.ContentRepository;
@@ -40,13 +40,21 @@ public class ContentServiceImpl implements ContentService {
 	@ReadOnlyProperty
 	@Override
 	public List<Content> findByTags(Tag[] tag) {
-		return contentRepository.findByTags(tag);
+		List<Content> contentList = new ArrayList<>();
+		for(Tag t : tag) {
+			contentList.addAll(contentRepository.findByTags(t.getTagName()));
+		}
+		return contentList;
 	}
 	
 	@ReadOnlyProperty
 	@Override
-	public Content findByTagsAndCategory(Tag[] tag, String category) {
-		return contentRepository.findByTagsAndCategory(tag, category);
+	public List<Content> findByTagsAndCategory(Tag[] tag, String category) {
+		List<Content> contentList = new ArrayList<>();
+		for(Tag t : tag) {
+			contentList.addAll(contentRepository.findByTagsAndCategory(t, category));
+		}
+		return new ArrayList<Content>();
 	}
 	
 	@Override
