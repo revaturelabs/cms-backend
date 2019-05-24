@@ -1,4 +1,5 @@
 package com.revature.model;
+import java.util.Date;
 
 import java.util.Date;
 
@@ -11,6 +12,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+//import javax.persistence.SequenceGenerator;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,17 +36,17 @@ public class Tag {
 	@Column(name = "TAG_ID")
 	private long tagId;
 	@Column(name = "TAG_NAME")
-	private String name;
+	private String tagName;
 	@Column(name = "TYPE")
 	private String type;
 
+	@JoinColumn
+	@Column(name = "CONTENT_ID")
+	private long contentId;
 
-	@Column(name = "contentId")
-	private Long contentId;
-
-
-	@Column(name = "moduleId")
-	private Long moduleId;
+	@JoinColumn
+	@Column(name = "MODULE_ID")
+	private long moduleId;
 
 	@Column(name = "DATE_CREATED")
 	@CreationTimestamp
@@ -46,181 +57,214 @@ public class Tag {
 	private Date dateUpdated;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="contentId", insertable=false, updatable=false)
+	@JoinColumn(name="moduleId", insertable=false, updatable=false)
 	private Content content;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="moduleId", insertable=false, updatable=false)
 	private Module modules;
 
-	/**
-	 * Default Constructor
-	 */
 	public Tag() {}
 	
-	/**
-	 * Constructor with fields
-	 * @param tagId long primitive
-	 * @param name String object
-	 * @param type String object
-	 * @param contentId long primitive
-	 * @param moduleId long primitive
-	 * @param created Date object
-	 * @param updated Date object
-	 */
-	public Tag(long tagId, String name, String type, Long contentId, long moduleId, Date created, Date updated) {
+
+
+	public Tag(long tagId, String tagName, String type, long contentId, long moduleId, Date dateCreated,
+			Date dateUpdated, Content content, Module modules) {
 		super();
 		this.tagId = tagId;
-		this.name = name;
+		this.tagName = tagName;
 		this.type = type;
 		this.contentId = contentId;
 		this.moduleId = moduleId;
-		this.dateCreated = created;
-		this.dateUpdated = updated;
-
+		this.dateCreated = dateCreated;
+		this.dateUpdated = dateUpdated;
+		this.content = content;
+		this.modules = modules;
 	}
-	
-	/**
-	 * 
-	 */
+
+
+
 	@Override
 	public String toString() {
-		return "Tag [tagId=" + tagId + ", name=" + name + ", type=" + type + ", contentId=" + contentId + ", moduleId="
-
-				+ moduleId + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated + "]";
-
+		return "Tag [tagId=" + tagId + ", tagName=" + tagName + ", type=" + type + ", contentId=" + contentId
+				+ ", moduleId=" + moduleId + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
+				+ ", content=" + content + ", modules=" + modules + "]";
 	}
 
-	/**
-	 * Getter for tagId:
-	 * 1. Retrieves tagId property of Tag object.
-	 * @return tagId long primitive
-	 */
+
+
 	public long getTagId() {
 		return tagId;
 	}
 
-	/**
-	 * Setter for tagId:
-	 * 1. Receives tagId as a long.
-	 * 2. Sets the tagId property of Tag object to long value of tagId.
-	 * @param tagId long primitive
-	 */
+
+
 	public void setTagId(long tagId) {
 		this.tagId = tagId;
 	}
 
-	/**
-	 * Getter for name:
-	 * 1. Retrieves name property of Tag object.
-	 * @return name String object
-	 */
-	public String getName() {
-		return name;
+
+
+	public String getTagName() {
+		return tagName;
 	}
 
-	/**
-	 * Setter for name:
-	 * 1. Receives name as a String.
-	 * 2. Sets the name property of Tag object to String value of name.
-	 * @param name String object
-	 */
-	public void setName(String name) {
-		this.name = name;
+
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 
-	/**
-	 * Getter for type:
-	 * 1. Retrieves type property of Tag object.
-	 * @return type String object
-	 */
+
+
 	public String getType() {
 		return type;
 	}
 
-	/**
-	 * Setter for type:
-	 * 1. Receives type as a String.
-	 * 2. Sets the type property of Tag object to String value of type.
-	 * @param type String object
-	 */
+
+
 	public void setType(String type) {
 		this.type = type;
 	}
 
-	/**
-	 * Getter for contentId:
-	 * 1. Retrieves contentId property of Tag object.
-	 * @return contentId Long object
-	 */
-	public Long getContentId() {
+
+
+	public long getContentId() {
 		return contentId;
 	}
 
-	/**
-	 * Setter for contentId:
-	 * 1. Receives contentId as a Long wrapper class object named contentId.
-	 * 2. Sets the contentId property of Tag object to contentId Long object.
-	 * @param contentId Long object
-	 */
-	public void setContentId(Long contentId) {
+
+
+	public void setContentId(long contentId) {
 		this.contentId = contentId;
 	}
 
-	/**
-	 * Getter for moduleId:
-	 * 1. Retrieves moduleId property of Tag object.
-	 * @return moduleId long primitive
-	 */
+
+
 	public long getModuleId() {
 		return moduleId;
 	}
 
-	/**
-	 * Setter for moduleId:
-	 * 1. Receives moduleId as a long.
-	 * 2. Sets the moduleId property of Tag object to moduleId long value.
-	 * @param moduleId long primitive
-	 */
+
+
 	public void setModuleId(long moduleId) {
 		this.moduleId = moduleId;
 	}
 
-	/**
-	 * Getter for dateCreated:
-	 * 1. Retrieves dateCreated property of Tag object.
-	 * @return dateCreated Date object
-	 */
-	public Date getCreated() {
+
+
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	/**
-	 * Setter for dateCreated:
-	 * 1. Receives Date object named created
-	 * 2. Sets the dateCreated property of Tag object to created Date object.
-	 * @param created Date object
-	 */
-	public void setCreated(Date created) {
-		this.dateCreated = created;
+
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
-	/**
-	 * Getter for dateUpdated:
-	 * 1. Retrieves dateUpdated property of Tag object.
-	 * @return dateUpdated Date object
-	 */
-	public Date getUpdated() {
+
+
+	public Date getDateUpdated() {
 		return dateUpdated;
 	}
 
-	/**
-	 * Setter for dateUpdated:
-	 * 1. Receives Date object named updated
-	 * 2. Sets the dateUpdated property of Tag object to updated Date object.
-	 * @param updated Date object
-	 */
-	public void setUpdated(Date updated) {
-		this.dateUpdated = updated;
+
+
+	public void setDateUpdated(Date dateUpdated) {
+		this.dateUpdated = dateUpdated;
 	}
+
+
+
+	public Content getContent() {
+		return content;
+	}
+
+
+
+	public void setContent(Content content) {
+		this.content = content;
+	}
+
+
+
+	public Module getModules() {
+		return modules;
+	}
+
+
+
+	public void setModules(Module modules) {
+		this.modules = modules;
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		result = prime * result + (int) (contentId ^ (contentId >>> 32));
+		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
+		result = prime * result + ((dateUpdated == null) ? 0 : dateUpdated.hashCode());
+		result = prime * result + (int) (moduleId ^ (moduleId >>> 32));
+		result = prime * result + ((modules == null) ? 0 : modules.hashCode());
+		result = prime * result + (int) (tagId ^ (tagId >>> 32));
+		result = prime * result + ((tagName == null) ? 0 : tagName.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tag other = (Tag) obj;
+		if (content == null) {
+			if (other.content != null)
+				return false;
+		} else if (!content.equals(other.content))
+			return false;
+		if (contentId != other.contentId)
+			return false;
+		if (dateCreated == null) {
+			if (other.dateCreated != null)
+				return false;
+		} else if (!dateCreated.equals(other.dateCreated))
+			return false;
+		if (dateUpdated == null) {
+			if (other.dateUpdated != null)
+				return false;
+		} else if (!dateUpdated.equals(other.dateUpdated))
+			return false;
+		if (moduleId != other.moduleId)
+			return false;
+		if (modules == null) {
+			if (other.modules != null)
+				return false;
+		} else if (!modules.equals(other.modules))
+			return false;
+		if (tagId != other.tagId)
+			return false;
+		if (tagName == null) {
+			if (other.tagName != null)
+				return false;
+		} else if (!tagName.equals(other.tagName))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
+	}
+	
+	
 }
+

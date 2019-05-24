@@ -54,7 +54,7 @@ public class ContentRepositoryTest {
 		 content.setDescription("notes about Java");
 		 content.setCategory("notes");
 		 content.setName("Java Notes");
-		 content.setUrl("www.nowhere.com");
+		 content.setUrl("www.revaturetest.com");
 		 
 		 
 		 return content;
@@ -67,7 +67,7 @@ public class ContentRepositoryTest {
 		 content.setDescription("notes about Java");
 		 content.setCategory("notes");
 		 content.setName("Java Notes");
-		 content.setUrl("www.nowhere.com");
+		 content.setUrl("www.revaturetest.com");
 		
 		 
 		 return content;
@@ -80,7 +80,7 @@ public class ContentRepositoryTest {
 		 content.setDescription("notes about Java");
 		 content.setCategory("notes");
 		 content.setName("Java Notes");
-		 content.setUrl("www.nowhere.com");
+		 content.setUrl("www.revaturetest.com");
 		 
 		 
 		 return content;
@@ -93,7 +93,7 @@ public class ContentRepositoryTest {
 		 content.setDescription("notes about Java");
 		 content.setCategory("notes");
 		 content.setName("Java Notes");
-		 content.setUrl("www.nowhere.com");
+		 content.setUrl("www.revaturetest.com");
 		
 		 
 		 return content;
@@ -132,7 +132,7 @@ public class ContentRepositoryTest {
 		content = checkUrlContent(content);
 		Content entry = contentRepository.save(content);
 		//contentRepository.findByUrl("www.nowhere.com");
-		assertThat(entry).isEqualTo(contentRepository.findByUrl("www.nowhere.com"));
+		assertThat(entry).isEqualTo(contentRepository.findByUrl("www.revaturetest.com"));
 	}
 //	
 //	@Test 

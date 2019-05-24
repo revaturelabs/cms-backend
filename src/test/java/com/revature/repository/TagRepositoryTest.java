@@ -27,7 +27,7 @@ public class TagRepositoryTest {
 		tag.setTagId(1);
 		tag.setModuleId(1);
 		tag.setType("belongsTo");
-		tag.setName("Java");
+		tag.setTagName("Java");
 		//tagRepository.save(tag);
 		
 		//System.err.println(tagRepository.findAll().get(0).toString());
@@ -43,11 +43,11 @@ public class TagRepositoryTest {
 		tag.setTagId(1);
 		tag.setModuleId(1);
 		tag.setType("belongsTo");
-		tag.setName("Java");
+		tag.setTagName("Java");
 		
 		//tagRepository.save(tag);
 		
-		tag.setName("Java");
+		tag.setTagName("Java");
 		
 		//assertThat(tagRepository.save(tag)).isNotNull();
 	}
@@ -60,7 +60,7 @@ public class TagRepositoryTest {
 		tag.setTagId(1);
 		tag.setModuleId(1);
 		tag.setType("belongsTo");
-		tag.setName("Java");
+		tag.setTagName("Java");
 		
 		//tagRepository.save(tag);
 		

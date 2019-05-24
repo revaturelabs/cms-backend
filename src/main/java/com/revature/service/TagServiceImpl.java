@@ -3,13 +3,16 @@ package com.revature.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.exception.ModuleNotFoundExceptions;
+import com.revature.exception.TagNotFoundExceptions;
+import com.revature.model.Module;
 import com.revature.model.Tag;
 import com.revature.repository.TagRepository;
+
 
 @Service
 public class TagServiceImpl implements TagService {
@@ -18,61 +21,44 @@ public class TagServiceImpl implements TagService {
 	@Autowired
 	TagRepository tagRepository;
 	
-	/**
-	 * Find All Tags Method:
-	 * 1. Creates a list of tags.
-	 * 2. Populates tags using enhanced for loop.
-	 * 3. Returns the list of tags.
-	 */
-	public List<Tag> getAllTags() {
+		
+	//private static Logger logger= Logger.getLogger();
+	
+	public List<Tag> findAllTags() {
 		List<Tag> tags = new ArrayList<Tag>();
 		tagRepository.findAll().forEach(tag -> tags.add(tag));
 		return tags;
 	}
 		
-	/**
-	 * Find Tag By ID Method:
-	 * 1. Receives long value of id to search by.
-	 * 2. If Tag has requested id, returns the Tag object.
-	 * 3. If Tag does not have requested tags, returns a TagNotFoundException.
-	 */
-	public Tag getTagById(long id) {
-        return tagRepository.findById(id).get();
-		
+	public Tag findTagById(long id) {
+        //return tagRepository.findById(id).get();
+		return null;
     }
+	
+	@Override
+	public Tag findByTagName(String name) {
+		try {
+			return tagRepository.findByTagName(name);
+		} catch (TagNotFoundExceptions e) {
+			throw new TagNotFoundExceptions(name);
+		}
+	}
 
-	/**
-	 * Update Tag Method:
-	 * 1. Receives Tag object with required changes to be updated.
-	 * 2. Sets new Date object as Updated.
-	 * 3. Saves the object replacing and updating the object.
-	 */
-    public void saveOrUpdate(Tag tag) {
-    	tag.setUpdated(new Date());
+    public void save(Tag tag) {
+    	tag.setDateCreated(new Date());
         tagRepository.save(tag);
     }
 
-    /**
-     * Delete Tag Method:
-	 * 1. Receives id as a long to specify tag to be deleted.
-	 * 2. Deletes all tags with id given in the arguments.
-     */
-    public void delete(long id) {
-        tagRepository.deleteById(id);
+    @Override
+    public void deleteTag(Tag tag) {
+        tagRepository.delete(tag);
+    }
+    
+    public void update(Tag tag) {
+    	tag.setDateUpdated(new Date());
+        tagRepository.save(tag);
     }
 
-	@Override
-	public void createTagWithContentId(long contentId, String[] tags) {
-		Tag tag = new Tag();
-		tag.setContentId(contentId);
-		tag.setType("belongsTo");
-		for(String t: tags) {
-			tag.setName(t);
-			for(Long l: tagRepository.findModuleIdsByName(t)) {
-				tag.setModuleId(l);
-				tagRepository.save(tag);
-			}	
-		}
-		
-	}
+
+
 }
