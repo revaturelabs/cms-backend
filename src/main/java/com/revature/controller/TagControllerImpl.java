@@ -1,6 +1,5 @@
 package com.revature.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,69 +16,59 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.model.Content;
-import com.revature.model.Module;
 import com.revature.model.Tag;
-import com.revature.service.TagService;
 import com.revature.service.TagServiceImpl;
 
 @RestController("tagController")
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(value="/tags", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/tags", produces = { MediaType.APPLICATION_JSON_VALUE })
 public class TagControllerImpl implements TagController {
-	
+
 	@Autowired
 	TagServiceImpl tagService;
-   
-	
+
 	@GetMapping("/getall")
-    public List<Tag> findAllTags() {
+	public List<Tag> findAllTags() {
 		return tagService.findAllTags();
-	}  
+	}
 
+	@GetMapping("/get/{tagId}")
+	public ResponseEntity<Tag> findTagById(@PathVariable("tagId") long tagId) {
+		Tag tagFound = tagService.findTagById(tagId);
+		if (tagFound != null)
+			return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 
-    @GetMapping("/get/{tagId}")
-    public ResponseEntity<Tag> findTagById(@PathVariable("tagId") long tagId) {
-    	Tag tagFound = tagService.findTagById(tagId);
-    	if (tagFound != null)
-    		return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
-    	else
-    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-    
-    @GetMapping(value = "/get/{name}")
-    public ResponseEntity<Tag> findTagByName(@PathVariable("name") String name) {
-    	Tag tagFound = tagService.findByTagName(name);
-    	if (tagFound != null)
-    		return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
-    	else
-    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+	@GetMapping(value = "/get/{name}")
+	public ResponseEntity<Tag> findTagByName(@PathVariable("name") String name) {
+		Tag tagFound = tagService.findByTagName(name);
+		if (tagFound != null)
+			return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 
-    @DeleteMapping("/delete/{tagId}")
-    public ResponseEntity<Tag> deleteTag(@RequestBody Tag tag) {
-    	if(tagService.findTagById(tag.getTagId()) != null) {
-    		tagService.deleteTag(tag);
-    		return new ResponseEntity<>(HttpStatus.OK);
-    	}
-    	else
-    	{
-    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    	}
+	@DeleteMapping("/delete/{tagId}")
+	public ResponseEntity<Tag> deleteTag(@RequestBody Tag tag) {
+		if (tagService.findTagById(tag.getTagId()) != null) {
+			tagService.deleteTag(tag);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
 
-    }
-    
+	@PostMapping("/create")
+	public long createTag(@RequestBody Tag tag) {
+		tagService.save(tag);
+		return tag.getTagId();
+	}
 
-    @PostMapping("/create")
-    public long createTag(@RequestBody Tag tag) {
-        tagService.save(tag);
-        return tag.getTagId();
-    }
-    
-    @PutMapping("/update")
-    public long updateTag(@RequestBody Tag tag) {
-    	tagService.save(tag);
-    	return tag.getTagId();
-    }
-
+	@PutMapping("/update")
+	public long updateTag(@RequestBody Tag tag) {
+		tagService.save(tag);
+		return tag.getTagId();
+	}
 }

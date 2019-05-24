@@ -3,6 +3,7 @@ package com.revature.service;
 import java.util.List;
 
 import com.revature.model.Content;
+import com.revature.model.Tag;
 
 public interface ContentService {
 
@@ -18,8 +19,6 @@ public interface ContentService {
 	 * @return
 	 */
 	public Content findByUrl(String url);
-	public List<Content> findByTag(String[] tag);
-	public Content findByTagsAndCategory(String[] tag, String category);
 	/**
 	 * Delete Content Method:
 	 * 1. Receives contentId as a long to specify content to be deleted.
@@ -32,4 +31,7 @@ public interface ContentService {
 	public void deleteContent(long contentId);
 	public Content updateContent(Content content);
 	public Content findByCategory(String category);
+	List<Content> findByTag(Tag[] tag);
+	Content findByTagsAndCategory(Tag[] tag, String category);
+	void delete();
 }

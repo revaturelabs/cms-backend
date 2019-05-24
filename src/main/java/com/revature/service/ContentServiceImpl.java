@@ -32,31 +32,33 @@ public class ContentServiceImpl implements ContentService {
 	}
 	
 	@Override
-	public Content findByURL(String url) {
-		//only used for testing
-//		try {
-//			throw new RuntimeException("url: ssssssss");
-//		} catch(UrlNotRecognizedException e) {
-//			e.printStackTrace();
-//		}
+	public Content findByUrl(String url) {
 		return contentRepository.findByUrl(url);
 	}
 	
 	@Override
-	public List<Content> findByTag(Tag tag) {
+	public List<Content> findByTag(Tag[] tag) {
 		return contentRepository.findByTags(tag);
 	}
 	
 	@Override
-	public Content findByTagsAndCategory(Tag tag, String category) {
+	public Content findByTagsAndCategory(Tag[] tag, String category) {
 		return contentRepository.findByTagsAndCategory(tag, category);
 	}
+	
 	@Override
 	public Content findByCategory(String category) {
 		return contentRepository.findByCategory(category);
 	}
+	
 	@Override
 	public Content findByContentId(long contentId) {
 		return contentRepository.findByContentId(contentId);
+	}
+
+	@Override
+	public void deleteContent(long contentId) {
+		// TODO Auto-generated method stub
+		
 	}
 }

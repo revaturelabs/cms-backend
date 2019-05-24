@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.dto.CreateContentDto;
 import com.revature.model.Content;
+import com.revature.model.Tag;
 import com.revature.service.ContentService;
 import com.revature.service.TagService;
 
@@ -33,7 +34,8 @@ public class ContentControllerImpl implements ContentController {
 	
 	/**
 	 * Receives a content object and checks if the URL exists. If the URL does not exist the method places it 
-	 * in the database as well as creating tags associated with that content ID. If it does exist it will update the existing content
+	 * in the database as well as creating tags associated with that content ID. 
+	 * If it does exist it will update the existing content
 	 * Returns a response entity with a 200 HTTP status if the content is valid.
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
@@ -88,7 +90,7 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@GetMapping("/findbytag")
-	public ResponseEntity<List<Content>> findByTag(@RequestParam("tag") String[] tags) {
+	public ResponseEntity<List<Content>> findByTag(@RequestParam("tags") Tag[] tags) {
 		List<Content> validContent = contentService.findByTag(tags);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
@@ -101,7 +103,7 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@GetMapping("/findbytagsandcategory")
-	public ResponseEntity<Content> findByTagsAndCategory(@RequestParam("tags") String[] tags, @RequestParam("category") String category) {
+	public ResponseEntity<Content> findByTagsAndCategory(@RequestParam("tags") Tag[] tags, @RequestParam("category") String category) {
 		Content validContent = contentService.findByTagsAndCategory(tags, category);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :

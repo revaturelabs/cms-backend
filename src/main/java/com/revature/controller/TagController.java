@@ -10,8 +10,12 @@ import com.revature.model.Tag;
 public interface TagController {
 
 	List<Tag> findAllTags();
+	
 	ResponseEntity<Tag> findTagById(long tagId);
-	ResponseEntity<Tag> deleteTag(Tag tag);
 	ResponseEntity<Tag> findTagByName(String name);
-	//long saveTag(Tag tag);
+
+	ResponseEntity<Tag> deleteTag(Tag tag);
+	
+	long createTag(Tag tag);
+	long updateTag(Tag tag);
 }

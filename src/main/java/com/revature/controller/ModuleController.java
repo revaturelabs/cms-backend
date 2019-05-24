@@ -14,6 +14,4 @@ public interface ModuleController {
 	ResponseEntity<Module> findModuleByName(String moduleName);
 	ResponseEntity<Module> updateModuleByModule(Module module);
 	ResponseEntity<Module> deleteModuleByModule(Module module);
-	 
-   
 }
