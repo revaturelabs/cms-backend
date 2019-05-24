@@ -37,8 +37,8 @@ public class Tag {
 	private long tagId;
 	@Column(name = "TAG_NAME")
 	private String tagName;
-	@Column(name = "TYPE")
-	private String type;
+	@Column(name = "CATEGORY")
+	private String category;
 
 	@JoinColumn
 	@Column(name = "CONTENT_ID")
@@ -73,7 +73,7 @@ public class Tag {
 		super();
 		this.tagId = tagId;
 		this.tagName = tagName;
-		this.type = type;
+		this.category = type;
 		this.contentId = contentId;
 		this.moduleId = moduleId;
 		this.dateCreated = dateCreated;
@@ -86,7 +86,7 @@ public class Tag {
 
 	@Override
 	public String toString() {
-		return "Tag [tagId=" + tagId + ", tagName=" + tagName + ", type=" + type + ", contentId=" + contentId
+		return "Tag [tagId=" + tagId + ", tagName=" + tagName + ", type=" + category + ", contentId=" + contentId
 				+ ", moduleId=" + moduleId + ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated
 				+ ", content=" + content + ", modules=" + modules + "]";
 	}
@@ -118,13 +118,13 @@ public class Tag {
 
 
 	public String getType() {
-		return type;
+		return category;
 	}
 
 
 
 	public void setType(String type) {
-		this.type = type;
+		this.category = type;
 	}
 
 
@@ -213,7 +213,7 @@ public class Tag {
 		result = prime * result + ((modules == null) ? 0 : modules.hashCode());
 		result = prime * result + (int) (tagId ^ (tagId >>> 32));
 		result = prime * result + ((tagName == null) ? 0 : tagName.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		return result;
 	}
 
@@ -257,10 +257,10 @@ public class Tag {
 				return false;
 		} else if (!tagName.equals(other.tagName))
 			return false;
-		if (type == null) {
-			if (other.type != null)
+		if (category == null) {
+			if (other.category != null)
 				return false;
-		} else if (!type.equals(other.type))
+		} else if (!category.equals(other.category))
 			return false;
 		return true;
 	}
