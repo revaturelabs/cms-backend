@@ -3,6 +3,7 @@ package com.revature.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.stereotype.Service;
 
 import com.revature.exception.UrlNotRecognizedException;
@@ -36,11 +37,13 @@ public class ContentServiceImpl implements ContentService {
 		return contentRepository.findByUrl(url);
 	}
 	
+	@ReadOnlyProperty
 	@Override
-	public List<Content> findByTag(Tag[] tag) {
+	public List<Content> findByTags(Tag[] tag) {
 		return contentRepository.findByTags(tag);
 	}
 	
+	@ReadOnlyProperty
 	@Override
 	public Content findByTagsAndCategory(Tag[] tag, String category) {
 		return contentRepository.findByTagsAndCategory(tag, category);

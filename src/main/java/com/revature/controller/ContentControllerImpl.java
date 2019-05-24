@@ -89,9 +89,9 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 200 HTTP status if the content is valid.
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
-	@GetMapping("/findbytag")
-	public ResponseEntity<List<Content>> findByTag(@RequestParam("tags") Tag[] tags) {
-		List<Content> validContent = contentService.findByTag(tags);
+	@PostMapping("/findbytag")
+	public ResponseEntity<List<Content>> findByTags(@RequestBody Tag[] tags) {
+		List<Content> validContent = contentService.findByTags(tags);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -102,8 +102,8 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 200 HTTP status if the content is valid.
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
-	@GetMapping("/findbytagsandcategory")
-	public ResponseEntity<Content> findByTagsAndCategory(@RequestParam("tags") Tag[] tags, @RequestParam("category") String category) {
+	@PostMapping("/findbytagsandcategory")
+	public ResponseEntity<Content> findByTagsAndCategory(@RequestBody Tag[] tags, @RequestParam("category") String category) {
 		Content validContent = contentService.findByTagsAndCategory(tags, category);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
