@@ -22,7 +22,7 @@ import com.revature.service.ContentService;
 import com.revature.service.TagService;
 
 @RestController("contentController")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping(path = "/content")
 public class ContentControllerImpl implements ContentController {
 	

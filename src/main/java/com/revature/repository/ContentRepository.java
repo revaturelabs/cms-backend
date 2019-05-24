@@ -13,7 +13,12 @@ import com.revature.model.Tag;
 @Repository
 public interface ContentRepository extends JpaRepository<Content, Long> {
 
-	
+	/**
+	 * Returns content 
+	 * 
+	 * @param contentId
+	 * @return Content
+	 */
 	public Content findByContentId(long contentId);
 
 	public Content findByUrl(String url);

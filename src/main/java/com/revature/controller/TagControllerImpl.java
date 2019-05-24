@@ -20,7 +20,7 @@ import com.revature.model.Tag;
 import com.revature.service.TagServiceImpl;
 
 @RestController("tagController")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping(value = "/tags", produces = { MediaType.APPLICATION_JSON_VALUE })
 public class TagControllerImpl implements TagController {
 
