@@ -50,11 +50,11 @@ public class Tag {
 	@UpdateTimestamp
 	private Date dateUpdated;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="contentId", insertable=false, updatable=false)
 	private Content content;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="moduleId", insertable=false, updatable=false)
 	private Module modules;
 

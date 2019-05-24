@@ -52,7 +52,7 @@ public class ContentServiceImpl implements ContentService {
 	public List<Content> findByTagsAndCategory(Tag[] tag, String category) {
 		List<Content> contentList = new ArrayList<>();
 		for(Tag t : tag) {
-			contentList.addAll(contentRepository.findByTagsAndCategory(t, category));
+			contentList.addAll(contentRepository.findByTagsAndCategory(t.getTagName(), category));
 		}
 		return contentList;
 	}
