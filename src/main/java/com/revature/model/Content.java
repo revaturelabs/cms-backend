@@ -60,12 +60,11 @@ public class Content {
 		
 	}
 
-	public Content(long contentId, String description, List<Tag> tags, String category, String name, String url,
+	public Content(long contentId, String description, String category, String name, String url,
 			Date dateCreated, Date dateUpdated) {
 		super();
 		this.contentId = contentId;
 		this.description = description;
-		this.tags = tags;
 		this.category = category;
 		this.name = name;
 		this.url = url;

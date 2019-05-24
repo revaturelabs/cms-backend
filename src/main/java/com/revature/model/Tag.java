@@ -48,11 +48,11 @@ public class Tag {
 	@UpdateTimestamp
 	private Date dateUpdated;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="contentId", insertable=false, updatable=false)
 	private Content content;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="moduleId", insertable=false, updatable=false)
 	private Module modules;
 
@@ -61,7 +61,7 @@ public class Tag {
 
 
 	public Tag(long tagId, String tagName, String type, long contentId, long moduleId, Date dateCreated,
-			Date dateUpdated, Content content, Module modules) {
+			Date dateUpdated, Content content) {
 		super();
 		this.tagId = tagId;
 		this.tagName = tagName;
@@ -71,7 +71,6 @@ public class Tag {
 		this.dateCreated = dateCreated;
 		this.dateUpdated = dateUpdated;
 		this.content = content;
-		this.modules = modules;
 	}
 
 
@@ -121,7 +120,7 @@ public class Tag {
 
 
 
-	public long getContentId() {
+	public Long getContentId() {
 		return contentId;
 	}
 

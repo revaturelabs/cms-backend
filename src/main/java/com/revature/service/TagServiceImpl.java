@@ -1,7 +1,5 @@
 package com.revature.service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +16,9 @@ public class TagServiceImpl implements TagService {
 	@Autowired
 	TagRepository tagRepository;
 
-	// private static Logger logger= Logger.getLogger();
-
 	@Override
 	public List<Tag> findAllTags() {
-		List<Tag> tags = new ArrayList<Tag>();
-		tagRepository.findAll().forEach(tag -> tags.add(tag));
-
-		return tags;
+		return tagRepository.findAll();
 	}
 
 	@Override
@@ -44,13 +37,11 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public void save(Tag tag) {
-		tag.setDateCreated(new Date());
 		tagRepository.save(tag);
 	}
 
 	@Override
 	public void update(Tag tag) {
-		tag.setDateUpdated(new Date());
 		tagRepository.save(tag);
 	}
 	
