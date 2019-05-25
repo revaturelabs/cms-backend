@@ -21,7 +21,8 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 	public Content findByContentId(long contentId);
 
 	public Content findByUrl(String url);
-
+	
+	
 	@Query(value="SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
 			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t "
 			+ "WHERE t.TAG_NAME = :name", nativeQuery = true)
