@@ -36,7 +36,7 @@ public class ModuleControllerImpl {
 		return ModuleService.findAllTags();
 	}
 
-	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/create")
 	public ResponseEntity<Module> createModule(@RequestBody Module module) {
 		if (ModuleService.createModule(module) != null)
 			return new ResponseEntity<>(module, HttpStatus.CREATED);
