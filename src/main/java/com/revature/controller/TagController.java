@@ -9,7 +9,7 @@ import com.revature.model.Tag;
 
 public interface TagController {
 
-	List<Tag> findAllTags();
+	ResponseEntity<List<Tag>> findAllTags();
 	
 	ResponseEntity<Tag> findTagById(long tagId);
 	ResponseEntity<Tag> findTagByName(String name);

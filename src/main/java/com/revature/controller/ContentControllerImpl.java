@@ -141,10 +141,12 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@Override
-	public List<Content> findAllContent() {
-	
-		return contentService.findAllContent();
+	@GetMapping("/findall")
+	public ResponseEntity<List<Content>> findAllContent() {
+		List<Content> allContent = contentService.findAllContent();
+		return (allContent != null) ?
+				new ResponseEntity<>(allContent, HttpStatus.OK) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	/**

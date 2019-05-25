@@ -28,8 +28,11 @@ public class TagControllerImpl implements TagController {
 	TagServiceImpl tagService;
 
 	@GetMapping("/getall")
-	public List<Tag> findAllTags() {
-		return tagService.findAllTags();
+	public ResponseEntity<List<Tag>> findAllTags() {
+		List<Tag> allTags = tagService.findAllTags();
+		return (allTags != null) ?
+				new ResponseEntity<>(allTags, HttpStatus.FOUND) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/getid/{tagId}")
