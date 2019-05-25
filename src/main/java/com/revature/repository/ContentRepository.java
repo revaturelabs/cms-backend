@@ -22,12 +22,23 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 
 	public Content findByUrl(String url);
 	
-	
+	/*
+	 * SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
+            + "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t on t.content_id = c.contentid "
+            + "WHERE t.TAG_NAME = :name"
+            
+            This is the query needed for the oracle database testing
+	 */
 	@Query(value="SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
 			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t "
 			+ "WHERE t.TAG_NAME = :name", nativeQuery = true)
 	public List<Content> findByTags(@Param("name") String name);
 
+	/*
+	 * SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
+            + "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t on t.content_id = c.contentid "
+            + "WHERE t.TAG_NAME = :name" AND c.CATEGORY = :category ,
+	 */
 	@Query(value="SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
 			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t "
 			+ "WHERE t.TAG_NAME = :name AND c.CATEGORY = :category", nativeQuery = true)
