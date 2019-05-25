@@ -114,9 +114,15 @@ public class ContentControllerImpl implements ContentController {
 	}
 
 	/**
+	 * NOTE: NOT USED FOR THIS ITERATION
+     *
+     * NOTE TO FUTURE ITERATIONS:
+     *         deleteContent requires you to delete Tags associated with the contentId because we are use cascade.all
+	 * 
 	 * Deletes specific content with corresponding to contentId
 	 * Calls the content service method deleteContent(long contentId)
 	 */
+	
 	@DeleteMapping("/delete")
 	public void deleteContent(@RequestParam long contentId) {
 		contentService.deleteContent(contentId);

@@ -53,8 +53,8 @@ public class ContentServiceImpl implements ContentService {
 	@Override
 	public List<Content> findByTagsAndCategory(Tag[] tag, String category) {
 		List<Content> contentList = new ArrayList<>();
-		for (Tag t : tag) {
-			contentList.addAll(contentRepository.findByTagsAndCategory(t, category));
+		for(Tag t : tag) {
+			contentList.addAll(contentRepository.findByTagsAndCategory(t.getTagName(), category));
 		}
 		return contentList;
 	}

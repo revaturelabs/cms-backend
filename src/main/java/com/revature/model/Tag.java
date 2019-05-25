@@ -62,8 +62,8 @@ public class Tag {
 	
 
 
-	public Tag(long tagId, String tagName, String type, Long contentId, long moduleId, Date dateCreated,
-			Date dateUpdated, Content content, Module modules) {
+	public Tag(long tagId, String tagName, String type, long contentId, long moduleId, Date dateCreated,
+			Date dateUpdated, Content content) {
 		super();
 		this.tagId = tagId;
 		this.tagName = tagName;
@@ -73,7 +73,6 @@ public class Tag {
 		this.dateCreated = dateCreated;
 		this.dateUpdated = dateUpdated;
 		this.content = content;
-		this.modules = modules;
 	}
 
 
