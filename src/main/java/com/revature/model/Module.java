@@ -46,7 +46,7 @@ public class Module {
 	@UpdateTimestamp
 	private Date updated;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Tag.class, fetch = FetchType.LAZY) //can re-add Cascade type
 	private List<Tag> tags;
 	
 	public Module() {

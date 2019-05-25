@@ -29,6 +29,7 @@ public interface ContentService {
 	 * 
 	 */
 	public void deleteContent(long contentId);
+	List<Tag> findTagsByContentId(long contentId);
 	public Content updateContent(Content content);
 	public Content findByCategory(String category);
 	List<Content> findByTags(Tag[] tag);

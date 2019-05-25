@@ -10,12 +10,16 @@ import org.springframework.stereotype.Service;
 import com.revature.model.Content;
 import com.revature.model.Tag;
 import com.revature.repository.ContentRepository;
+import com.revature.repository.TagRepository;
 
 @Service("contentService")
 public class ContentServiceImpl implements ContentService {
 
 	@Autowired
 	private ContentRepository contentRepository;
+	
+	@Autowired
+	private TagRepository tagRepository;
 
 	@Override
 	public void delete() {
@@ -75,9 +79,14 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	
-
 	@Override
 	public List<Content> findAllContent() {
 		return contentRepository.findAll();
+	}
+
+	@Override
+	public List<Tag> findTagsByContentId(long contentId) {
+		List<Tag> tagsList = tagRepository.findByContentId(contentId);
+		return tagsList;
 	}
 }

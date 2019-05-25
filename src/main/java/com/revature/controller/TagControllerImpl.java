@@ -39,7 +39,7 @@ public class TagControllerImpl implements TagController {
 	public ResponseEntity<Tag> findTagById(@PathVariable("tagId") long tagId) {
 		Tag tagFound = tagService.findTagById(tagId);
 		if (tagFound != null)
-			return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
+			return new ResponseEntity<>(tagFound, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
@@ -48,7 +48,7 @@ public class TagControllerImpl implements TagController {
 	public ResponseEntity<Tag> findTagByName(@PathVariable("tagName") String tagName) {
 		Tag tagFound = tagService.findByTagName(tagName);
 		if (tagFound != null)
-			return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
+			return new ResponseEntity<>(tagFound, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
