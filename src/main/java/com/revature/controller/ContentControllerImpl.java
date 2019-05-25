@@ -3,6 +3,7 @@ package com.revature.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,9 @@ public class ContentControllerImpl implements ContentController {
 	@Autowired 
 	private TagService tagService;
 	
+	@Autowired
+	private ModelMapper modelMapper;
+	
 	/**
 	 * Receives a content object and checks if the URL exists. If the URL does not exist the method places it 
 	 * in the database as well as creating tags associated with that content ID. 
@@ -41,14 +45,8 @@ public class ContentControllerImpl implements ContentController {
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<Content> createContent(@RequestBody CreateContentDto contentDto) {
-		System.out.println("entering create content");
-		
 		Content content = contentDto.getContent();
-		System.out.println("content is : "+content);
-		System.out.println("contentDTO is : "+Arrays.toString(contentDto.getTags()));
-		
 		Content checkContent = contentService.findByUrl(content.getUrl());
-		System.out.println("checkContent : " +checkContent);
 		
 		if(checkContent != null) {
 			System.out.println("enter if statement");
@@ -63,8 +61,9 @@ public class ContentControllerImpl implements ContentController {
 			
 			System.out.println("The valid content is : " + validContent);
 			
-			tagService.createTagWithContentId(content.getContentId(), contentDto.getTags());
+			List<Tag> tags = tagService.createTagWithContentId(content.getContentId(), contentDto.getTags());
 			
+			validContent.setTags(tags);
 			
 			return (validContent != null) ?
 					new ResponseEntity<>(contentService.findByContentId(content.getContentId()),HttpStatus.OK) :

@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,9 @@ public class TagServiceImpl implements TagService {
 	}
 
 	@Override
-	public void createTagWithContentId(long contentId, String[] tags) {
+	public List<Tag> createTagWithContentId(long contentId, String[] tags) {
 		Tag originTag = new Tag();
+		List<Tag> tagList = new ArrayList<>();
 		originTag.setContentId(contentId);
 		originTag.setType("belongsTo");
 		for(String t : tags) {
@@ -63,8 +65,10 @@ public class TagServiceImpl implements TagService {
 				newTag.setType("belongsTo");
 				newTag.setTagName(t);
 				newTag.setModuleId(l);
-				tagRepository.save(newTag);
+				tagRepository.save(newTag);	
+				tagList.add(newTag);
 			}
 		}
+		return tagList;
 	}
 }
