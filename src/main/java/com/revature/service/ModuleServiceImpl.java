@@ -54,6 +54,5 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public void deleteModule(Module module) {
 		ModuleRepository.delete(module);
-		;
 	}
 }

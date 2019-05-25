@@ -64,6 +64,8 @@ public class ContentControllerImpl implements ContentController {
 			System.out.println("The valid content is : " + validContent);
 			
 			tagService.createTagWithContentId(content.getContentId(), contentDto.getTags());
+			
+			
 			return (validContent != null) ?
 					new ResponseEntity<>(contentService.findByContentId(content.getContentId()),HttpStatus.OK) :
 				    new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -84,6 +86,7 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	
 	/**
 	 * Returns a list of contents with the given tags
 	 * Returns a response entity with a 200 HTTP status if the content is valid.
@@ -138,4 +141,27 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	/**
+	 * Finds all content 
+	 * Returns a response entity with a 200 HTTP status if the content list is valid
+	 * Returns a response entity with a 400 HTTP status if the content list is null
+	 */
+	@GetMapping("/findall")
+	public ResponseEntity<List<Content>> findAllContent() {
+		List<Content> allContent = contentService.findAllContent();
+		return (allContent != null) ?
+				new ResponseEntity<>(allContent, HttpStatus.OK) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	/**
+	 * Updates content with new content, should not be necessary if create business logic works
+	 */
+//	@PutMapping("/update")
+//	public ResponseEntity<Content> updateContent(@RequestBody Content content) {
+//		Content validContent = contentService.updateContent(content);
+//		return (validContent != null) ?
+//				new ResponseEntity<>(validContent,HttpStatus.OK) :
+//			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//	}
 }

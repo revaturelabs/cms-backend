@@ -16,37 +16,39 @@ public class ContentServiceImpl implements ContentService {
 
 	@Autowired
 	private ContentRepository contentRepository;
-	
+
 	@Override
 	public void delete() {
-		
+
 	}
+
 	@Override
 	public Content updateContent(Content content) {
-		
+
 		return contentRepository.save(content);
 	}
+
 	@Override
 	public Content newContent(Content content) {
-		
+
 		return contentRepository.save(content);
 	}
-	
+
 	@Override
 	public Content findByUrl(String url) {
 		return contentRepository.findByUrl(url);
 	}
-	
+
 	@ReadOnlyProperty
 	@Override
 	public List<Content> findByTags(Tag[] tag) {
 		List<Content> contentList = new ArrayList<>();
-		for(Tag t : tag) {
+		for (Tag t : tag) {
 			contentList.addAll(contentRepository.findByTags(t.getTagName()));
 		}
 		return contentList;
 	}
-	
+
 	@ReadOnlyProperty
 	@Override
 	public List<Content> findByTagsAndCategory(Tag[] tag, String category) {
@@ -56,12 +58,12 @@ public class ContentServiceImpl implements ContentService {
 		}
 		return contentList;
 	}
-	
+
 	@Override
 	public Content findByCategory(String category) {
 		return contentRepository.findByCategory(category);
 	}
-	
+
 	@Override
 	public Content findByContentId(long contentId) {
 		return contentRepository.findByContentId(contentId);
@@ -69,7 +71,13 @@ public class ContentServiceImpl implements ContentService {
 
 	@Override
 	public void deleteContent(long contentId) {
-		// TODO Auto-generated method stub
-		
+		//contentRepository.delete(contentId);
+	}
+
+	
+
+	@Override
+	public List<Content> findAllContent() {
+		return contentRepository.findAll();
 	}
 }
