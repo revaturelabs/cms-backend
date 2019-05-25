@@ -64,14 +64,20 @@ public class TagControllerImpl implements TagController {
 	}
 
 	@PostMapping("/create")
-	public long createTag(@RequestBody Tag tag) {
+	public ResponseEntity<Long> createTag(@RequestBody Tag tag) {
 		tagService.save(tag);
-		return tag.getTagId();
+		Long id = tag.getTagId();
+		return (id != null) ?
+				new ResponseEntity<>(id, HttpStatus.CREATED) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping("/update")
-	public long updateTag(@RequestBody Tag tag) {
+	public ResponseEntity<Long> updateTag(@RequestBody Tag tag) {
 		tagService.save(tag);
-		return tag.getTagId();
+		Long id = tag.getTagId();
+		return (id != null) ?
+				new ResponseEntity<>(id, HttpStatus.CREATED) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 }

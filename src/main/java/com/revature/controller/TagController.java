@@ -16,6 +16,6 @@ public interface TagController {
 
 	ResponseEntity<Tag> deleteTag(Tag tag);
 	
-	long createTag(Tag tag);
-	long updateTag(Tag tag);
+	ResponseEntity<Long> createTag(Tag tag);
+	ResponseEntity<Long> updateTag(Tag tag);
 }
