@@ -61,16 +61,17 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public void createTagWithContentId(long contentId, String[] tags) {
-		Tag tag = new Tag();
-		tag.setContentId(contentId);
-		tag.setType("belongsTo");
+		Tag originTag = new Tag();
+		originTag.setContentId(contentId);
+		originTag.setType("belongsTo");
 		for(String t : tags) {
-			tag.setTagName(t);
+			originTag.setTagName(t);
 			for(Long l: tagRepository.findDistinctModuleIdByTagName(t)) {
-				
-				
-				tag.setModuleId(l);
-				tagRepository.save(tag);
+				Tag newTag = new Tag();
+				newTag.setTagName(t);
+				newTag.getContentId();
+				newTag.setModuleId(l);
+				tagRepository.save(newTag);
 			}
 		}
 	}

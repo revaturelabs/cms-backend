@@ -86,6 +86,7 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	
 	/**
 	 * Returns a list of contents with the given tags
 	 * Returns a response entity with a 200 HTTP status if the content is valid.
@@ -132,6 +133,12 @@ public class ContentControllerImpl implements ContentController {
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	@Override
+	public List<Content> findAllContent() {
+	
+		return contentService.findAllContent();
 	}
 
 	/**

@@ -33,5 +33,6 @@ public interface ContentService {
 	public Content findByCategory(String category);
 	List<Content> findByTags(Tag[] tag);
 	List<Content> findByTagsAndCategory(Tag[] tag, String category);
+	List<Content> findAllContent();
 	void delete();
 }
