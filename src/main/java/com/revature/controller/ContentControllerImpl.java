@@ -141,6 +141,11 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	/**
+	 * Finds all content 
+	 * Returns a response entity with a 200 HTTP status if the content list is valid
+	 * Returns a response entity with a 400 HTTP status if the content list is null
+	 */
 	@GetMapping("/findall")
 	public ResponseEntity<List<Content>> findAllContent() {
 		List<Content> allContent = contentService.findAllContent();
