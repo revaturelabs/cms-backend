@@ -16,5 +16,6 @@ public interface ContentController {
 	ResponseEntity<Content> findByCategory(String category);
 	ResponseEntity<List<Content>> findByTagsAndCategory(Tag[] tags, String category);
 	public void deleteContent(long contentId);
+	ResponseEntity<List<Content>> findAllContent();
 	//ResponseEntity<Content> updateContent(Content content);
 }

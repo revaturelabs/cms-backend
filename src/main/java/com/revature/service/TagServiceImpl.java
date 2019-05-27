@@ -1,7 +1,6 @@
 package com.revature.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,9 @@ public class TagServiceImpl implements TagService {
 	@Autowired
 	TagRepository tagRepository;
 
-	// private static Logger logger= Logger.getLogger();
-
 	@Override
 	public List<Tag> findAllTags() {
-		List<Tag> tags = new ArrayList<Tag>();
-		tagRepository.findAll().forEach(tag -> tags.add(tag));
-
-		return tags;
+		return tagRepository.findAll();
 	}
 
 	@Override
@@ -44,13 +38,11 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public void save(Tag tag) {
-		tag.setDateCreated(new Date());
 		tagRepository.save(tag);
 	}
 
 	@Override
 	public void update(Tag tag) {
-		tag.setDateUpdated(new Date());
 		tagRepository.save(tag);
 	}
 	
@@ -60,16 +52,23 @@ public class TagServiceImpl implements TagService {
 	}
 
 	@Override
-	public void createTagWithContentId(long contentId, String[] tags) {
-		Tag tag = new Tag();
-		tag.setContentId(contentId);
-		tag.setType("belongsTo");
+	public List<Tag> createTagWithContentId(long contentId, String[] tags) {
+		Tag originTag = new Tag();
+		List<Tag> tagList = new ArrayList<>();
+		originTag.setContentId(contentId);
+		originTag.setType("belongsTo");
 		for(String t : tags) {
-			tag.setTagName(t);
+			originTag.setTagName(t);
 			for(Long l: tagRepository.findDistinctModuleIdByTagName(t)) {
-				tag.setModuleId(l);
-				tagRepository.save(tag);
+				Tag newTag = new Tag();
+				newTag.setContentId(contentId);
+				newTag.setType("belongsTo");
+				newTag.setTagName(t);
+				newTag.setModuleId(l);
+				tagRepository.save(newTag);	
+				tagList.add(newTag);
 			}
 		}
+		return tagList;
 	}
 }

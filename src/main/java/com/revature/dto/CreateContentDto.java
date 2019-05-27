@@ -3,10 +3,12 @@ package com.revature.dto;
 import java.util.Arrays;
 
 import com.revature.model.Content;
+import com.revature.model.Tag;
 
 public class CreateContentDto {
 
 	private Content content;
+	
 	private String[] tags;
 	
 	public CreateContentDto() {}
