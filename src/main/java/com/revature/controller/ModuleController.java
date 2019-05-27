@@ -8,8 +8,8 @@ import com.revature.model.Module;
 public interface ModuleController {
 	
 	ResponseEntity<Module> createModule(Module module);
-	List<Module> findAllModules();
-	List<String> findAllTags();
+	ResponseEntity<List<Module>> findAllModules();
+	ResponseEntity<List<String>> findAllTags();
 	ResponseEntity<Module> findModuleById(long moduleId);
 	ResponseEntity<Module> findModuleByName(String moduleName);
 	ResponseEntity<Module> updateModuleByModule(Module module);
