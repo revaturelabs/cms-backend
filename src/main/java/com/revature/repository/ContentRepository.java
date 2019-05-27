@@ -40,7 +40,7 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
             + "WHERE t.TAG_NAME = :name" AND c.CATEGORY = :category ,
 	 */
 	@Query(value="SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
-			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t ON c.CONTENTID = t.CONTENT_ID "
+			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t ON t.CONTENT_ID = c.CONTENTID "
 			+ "WHERE t.TAG_NAME = :name AND c.CATEGORY = :category", nativeQuery = true)
 	public List<Content> findByTagsAndCategory(@Param("name") String name, String category);
 
