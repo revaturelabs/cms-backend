@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.revature.model.Tag;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,6 +23,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table
+@JsonIgnoreProperties({"hibernateLazyInitializer", "tags"})
 public class Content {
 	
 	@Id

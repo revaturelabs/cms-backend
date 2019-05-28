@@ -2,13 +2,13 @@ package com.revature.controller;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -161,9 +161,9 @@ public class ContentControllerImpl implements ContentController {
 	 * with a certain content id.
 	 * 
 	 */
-	@GetMapping("/findtagsbycontentid")
-	public ResponseEntity<List<Tag>> findTagsByContentId(@RequestParam("contentId") long contentId) {
-		List<Tag> allTags = contentService.findTagsByContentId(contentId);
+	@PostMapping("/findtagsbycontentid")
+	public ResponseEntity<List<Tag>> findTagsByContentId(@RequestBody Content content) {
+		List<Tag> allTags = contentService.findTagsByContentId(content.getContentId());
 		return(allTags != null) ?
 				new ResponseEntity<>(allTags, HttpStatus.OK) :
 				new ResponseEntity<>(HttpStatus.NOT_FOUND);
