@@ -54,7 +54,6 @@ public class ContentControllerImpl implements ContentController {
 		Content content = contentDto.getContent();
 		Content checkContent = contentService.findByUrl(content.getUrl());
 		
-		try {
 		if(checkContent != null) {
 			System.out.println("enter if statement");
 			
@@ -62,10 +61,8 @@ public class ContentControllerImpl implements ContentController {
 			return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
-				
 		}
 		else {
-			
 			Content validContent = contentService.newContent(content);
 			
 			System.out.println("The valid content is : " + validContent);
@@ -74,15 +71,14 @@ public class ContentControllerImpl implements ContentController {
 			
 			validContent.setTags(tags);
 			
+			content = validContent;
+			
+			contentService.updateContent(content);
+			
 			return (validContent != null) ?
 					new ResponseEntity<>(contentService.findByContentId(content.getContentId()),HttpStatus.OK) :
 				    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		}catch(UrlNotRecognizedException e) {
-			throw e;
-			
-		}
-		
 	}
 	
 	/**
