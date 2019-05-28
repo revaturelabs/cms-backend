@@ -12,5 +12,5 @@ public interface TagService {
 	void save(Tag tag);
 	void update(Tag tag);
 	void deleteTag(Tag tag);
-	void createTagWithContentId(long contentId, String[] tags);
+	List<Tag> createTagWithContentId(long contentId, String[] tags);
 }

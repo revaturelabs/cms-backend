@@ -1,8 +1,8 @@
 package com.revature.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +32,7 @@ public class ContentControllerImpl implements ContentController {
 	@Autowired 
 	private TagService tagService;
 	
+
 	/**
 	 * Receives a content object and checks if the URL exists. If the URL does not exist the method places it 
 	 * in the database as well as creating tags associated with that content ID. 
@@ -41,14 +42,8 @@ public class ContentControllerImpl implements ContentController {
 	 */
 	@PostMapping("/register")
 	public ResponseEntity<Content> createContent(@RequestBody CreateContentDto contentDto) {
-		System.out.println("entering create content");
-		
 		Content content = contentDto.getContent();
-		System.out.println("content is : "+content);
-		System.out.println("contentDTO is : "+Arrays.toString(contentDto.getTags()));
-		
 		Content checkContent = contentService.findByUrl(content.getUrl());
-		System.out.println("checkContent : " +checkContent);
 		
 		if(checkContent != null) {
 			System.out.println("enter if statement");
@@ -63,7 +58,10 @@ public class ContentControllerImpl implements ContentController {
 			
 			System.out.println("The valid content is : " + validContent);
 			
-			tagService.createTagWithContentId(content.getContentId(), contentDto.getTags());
+			List<Tag> tags = tagService.createTagWithContentId(content.getContentId(), contentDto.getTags());
+			
+			validContent.setTags(tags);
+			
 			return (validContent != null) ?
 					new ResponseEntity<>(contentService.findByContentId(content.getContentId()),HttpStatus.OK) :
 				    new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -84,14 +82,15 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	
 	/**
 	 * Returns a list of contents with the given tags
 	 * Returns a response entity with a 200 HTTP status if the content is valid.
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@PostMapping("/findbytag")
-	public ResponseEntity<List<Content>> findByTags(@RequestBody Tag[] tags) {
-		List<Content> validContent = contentService.findByTags(tags);
+	public ResponseEntity<List<Content>> findByTagsIgnoreCase(@RequestBody Tag[] tags) {
+		List<Content> validContent = contentService.findByTagsIgnoreCase(tags);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -138,4 +137,45 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	/**
+	 * Finds all content 
+	 * Returns a response entity with a 200 HTTP status if the content list is valid
+	 * Returns a response entity with a 400 HTTP status if the content list is null
+	 */
+	@GetMapping("/findall")
+	public ResponseEntity<List<Content>> findAllContent() {
+		List<Content> allContent = contentService.findAllContent();
+		return (allContent != null) ?
+				new ResponseEntity<>(allContent, HttpStatus.OK) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	
+	
+	/**
+	 * 
+	 * This GetMapping/endpoint is merely a fallback if the array of tags can't
+	 * be populated in the content object itself
+	 * 
+	 * This endpoint returns a list of all tag objects that are associated
+	 * with a certain content id.
+	 * 
+	 */
+	@GetMapping("/findtagsbycontentid")
+	public ResponseEntity<List<Tag>> findTagsByContentId(@RequestParam("contentId") long contentId) {
+		List<Tag> allTags = contentService.findTagsByContentId(contentId);
+		return(allTags != null) ?
+				new ResponseEntity<>(allTags, HttpStatus.OK) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	/**
+	 * Updates content with new content, should not be necessary if create business logic works
+	 */
+//	@PutMapping("/update")
+//	public ResponseEntity<Content> updateContent(@RequestBody Content content) {
+//		Content validContent = contentService.updateContent(content);
+//		return (validContent != null) ?
+//				new ResponseEntity<>(validContent,HttpStatus.OK) :
+//			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//	}
 }

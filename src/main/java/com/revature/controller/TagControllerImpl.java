@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,31 +20,35 @@ import com.revature.service.TagServiceImpl;
 
 @RestController("tagController")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-@RequestMapping(value = "/tags", produces = { MediaType.APPLICATION_JSON_VALUE })
+@RequestMapping(value = "/tags")
 public class TagControllerImpl implements TagController {
 
 	@Autowired
 	TagServiceImpl tagService;
 
 	@GetMapping("/getall")
-	public List<Tag> findAllTags() {
-		return tagService.findAllTags();
+	public ResponseEntity<List<Tag>> findAllTags() {
+		List<Tag> allTags = tagService.findAllTags();
+		return (allTags != null) ?
+				new ResponseEntity<>(allTags, HttpStatus.OK) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/getid/{tagId}")
 	public ResponseEntity<Tag> findTagById(@PathVariable("tagId") long tagId) {
 		Tag tagFound = tagService.findTagById(tagId);
 		if (tagFound != null)
-			return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
+			return new ResponseEntity<>(tagFound, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-
-	@GetMapping(value = "/getname/{name}")
+		
+	@GetMapping(value = "/getname/{tagName}")
 	public ResponseEntity<Tag> findTagByName(@PathVariable("tagName") String tagName) {
 		Tag tagFound = tagService.findByTagName(tagName);
+
 		if (tagFound != null)
-			return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
+			return new ResponseEntity<>(tagFound, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
@@ -61,14 +64,20 @@ public class TagControllerImpl implements TagController {
 	}
 
 	@PostMapping("/create")
-	public long createTag(@RequestBody Tag tag) {
+	public ResponseEntity<Long> createTag(@RequestBody Tag tag) {
 		tagService.save(tag);
-		return tag.getTagId();
+		Long id = tag.getTagId();
+		return (id != null) ?
+				new ResponseEntity<>(id, HttpStatus.CREATED) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping("/update")
-	public long updateTag(@RequestBody Tag tag) {
+	public ResponseEntity<Long> updateTag(@RequestBody Tag tag) {
 		tagService.save(tag);
-		return tag.getTagId();
+		Long id = tag.getTagId();
+		return (id != null) ?
+				new ResponseEntity<>(id, HttpStatus.CREATED) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 }

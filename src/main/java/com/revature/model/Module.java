@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import com.revature.model.Tag;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -45,7 +46,7 @@ public class Module {
 	@UpdateTimestamp
 	private Date updated;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Tag.class, fetch = FetchType.LAZY) //can re-add Cascade type
 	private List<Tag> tags;
 	
 	public Module() {
