@@ -21,15 +21,27 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 	public Content findByContentId(long contentId);
 
 	public Content findByUrl(String url);
-
+	
+	/*
+	 * SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
+            + "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t on t.content_id = c.contentid "
+            + "WHERE t.TAG_NAME = :name"
+            
+            This is the query needed for the oracle database testing
+	 */
 	@Query(value="SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
-			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t "
+			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t ON c.CONTENTID = t.CONTENT_ID "
 			+ "WHERE t.TAG_NAME ILIKE :name", nativeQuery = true)
-	public List<Content> findByTags(@Param("name") String name);
+	public List<Content> findByTagsIgnoreCase(@Param("name") String name);
 
+	/*
+	 * SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
+            + "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t on t.content_id = c.contentid "
+            + "WHERE t.TAG_NAME = :name" AND c.CATEGORY = :category ,
+	 */
 	@Query(value="SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
-			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t "
-			+ "WHERE t.TAG_NAME ILIKE :name AND c.CATEGORY = :category", nativeQuery = true)
+			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t ON t.CONTENT_ID = c.CONTENTID "
+			+ "WHERE t.TAG_NAME ILIKE :name AND c.CATEGORY ILIKE :category", nativeQuery = true)
 	public List<Content> findByTagsAndCategory(@Param("name") String name, String category);
 
 	public Content findByCategory(String category);

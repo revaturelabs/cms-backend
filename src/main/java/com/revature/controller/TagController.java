@@ -9,13 +9,13 @@ import com.revature.model.Tag;
 
 public interface TagController {
 
-	List<Tag> findAllTags();
+	ResponseEntity<List<Tag>> findAllTags();
 	
 	ResponseEntity<Tag> findTagById(long tagId);
 	ResponseEntity<Tag> findTagByName(String name);
 
 	ResponseEntity<Tag> deleteTag(Tag tag);
 	
-	long createTag(Tag tag);
-	long updateTag(Tag tag);
+	ResponseEntity<Long> createTag(Tag tag);
+	ResponseEntity<Long> updateTag(Tag tag);
 }

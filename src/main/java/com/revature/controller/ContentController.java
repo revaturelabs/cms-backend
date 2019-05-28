@@ -12,9 +12,10 @@ public interface ContentController {
 	
 	ResponseEntity<Content> createContent(CreateContentDto contentDto);
 	ResponseEntity<Content> findByUrl(String url);
-	ResponseEntity<List<Content>> findByTags(Tag[] tags);
+	ResponseEntity<List<Content>> findByTagsIgnoreCase(Tag[] tags);
 	ResponseEntity<Content> findByCategory(String category);
 	ResponseEntity<List<Content>> findByTagsAndCategory(Tag[] tags, String category);
 	public void deleteContent(long contentId);
+	ResponseEntity<List<Content>> findAllContent();
 	//ResponseEntity<Content> updateContent(Content content);
 }

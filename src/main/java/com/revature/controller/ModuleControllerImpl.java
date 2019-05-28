@@ -32,8 +32,11 @@ public class ModuleControllerImpl {
 	}
 
 	@GetMapping(value = "/alltags")
-	public List<String> findAllTags() {
-		return ModuleService.findAllTags();
+	public ResponseEntity<List<String>> findAllTags() {
+		List<String> allModuleTags = ModuleService.findAllTags();
+		return (allModuleTags != null) ?
+			new ResponseEntity<>(allModuleTags,HttpStatus.OK) :
+			new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping(value = "/create")
@@ -45,15 +48,18 @@ public class ModuleControllerImpl {
 	}
 
 	@GetMapping(value = "/allmodules")
-	public List<Module> findAllModules() {
-		return ModuleService.findAllModules();
+	public ResponseEntity<List<Module>> findAllModules() {
+		List<Module> allModules = ModuleService.findAllModules();
+		return (allModules != null) ?
+				new ResponseEntity<>(allModules, HttpStatus.OK) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping(value = "/getid/{moduleId}")
 	public ResponseEntity<Module> findModuleById(@PathVariable("moduleId") long moduleId) {
 		Module moduleFound = ModuleService.findModuleById(moduleId);
 		if (moduleFound != null)
-			return new ResponseEntity<>(moduleFound, HttpStatus.FOUND);
+			return new ResponseEntity<>(moduleFound, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
@@ -62,7 +68,7 @@ public class ModuleControllerImpl {
 	public ResponseEntity<Module> findModuleByName(@PathVariable("moduleName") String moduleName) {
 		Module moduleFound = ModuleService.findByModuleName(moduleName);
 		if (moduleFound != null)
-			return new ResponseEntity<>(moduleFound, HttpStatus.FOUND);
+			return new ResponseEntity<>(moduleFound, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
