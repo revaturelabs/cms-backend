@@ -18,6 +18,7 @@ import com.revature.model.Tag;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Table
@@ -43,6 +44,7 @@ public class Content {
 	private String category;
 	@Column(name="NAME")
 	private String name;
+	@URL
 	@Column(name="URL")
 	private String url;
 	@Column(name="DATE_CREATED")

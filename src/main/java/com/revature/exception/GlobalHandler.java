@@ -27,7 +27,7 @@ public class GlobalHandler {
 	@ExceptionHandler(UrlNotRecognizedException.class)
 	public ResponseEntity<ClientMessage> handleUrlNotRecognizedException(UrlNotRecognizedException e) {
 		logger.error("Invalid url data detected", e);
-		return new ResponseEntity<>(URL_NOT_RECOGNIZED, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(URL_NOT_RECOGNIZED, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 	}
 	
 	@ExceptionHandler(ContentNotFoundException.class)

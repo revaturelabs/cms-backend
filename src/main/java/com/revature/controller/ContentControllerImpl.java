@@ -1,7 +1,11 @@
 package com.revature.controller;
 
+import static com.revature.util.ClientMessageUtil.URL_NOT_RECOGNIZED;
+
 import java.util.List;
 
+import javax.validation.Valid;
+import org.hibernate.validator.constraints.URL;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.dto.CreateContentDto;
+import com.revature.exception.UrlNotRecognizedException;
 import com.revature.model.Content;
 import com.revature.model.Tag;
 import com.revature.service.ContentService;
@@ -45,6 +50,7 @@ public class ContentControllerImpl implements ContentController {
 		Content content = contentDto.getContent();
 		Content checkContent = contentService.findByUrl(content.getUrl());
 		
+		try {
 		if(checkContent != null) {
 			System.out.println("enter if statement");
 			
@@ -52,8 +58,10 @@ public class ContentControllerImpl implements ContentController {
 			return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				
 		}
 		else {
+			
 			Content validContent = contentService.newContent(content);
 			
 			System.out.println("The valid content is : " + validContent);
@@ -66,6 +74,11 @@ public class ContentControllerImpl implements ContentController {
 					new ResponseEntity<>(contentService.findByContentId(content.getContentId()),HttpStatus.OK) :
 				    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		}catch(UrlNotRecognizedException e) {
+			throw e;
+			
+		}
+		
 	}
 	
 	/**
@@ -178,4 +191,6 @@ public class ContentControllerImpl implements ContentController {
 //				new ResponseEntity<>(validContent,HttpStatus.OK) :
 //			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //	}
+	
+	
 }
