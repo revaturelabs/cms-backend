@@ -31,7 +31,7 @@ public class TagControllerImpl implements TagController {
 	public ResponseEntity<List<Tag>> findAllTags() {
 		List<Tag> allTags = tagService.findAllTags();
 		return (allTags != null) ?
-				new ResponseEntity<>(allTags, HttpStatus.FOUND) :
+				new ResponseEntity<>(allTags, HttpStatus.OK) :
 				new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
