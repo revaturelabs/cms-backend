@@ -26,6 +26,18 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>  <!-- provided: tomcat/lib/servlet-api.jar -->
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-juli</artifactId>
+			<version>${tomcat.version}</version>
+			<scope>runtime</scope> <!-- runtime: tomcat/bin/tomcat-juli.jar -->
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
@@ -102,7 +114,7 @@
 			<artifactId>modelmapper</artifactId>
 			<version>2.3.2</version>
 		</dependency>
-		
+
 
 	</dependencies>
 
