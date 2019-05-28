@@ -1,5 +1,6 @@
 package com.revature.crud;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.controller.TagController;
-import com.revature.model.Tag;
 import com.revature.repository.TagRepository;
 
 @RunWith(SpringRunner.class)
@@ -20,7 +19,7 @@ public class TagCRUDTest {
 	private TagRepository tagRepository;
 	
 	
-	@Test
+	@Test @Ignore
 	public void testInputIntoRepository() {
 		/*//contains: long tagId, String name, String type, long contentId, long moduleId, 
 		//String dateCreated, String dateUpdated
@@ -35,7 +34,7 @@ public class TagCRUDTest {
 */
 	}
 	
-	@Test
+	@Test @Ignore
 	public void testGetAll()
 	{
 		//TagController.getAllTags();
