@@ -31,8 +31,8 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 	 */
 	@Query(value="SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
 			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t ON c.CONTENTID = t.CONTENT_ID "
-			+ "WHERE t.TAG_NAME = :name", nativeQuery = true)
-	public List<Content> findByTags(@Param("name") String name);
+			+ "WHERE t.TAG_NAME ILIKE :name", nativeQuery = true)
+	public List<Content> findByTagsIgnoreCase(@Param("name") String name);
 
 	/*
 	 * SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
@@ -41,7 +41,7 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 	 */
 	@Query(value="SELECT DISTINCT c.CONTENTID, c.DESCRIPTION, c.CATEGORY, c.NAME, c.URL,"
 			+ "c.DATE_CREATED, c.DATE_UPDATED FROM Content c INNER JOIN Tag t ON t.CONTENT_ID = c.CONTENTID "
-			+ "WHERE t.TAG_NAME = :name AND c.CATEGORY = :category", nativeQuery = true)
+			+ "WHERE t.TAG_NAME ILIKE :name AND c.CATEGORY ILIKE :category", nativeQuery = true)
 	public List<Content> findByTagsAndCategory(@Param("name") String name, String category);
 
 	public Content findByCategory(String category);
