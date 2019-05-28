@@ -12,10 +12,12 @@ import com.revature.model.Tag;
 @Repository
 public interface TagRepository extends JpaRepository<Tag,Long> {
 	
-	@Query(value = "SELECT DISTINCT * FROM TAG WHERE tag_Name = :name and content_id is null", nativeQuery = true)
+	
 	Tag findByTagName(String name);
 	List<Tag> findByContentId(long contentId);
 	@Query(value = "SELECT DISTINCT module_Id FROM TAG WHERE tag_Name = :tag", nativeQuery = true)
 	List<Long> findDistinctModuleIdByTagName(String tag);
+	@Query(value = "SELECT DISTINCT * FROM TAG WHERE content_id is null", nativeQuery = true)
+	List<Tag> findAllDistinctTags();
 
 }

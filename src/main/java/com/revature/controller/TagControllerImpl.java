@@ -79,4 +79,12 @@ public class TagControllerImpl implements TagController {
 				new ResponseEntity<>(id, HttpStatus.CREATED) :
 				new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+
+	@GetMapping("/getdistinct")
+	public ResponseEntity<List<Tag>> findAllDistinctTags() {
+		List<Tag> allTags = tagService.findAllDistinctTags();
+		return (allTags != null) ?
+				new ResponseEntity<>(allTags, HttpStatus.OK) :
+				new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 }
