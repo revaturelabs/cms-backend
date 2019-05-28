@@ -99,7 +99,7 @@ public class ContentRepositoryTest {
 		 return content;
 	}
 	
-	@Test
+	@Test @Ignore
 	public void findByCategory_findByCategoryTest() {
 		Content content = null;
 		content = checkContent(content);
@@ -108,7 +108,7 @@ public class ContentRepositoryTest {
 		assertThat(entry).isEqualTo(contentRepository.findByCategory("notes"));
 	}
 	
-	@Test
+	@Test @Ignore
 	public void findByIdTest() {
 		Content content = null;
 		content = checkIdContent(content);
@@ -126,7 +126,7 @@ public class ContentRepositoryTest {
 //		
 //	}
 //	
-	@Test
+	@Test @Ignore
 	public void findByUrl_findByUrlTest() {
 		Content content = null;
 		content = checkUrlContent(content);
