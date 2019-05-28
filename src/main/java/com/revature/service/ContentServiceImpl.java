@@ -1,7 +1,9 @@
 package com.revature.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.ReadOnlyProperty;
@@ -45,12 +47,12 @@ public class ContentServiceImpl implements ContentService {
 
 	@ReadOnlyProperty
 	@Override
-	public List<Content> findByTagsIgnoreCase(Tag[] tags) {
-		List<Content> contentList = new ArrayList<>();
+	public Set<Content> findByTagsIgnoreCase(Tag[] tags) {
+		Set<Content> contentSet = new HashSet<Content>();
 		for (Tag t : tags) {
-			contentList.addAll(contentRepository.findByTagsIgnoreCase(t.getTagName()));
+			contentSet.addAll(contentRepository.findByTagsIgnoreCase(t.getTagName()));
 		}
-		return contentList;
+		return contentSet;
 	}
 
 	@ReadOnlyProperty

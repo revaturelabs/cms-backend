@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,21 +43,9 @@ public class TagControllerImpl implements TagController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	@GetMapping(value = "/getname/{tagName}")
-	public ResponseEntity<Tag> findTagByName(@PathVariable("tagName") String name) {
-		Tag tagFound = tagService.findByTagName(name);
-=======
-	@GetMapping(value = "/getname/{name}")
-	public ResponseEntity<Tag> findTagByName(@PathVariable("tagName") String tagName) {
-		Tag tagFound = tagService.findByTagName(tagName);
->>>>>>> 5911b3e2db3d78059d750a7cae38835a8404f717
-=======
 	@GetMapping(value = "/getname/{tagName}")
 	public ResponseEntity<Tag> findTagByName(@PathVariable("tagName") String tagName) {
 		Tag tagFound = tagService.findByTagName(tagName);
->>>>>>> test.base.alex
 		if (tagFound != null)
 			return new ResponseEntity<>(tagFound, HttpStatus.OK);
 		else
