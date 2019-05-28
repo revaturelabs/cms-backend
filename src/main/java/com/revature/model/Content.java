@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -40,6 +41,7 @@ public class Content {
 	 * mappedBy="content"
 	 */
 	@OneToMany(targetEntity = Tag.class, fetch = FetchType.LAZY) //can re-add CascadeType
+	//@JoinColumn(name="tag_Id", insertable=true, updatable=true)
 	private List<Tag> tags;
 	@Column(name="DESCRIPTION")
 	private String description;
@@ -61,6 +63,7 @@ public class Content {
 //	@Column(name="DATE_UPDATED")
 //	@Temporal(TemporalType.DATE)
 //	private java.util.Date dateUpdated; 
+	
 	
 	public Content() {
 		

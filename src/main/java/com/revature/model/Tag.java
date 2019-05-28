@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import com.revature.model.Module;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.revature.model.Content;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,6 +20,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name ="TAG")
+@JsonIgnoreProperties({"content" })
 public class Tag {
 
 	@Id
