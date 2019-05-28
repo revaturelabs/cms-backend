@@ -39,7 +39,7 @@ public class ModuleControllerImpl {
 			new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/create")
 	public ResponseEntity<Module> createModule(@RequestBody Module module) {
 		if (ModuleService.createModule(module) != null)
 			return new ResponseEntity<>(module, HttpStatus.CREATED);

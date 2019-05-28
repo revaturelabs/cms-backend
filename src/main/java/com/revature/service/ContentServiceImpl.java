@@ -45,10 +45,10 @@ public class ContentServiceImpl implements ContentService {
 
 	@ReadOnlyProperty
 	@Override
-	public List<Content> findByTags(Tag[] tags) {
+	public List<Content> findByTagsIgnoreCase(Tag[] tags) {
 		List<Content> contentList = new ArrayList<>();
 		for (Tag t : tags) {
-			contentList.addAll(contentRepository.findByTags(t.getTagName()));
+			contentList.addAll(contentRepository.findByTagsIgnoreCase(t.getTagName()));
 		}
 		return contentList;
 	}
