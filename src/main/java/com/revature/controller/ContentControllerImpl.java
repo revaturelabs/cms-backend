@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -89,8 +90,8 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@PostMapping("/findbytag")
-	public ResponseEntity<List<Content>> findByTagsIgnoreCase(@RequestBody Tag[] tags) {
-		List<Content> validContent = contentService.findByTagsIgnoreCase(tags);
+	public ResponseEntity<Set<Content>> findByTagsIgnoreCase(@RequestBody Tag[] tags) {
+		Set<Content> validContent = contentService.findByTagsIgnoreCase(tags);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);

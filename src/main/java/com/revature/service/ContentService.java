@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.revature.model.Content;
 import com.revature.model.Tag;
@@ -32,7 +33,7 @@ public interface ContentService {
 	List<Tag> findTagsByContentId(long contentId);
 	public Content updateContent(Content content);
 	public Content findByCategory(String category);
-	List<Content> findByTagsIgnoreCase(Tag[] tag);
+	Set<Content> findByTagsIgnoreCase(Tag[] tag);
 	List<Content> findByTagsAndCategory(Tag[] tag, String category);
 	List<Content> findAllContent();
 	void delete();
