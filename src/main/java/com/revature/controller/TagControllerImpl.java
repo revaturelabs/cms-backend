@@ -21,7 +21,7 @@ import com.revature.service.TagServiceImpl;
 
 @RestController("tagController")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-@RequestMapping(value = "/tags", produces = { MediaType.APPLICATION_JSON_VALUE })
+@RequestMapping(value = "/tags")
 public class TagControllerImpl implements TagController {
 
 	@Autowired
@@ -41,9 +41,15 @@ public class TagControllerImpl implements TagController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+<<<<<<< HEAD
 	@GetMapping(value = "/getname/{tagName}")
 	public ResponseEntity<Tag> findTagByName(@PathVariable("tagName") String name) {
 		Tag tagFound = tagService.findByTagName(name);
+=======
+	@GetMapping(value = "/getname/{name}")
+	public ResponseEntity<Tag> findTagByName(@PathVariable("tagName") String tagName) {
+		Tag tagFound = tagService.findByTagName(tagName);
+>>>>>>> 5911b3e2db3d78059d750a7cae38835a8404f717
 		if (tagFound != null)
 			return new ResponseEntity<>(tagFound, HttpStatus.FOUND);
 		else

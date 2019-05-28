@@ -111,9 +111,15 @@ public class ContentControllerImpl implements ContentController {
 	}
 
 	/**
+	 * NOTE: NOT USED FOR THIS ITERATION
+     *
+     * NOTE TO FUTURE ITERATIONS:
+     *         deleteContent requires you to delete Tags associated with the contentId because we are use cascade.all
+	 * 
 	 * Deletes specific content with corresponding to contentId
 	 * Calls the content service method deleteContent(long contentId)
 	 */
+	
 	@DeleteMapping("/delete")
 	public void deleteContent(@RequestParam long contentId) {
 		contentService.deleteContent(contentId);
@@ -132,14 +138,4 @@ public class ContentControllerImpl implements ContentController {
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	/**
-	 * Updates content with new content, should not be necessary if create business logic works
-	 */
-//	@PutMapping("/update")
-//	public ResponseEntity<Content> updateContent(@RequestBody Content content) {
-//		Content validContent = contentService.updateContent(content);
-//		return (validContent != null) ?
-//				new ResponseEntity<>(validContent,HttpStatus.OK) :
-//			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//	}
 }

@@ -45,7 +45,7 @@ public class Module {
 	@UpdateTimestamp
 	private Date updated;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Tag> tags;
 	
 	public Module() {
