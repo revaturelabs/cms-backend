@@ -24,7 +24,7 @@ import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Table
-@JsonIgnoreProperties({"hibernateLazyInitializer", "tags"})
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Content {
 	
 	@Id

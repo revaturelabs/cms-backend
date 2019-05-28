@@ -18,9 +18,9 @@ public interface ContentRepository extends JpaRepository<Content, Long> {
 	 * @param contentId
 	 * @return Content
 	 */
-	@Query(value = "SELECT t.TAG_ID, t.TAG_NAME, t.TYPE, t.CONTENT_ID, t.MODULE_ID, "
-			+ "t.DATE_CREATED, t.DATE_UPDATED from Tag t INNER JOIN CONTENT c "
-			+ "ON t.CONTENT_ID  = :contentId", nativeQuery = true)
+//	@Query(value = "SELECT t.TAG_ID, t.TAG_NAME, t.TYPE, t.CONTENT_ID, t.MODULE_ID, "
+//			+ "t.DATE_CREATED, t.DATE_UPDATED from Tag t INNER JOIN CONTENT c "
+//			+ "ON t.CONTENT_ID  = :contentId", nativeQuery = true)
 	public Content findByContentId(long contentId);
 
 	public Content findByUrl(String url);
