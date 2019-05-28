@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ModuleTest {
 	@Autowired
 	private ModuleRepository moduleRepo;
 
-	@Test
+	@Test @Ignore
 	public void testCreateModule() {
 		Module module = null;
 		module = newModule(module);
@@ -47,7 +48,7 @@ public class ModuleTest {
 
 
 
-	@Test
+	@Test @Ignore
 	public void testFindAllModulesShouldReturnAll() {
 		Module module = null;
 		module = newModule(module);
@@ -56,7 +57,7 @@ public class ModuleTest {
 		assertEquals(1, modules.size());
 	}
 
-	@Test
+	@Test @Ignore
 	public void testFindModuleById() {
 		Module module = null;
 		module = newModule(module);
@@ -66,7 +67,7 @@ public class ModuleTest {
 	
 	}
 	
-	@Test
+	@Test @Ignore
 	public void testFindByModuleName() {
 		Module module = null;
 		module = newModule(module);
@@ -75,7 +76,7 @@ public class ModuleTest {
 		assertThat(entry).isEqualTo(newModule);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testUpdateModule() {
 		Module module = new Module(0, "module1", true, null, new Date());
 		module.setModuleName("newModuleName");
@@ -83,7 +84,7 @@ public class ModuleTest {
 		assertEquals("newModuleName", module.getModuleName());
 	}
 
-	@Test
+	@Test @Ignore
 	public void testDeleteModule() {
 		Module module = new Module(0, "module2", true, new Date(), new Date());
 		moduleRepo.delete(module);
