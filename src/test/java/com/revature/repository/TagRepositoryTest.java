@@ -20,7 +20,7 @@ public class TagRepositoryTest {
 	@Autowired
 	//private TagRepository tagRepository;
 	
-	@Test
+	@Test @Ignore
 	public void testCreate() {				
 		Tag tag = new Tag();
 		tag.setContentId(1L);
