@@ -3,16 +3,20 @@ package com.revature.controller;
 import static com.revature.util.ClientMessageUtil.URL_NOT_RECOGNIZED;
 
 import java.util.List;
+import java.util.Set;
+
 
 import javax.validation.Valid;
 import org.hibernate.validator.constraints.URL;
 import org.modelmapper.ModelMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -102,8 +106,8 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@PostMapping("/findbytag")
-	public ResponseEntity<List<Content>> findByTagsIgnoreCase(@RequestBody Tag[] tags) {
-		List<Content> validContent = contentService.findByTagsIgnoreCase(tags);
+	public ResponseEntity<Set<Content>> findByTagsIgnoreCase(@RequestBody Tag[] tags) {
+		Set<Content> validContent = contentService.findByTagsIgnoreCase(tags);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -174,9 +178,9 @@ public class ContentControllerImpl implements ContentController {
 	 * with a certain content id.
 	 * 
 	 */
-	@GetMapping("/findtagsbycontentid")
-	public ResponseEntity<List<Tag>> findTagsByContentId(@RequestParam("contentId") long contentId) {
-		List<Tag> allTags = contentService.findTagsByContentId(contentId);
+	@PostMapping("/findtagsbycontentid")
+	public ResponseEntity<List<Tag>> findTagsByContentId(@RequestBody Content content) {
+		List<Tag> allTags = contentService.findTagsByContentId(content.getContentId());
 		return(allTags != null) ?
 				new ResponseEntity<>(allTags, HttpStatus.OK) :
 				new ResponseEntity<>(HttpStatus.NOT_FOUND);
