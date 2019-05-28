@@ -59,7 +59,7 @@ public class ModuleControllerImpl {
 	public ResponseEntity<Module> findModuleById(@PathVariable("moduleId") long moduleId) {
 		Module moduleFound = ModuleService.findModuleById(moduleId);
 		if (moduleFound != null)
-			return new ResponseEntity<>(moduleFound, HttpStatus.FOUND);
+			return new ResponseEntity<>(moduleFound, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
@@ -68,7 +68,7 @@ public class ModuleControllerImpl {
 	public ResponseEntity<Module> findModuleByName(@PathVariable("moduleName") String moduleName) {
 		Module moduleFound = ModuleService.findByModuleName(moduleName);
 		if (moduleFound != null)
-			return new ResponseEntity<>(moduleFound, HttpStatus.FOUND);
+			return new ResponseEntity<>(moduleFound, HttpStatus.OK);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}

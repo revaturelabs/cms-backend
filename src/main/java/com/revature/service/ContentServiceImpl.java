@@ -10,12 +10,16 @@ import org.springframework.stereotype.Service;
 import com.revature.model.Content;
 import com.revature.model.Tag;
 import com.revature.repository.ContentRepository;
+import com.revature.repository.TagRepository;
 
 @Service("contentService")
 public class ContentServiceImpl implements ContentService {
 
 	@Autowired
 	private ContentRepository contentRepository;
+	
+	@Autowired
+	private TagRepository tagRepository;
 
 	@Override
 	public void delete() {
@@ -41,9 +45,9 @@ public class ContentServiceImpl implements ContentService {
 
 	@ReadOnlyProperty
 	@Override
-	public List<Content> findByTags(Tag[] tag) {
+	public List<Content> findByTags(Tag[] tags) {
 		List<Content> contentList = new ArrayList<>();
-		for (Tag t : tag) {
+		for (Tag t : tags) {
 			contentList.addAll(contentRepository.findByTags(t.getTagName()));
 		}
 		return contentList;
@@ -51,9 +55,9 @@ public class ContentServiceImpl implements ContentService {
 
 	@ReadOnlyProperty
 	@Override
-	public List<Content> findByTagsAndCategory(Tag[] tag, String category) {
+	public List<Content> findByTagsAndCategory(Tag[] tags, String category) {
 		List<Content> contentList = new ArrayList<>();
-		for(Tag t : tag) {
+		for(Tag t : tags) {
 			contentList.addAll(contentRepository.findByTagsAndCategory(t.getTagName(), category));
 		}
 		return contentList;
@@ -75,9 +79,14 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	
-
 	@Override
 	public List<Content> findAllContent() {
 		return contentRepository.findAll();
+	}
+
+	@Override
+	public List<Tag> findTagsByContentId(long contentId) {
+		List<Tag> tagsList = tagRepository.findByContentId(contentId);
+		return tagsList;
 	}
 }

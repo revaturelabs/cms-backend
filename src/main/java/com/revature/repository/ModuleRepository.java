@@ -13,6 +13,6 @@ public interface ModuleRepository extends JpaRepository<Module, Long> {
 
 	public Module findByModuleName(String name);
 
-	@Query(value="SELECT t.TAG_NAME FROM TAG t INNER JOIN MODULE", nativeQuery=true)
+	@Query(value="SELECT t.TAG_NAME FROM TAG t INNER JOIN MODULE m ON m.MODULE_ID = t.MODULE_ID", nativeQuery=true)
 	public List<String> findAllTags();
 }
