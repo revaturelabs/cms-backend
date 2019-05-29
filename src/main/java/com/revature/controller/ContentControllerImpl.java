@@ -55,7 +55,7 @@ public class ContentControllerImpl implements ContentController {
 		Content checkContent = contentService.findByUrl(content.getUrl());
 		
 		if(checkContent != null) {
-			System.out.println("enter if statement");
+			
 			
 			Content validContent = contentService.updateContent(checkContent);
 			return (validContent != null) ?
@@ -64,8 +64,6 @@ public class ContentControllerImpl implements ContentController {
 		}
 		else {
 			Content validContent = contentService.newContent(content);
-			
-			System.out.println("The valid content is : " + validContent);
 			
 			List<Tag> tags = tagService.createTagWithContentId(content.getContentId(), contentDto.getTags());
 			
