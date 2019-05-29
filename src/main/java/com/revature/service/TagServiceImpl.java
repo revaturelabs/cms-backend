@@ -71,4 +71,9 @@ public class TagServiceImpl implements TagService {
 		}
 		return tagList;
 	}
+
+	@Override
+	public List<Tag> findAllDistinctTags() {
+		return tagRepository.findAllDistinctTags();
+	}
 }

@@ -1,14 +1,22 @@
 package com.revature.controller;
 
-import java.util.List;
+import static com.revature.util.ClientMessageUtil.URL_NOT_RECOGNIZED;
 
+import java.util.List;
+import java.util.Set;
+
+
+import javax.validation.Valid;
+import org.hibernate.validator.constraints.URL;
 import org.modelmapper.ModelMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.dto.CreateContentDto;
+import com.revature.exception.UrlNotRecognizedException;
 import com.revature.model.Content;
 import com.revature.model.Tag;
 import com.revature.service.ContentService;
@@ -46,7 +55,7 @@ public class ContentControllerImpl implements ContentController {
 		Content checkContent = contentService.findByUrl(content.getUrl());
 		
 		if(checkContent != null) {
-			System.out.println("enter if statement");
+			
 			
 			Content validContent = contentService.updateContent(checkContent);
 			return (validContent != null) ?
@@ -56,11 +65,13 @@ public class ContentControllerImpl implements ContentController {
 		else {
 			Content validContent = contentService.newContent(content);
 			
-			System.out.println("The valid content is : " + validContent);
-			
 			List<Tag> tags = tagService.createTagWithContentId(content.getContentId(), contentDto.getTags());
 			
 			validContent.setTags(tags);
+			
+			content = validContent;
+			
+			contentService.updateContent(content);
 			
 			return (validContent != null) ?
 					new ResponseEntity<>(contentService.findByContentId(content.getContentId()),HttpStatus.OK) :
@@ -89,8 +100,8 @@ public class ContentControllerImpl implements ContentController {
 	 * Returns a response entity with a 400 HTTP status if the content object returns null
 	 */
 	@PostMapping("/findbytag")
-	public ResponseEntity<List<Content>> findByTagsIgnoreCase(@RequestBody Tag[] tags) {
-		List<Content> validContent = contentService.findByTagsIgnoreCase(tags);
+	public ResponseEntity<Set<Content>> findByTagsIgnoreCase(@RequestBody Tag[] tags) {
+		Set<Content> validContent = contentService.findByTagsIgnoreCase(tags);
 		return (validContent != null) ?
 				new ResponseEntity<>(validContent,HttpStatus.OK) :
 			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -161,9 +172,9 @@ public class ContentControllerImpl implements ContentController {
 	 * with a certain content id.
 	 * 
 	 */
-	@GetMapping("/findtagsbycontentid")
-	public ResponseEntity<List<Tag>> findTagsByContentId(@RequestParam("contentId") long contentId) {
-		List<Tag> allTags = contentService.findTagsByContentId(contentId);
+	@PostMapping("/findtagsbycontentid")
+	public ResponseEntity<List<Tag>> findTagsByContentId(@RequestBody Content content) {
+		List<Tag> allTags = contentService.findTagsByContentId(content.getContentId());
 		return(allTags != null) ?
 				new ResponseEntity<>(allTags, HttpStatus.OK) :
 				new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -178,4 +189,6 @@ public class ContentControllerImpl implements ContentController {
 //				new ResponseEntity<>(validContent,HttpStatus.OK) :
 //			    new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //	}
+	
+	
 }

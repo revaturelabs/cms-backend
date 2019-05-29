@@ -13,6 +13,7 @@ public class UrlNotRecognizedException extends RuntimeException {
 	 */
 	public UrlNotRecognizedException(String message) { 
 		super(message); 
+		message = "PLEASE ENTER VALID URL";
 	} 
 }
 		

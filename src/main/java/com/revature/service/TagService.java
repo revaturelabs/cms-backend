@@ -13,4 +13,5 @@ public interface TagService {
 	void update(Tag tag);
 	void deleteTag(Tag tag);
 	List<Tag> createTagWithContentId(long contentId, String[] tags);
+	List<Tag> findAllDistinctTags();
 }

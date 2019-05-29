@@ -11,16 +11,21 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.revature.model.Tag;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Table
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Content {
 	
 	@Id
@@ -36,6 +41,7 @@ public class Content {
 	 * mappedBy="content"
 	 */
 	@OneToMany(targetEntity = Tag.class, fetch = FetchType.LAZY) //can re-add CascadeType
+	//@JoinColumn(name="tag_Id", insertable=true, updatable=true)
 	private List<Tag> tags;
 	@Column(name="DESCRIPTION")
 	private String description;
@@ -43,6 +49,7 @@ public class Content {
 	private String category;
 	@Column(name="NAME")
 	private String name;
+	@URL
 	@Column(name="URL")
 	private String url;
 	@Column(name="DATE_CREATED")
@@ -56,6 +63,7 @@ public class Content {
 //	@Column(name="DATE_UPDATED")
 //	@Temporal(TemporalType.DATE)
 //	private java.util.Date dateUpdated; 
+	
 	
 	public Content() {
 		
